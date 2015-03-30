@@ -98,7 +98,7 @@ class Split(models.Model):
 class Employee(models.Model):
 	name = models.CharField(max_length=512)
 	is_manager = models.BooleanField(default=False)
-	password = models.CharField(max_length=32)
+	passkey = models.IntegerField()
 
 # these could be implemented as boolean fields in the Employee class, but
 # this way, if there are specific things we need to store for waiters or cooks
