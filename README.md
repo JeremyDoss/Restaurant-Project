@@ -1,2 +1,2 @@
 # Restaurant-Project
-![alt tag](https://raw.github.com/TeamWheel/Restaurant-Project/img.png)
+![alt tag](https://github.com/TeamWheel/Restaurant-Project/blob/master/Class_Diagram.png)
