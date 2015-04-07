@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block main %}
+<p>Below is a list of menu items generated from the database:</p>
+<ul>
+{# in views.py, all_menu_items is exposed so all we have to do is loop through it here and access the members #}
+{% for item in all_menu_items %}
+	<li>{{ item.name }}
+		<ul>
+			<li>Price: ${{ item.price }}</li>
+			<li>Times ordered: {{ item.times_ordered }}</li>
+			{# below is an example of iterating over a ManyToManyField relation, which MenuItem.ingredients is #}
+			<li>Ingredients: {% for ingredient in item.ingredients.all %}{{ ingredient|lower }}{% if not forloop.last %},{% endif %} {% endfor %}</li>
+		</ul>
+	</li>
+{% endfor %}
+</ul>
+
+<p>And here is a list of menu categories arranged as a tree</p>
+{# this only supports two levels, but I think that's all we're going to have, and this is just a demo anyway #}
+<ul>
+{% for category in categories %}
+	{% if category.parent == None %}
+		{{ category.name }}
+		<ul>
+		{% for subcategory in categories %}
+			{% if subcategory.parent == category %}
+				<li>{{ subcategory.name }}</li>
+			{% endif %}
+		{% endfor %}
+		</ul>
+	{% endif %}
+{% endfor %}
+</ul>
+{% endblock %}

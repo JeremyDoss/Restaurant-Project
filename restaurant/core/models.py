@@ -1,12 +1,20 @@
 from django.db import models
+import datetime
 
 # Create your models here.
 
 # category
 # this can be a main category or a sub category
 class Category(models.Model):
-	parent = models.ForeignKey('self', null=True)
+	parent = models.ForeignKey('self', null=True, blank=True)
 	name = models.CharField(max_length=100)
+
+	class Meta:
+		verbose_name_plural = "categories"
+	def __str__(self):
+		if self.parent:
+			return "%s (parent: %s)" % (self.name, self.parent.name)
+		return self.name
 
 # ingredient
 class Ingredient(models.Model):
@@ -24,16 +32,25 @@ class MenuItem(models.Model):
 	times_ordered = models.IntegerField() # for measuring popularity
 	price = models.DecimalField(decimal_places=2, max_digits=5)
 	description = models.TextField()
+	image = nutritional_info = models.URLField(blank=True)
 	ingredients = models.ManyToManyField(Ingredient) # this will be used to remove items with ingredients that are out of stock from listing
 	category = models.ForeignKey(Category)
-	nutritional_info = models.URLField()
+	nutritional_info = models.URLField(blank=True)
+	calories = models.IntegerField()
+	fat_grams = models.IntegerField()
+	sodium_mg = models.IntegerField()
 	is_vegetarian = models.BooleanField(default=False)
+	in_stock = models.BooleanField(default=True)
 
 	ALLERGY_TYPES = (
+		("NONE", 'None'),
 		("PEANUT", 'Peanuts'),
 		("GLUTEN", 'Gluten'),
 	)
-	allergens = models.CharField(max_length=10, choices=ALLERGY_TYPES)
+	allergens = models.CharField(max_length=10, choices=ALLERGY_TYPES, default=ALLERGY_TYPES[0][0])
+
+	def __str__(self):
+		return "%s (%s)" % (self.name, self.category.name)
 
 
 # tables
@@ -47,8 +64,8 @@ class Table(models.Model):
 		("NA", "Need assistance"),
 		("PL", "Order placed"),
 	)
-	status = models.CharField(max_length=2, choices=STATUS_TYPES)
-	prev_status = models.CharField(max_length=2, choices=STATUS_TYPES) # so we can revert from e.g. "Need refill"
+	status = models.CharField(max_length=2, choices=STATUS_TYPES, default=STATUS_TYPES[0][0])
+	prev_status = models.CharField(max_length=2, choices=STATUS_TYPES, default=STATUS_TYPES[0][0]) # so we can revert from e.g. "Need refill"
 
 	def __str__(self):
 		return "Table %i" % self.id
@@ -61,13 +78,13 @@ class Order(models.Model):
 	#order_number = models.AutoField() # auto increments 
 	table = models.ForeignKey(Table)
 	menu_items = models.ManyToManyField(MenuItem)
-	date = models.DateTimeField(auto_now_add=True)
+	date = models.DateTimeField(auto_now_add=True, default=datetime.datetime.now)
 	STATUS_TYPES = (
 		("OP", "Open"),
 		("CL", "Closed"),
 		("RD", "Ready to be served")
 	)
-	status = models.CharField(max_length=2, choices=STATUS_TYPES)
+	status = models.CharField(max_length=2, choices=STATUS_TYPES, default=STATUS_TYPES[0][0])
 
 	def __str__(self):
 		return "Order %i" % self.id
@@ -76,6 +93,7 @@ class Order(models.Model):
 # feedback
 class Feedback(models.Model):
 	order = models.ForeignKey(Order)
+	rating = models.IntegerField()
 	message = models.TextField()
 
 # invoice
@@ -100,6 +118,11 @@ class Employee(models.Model):
 	is_manager = models.BooleanField(default=False)
 	passkey = models.IntegerField()
 
+	def __str__(self):
+		if self.is_manager:
+			return "%s (manager)" % self.name
+		else: return self.name
+
 # these could be implemented as boolean fields in the Employee class, but
 # this way, if there are specific things we need to store for waiters or cooks
 # this makes it easier
@@ -107,5 +130,12 @@ class Waiter(models.Model):
 	employee = models.ForeignKey(Employee)
 	tables = models.ManyToManyField(Table)
 
+	def __str__(self):
+		return self.employee.name
+
 class Cook(models.Model):
 	employee = models.ForeignKey(Employee)
+
+	def __str__(self):
+		return self.employee.name
+

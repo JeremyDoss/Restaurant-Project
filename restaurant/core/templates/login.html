@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block script %}
+<script src="https://dl.dropboxusercontent.com/u/6829097/sestatic/js/jquery.plugin.min.js"></script>
+<script src="https://dl.dropboxusercontent.com/u/6829097/sestatic/js/jquery.keypad.min.js"></script>
+<script>
+$(function () {
+	$('#inlineKeypad').keypad({
+		closeText: 'Done',
+	    onKeypress: function(key, value, inst) { 
+	        $('input.passkey').val(value);
+	    },
+	    onClose: function() {
+	    	$('form').submit();
+	    }
+	});
+});
+</script>
+{% endblock %}
+
+{% block style %}
+<link href="https://dl.dropboxusercontent.com/u/6829097/sestatic/css/jquery.keypad.css" rel="stylesheet">
+<style type="text/css">
+#inlineKeypad { width: 10em;}
+input[name="passkey"] { width: 14em;}
+</style>
+{% endblock %}
+
+{% block main %}
+<form method="POST" action="/waiter/login/">
+{% csrf_token %}
+<input type="text" class="passkey" name="passkey">
+<div id="inlineKeypad"></div>
+</form>
+{% endblock %}
