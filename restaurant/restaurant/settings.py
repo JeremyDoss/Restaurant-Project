@@ -57,10 +57,23 @@ WSGI_APPLICATION = 'restaurant.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.sqlite3',
+#        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+#    }
+#}
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'se4444',
+        'USER': 'se4444',
+        'PASSWORD': 'csce4444',
+        'HOST': 'db.cleria.org',
+        'PORT': '3306',
+        'OPTIONS': {
+          'autocommit': True,
+        },
     }
 }
 
