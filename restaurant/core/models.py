@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 import datetime
 
 # Create your models here.
@@ -32,7 +33,7 @@ class MenuItem(models.Model):
 	times_ordered = models.IntegerField() # for measuring popularity
 	price = models.DecimalField(decimal_places=2, max_digits=5)
 	description = models.TextField()
-	image = nutritional_info = models.URLField(blank=True)
+	image = models.URLField(blank=True)
 	ingredients = models.ManyToManyField(Ingredient) # this will be used to remove items with ingredients that are out of stock from listing
 	category = models.ForeignKey(Category)
 	nutritional_info = models.URLField(blank=True)
@@ -78,7 +79,7 @@ class Order(models.Model):
 	#order_number = models.AutoField() # auto increments 
 	table = models.ForeignKey(Table)
 	menu_items = models.ManyToManyField(MenuItem)
-	date = models.DateTimeField(auto_now_add=True, default=datetime.datetime.now)
+	date = models.DateTimeField(auto_now_add=True, default=timezone.now)
 	STATUS_TYPES = (
 		("OP", "Open"),
 		("CL", "Closed"),
