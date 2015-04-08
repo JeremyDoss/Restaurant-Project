@@ -17,7 +17,7 @@
 			
 			#selectable .ui-selecting { background: #F2EBBF; }
 			#selectable .ui-selected { background: #8CBEB2; color: F2EBBF; }
-			#selectable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+			#selectable { list-style-type: none; margin: 0; padding: 0;   }
 			#selectable li { 
 				margin: 3px; 
 				padding: 1px; 
@@ -49,60 +49,69 @@
       			});
   			});
   		</script>
-	{% endblock %}
+{% endblock %}
 </head>
 <body>
 	{% block main %}
-	<style>
-	ol.selectable {
-			    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-    background-color: #b0e0e6;
 
 
+<style>
 
-	}
-	</style>
+#rcorners {
+    border-radius: 10px;
+    border: 2px solid #5C4B51;
+    background-color: #FFFFFF;
+    width:60%;
+	box-shadow: 10px 10px 5px #CCCCCC;
+}
 
+th{
+	border-radius: 10px;
+    border: 1px solid #5C4B51;
+    border-collapse: collapse;
+    width = 100%;
+    background:-o-linear-gradient(bottom, #ffffff 5%, #E6E6FF 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffffff), color-stop(1, #E6E6FF) );
+}
+tr{
 
+	width : 50%;
 
+}
 
-<p>
+</style>
+<center>
+<div id="rcorners">
+<table>
+	<th>Tables
+	</th>
+	<tr>
+		<td>
 			<ol id="selectable">
-			<li class="ui-widget-content">Table 1</li>
-			<li class="ui-widget-content">Table 2</li>
-			<li class="ui-widget-content">Table 3</li>
-			<li class="ui-widget-content">Table 4</li>
-			<li class="ui-widget-content">Table 5</li>
-			<li class="ui-widget-content">Table 6</li>
-			<li class="ui-widget-content">Table 7</li>
-			<li class="ui-widget-content">Table 8</li>
-		
+				<li class="ui-widget-content">Table 1</li>
+				<li class="ui-widget-content">Table 2</li>
+				<li class="ui-widget-content">Table 3</li>
+				<li class="ui-widget-content">Table 4</li>
+				<li class="ui-widget-content">Table 5</li>
+				<li class="ui-widget-content">Table 6</li>
+				<li class="ui-widget-content">Table 7</li>
+				<li class="ui-widget-content">Table 8</li>
 			</ol>
-		</p>
-
-<p>
-	<p id="feedback">
-<span>You've selected:</span> <span id="select-result">none</span>.
-</p>
-</p>
-<p>
-	<br>
-			<div id="buttons">
-	<button>A button element</button>
-	</p>
-
+		</td>
+	<tr>
+		<td>
+			<span>You've selected:</span> <span id="select-result">none</span>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<center>
+			<button>A button element</button>
+			</center>
+		</td>
+	</tr>
+</table>
 </div>
-	<br>
 
-			user = Employee.objects.get(passkey=request.POST['passkey'])
-			response = redirect('/waiter')
-			response.set_cookie('logged_in', 'yes')
-			response.set_cookie('uid', user.id)
-			return response
-
-
-	{% endblock %}
+{% endblock %}
 </body>
 </html>
