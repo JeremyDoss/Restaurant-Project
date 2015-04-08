@@ -135,6 +135,7 @@ class Waiter(models.Model):
 
 class Cook(models.Model):
 	employee = models.ForeignKey(Employee)
+	current_orders = models.ManyToManyField(Order, blank=True)
 
 	def __str__(self):
 		return self.employee.name
