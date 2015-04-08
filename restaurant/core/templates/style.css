@@ -1,0 +1,150 @@
+
+
+body{
+  font-family: arial, verdana;
+    background:#000;
+  color:#fff;
+  font-family: 'PT Sans Narrow', Arial, sans-serif;
+
+  background-image: url(one.jpg);
+  background-size:cover;
+
+}
+
+a{
+  color:#fff;
+  text-decoration:none;
+}
+
+img.ac_bgimage{
+  position:fixed;
+  left:0px;
+  top:0px;
+  opacity:0.8;
+  display:none;
+}
+
+.ac_overlay{
+  width:100%;
+  height:100%;
+  position:fixed;
+  top:0px;
+  left:0px;
+  background:transparent url(pattern.png) repeat top left;
+}
+
+
+#container{
+  width:940px;
+  min-height:500px;
+  margin:3% auto 0 auto;
+}
+.section{
+  width:220px;
+  background: linear-gradient(#555, #444);
+  float:left;
+  margin-top:.2%;
+  box-shadow:1px 1px 5px rgba(0, 0, 0, .5);
+}
+.section2{
+  width:500px;
+  background: linear-gradient(#555, #444);
+  float:left;
+  margin-top:.2%;
+  box-shadow:1px 1px 5px rgba(0, 0, 0, .5);
+}
+.section3{
+  width:220px;
+  background: linear-gradient(#555, #444);
+  float:left;
+  margin-top:.2%;
+  box-shadow:1px 1px 5px rgba(0, 0, 0, .5);
+}
+
+
+
+.price{
+  width:120px;
+  height:120px;
+  border-radius:50%;
+  border:1px solid #ff9547;
+  margin:5% auto 0 auto;
+  text-align:center;
+}
+
+.base{
+  width:100%;
+  height:50px;
+  margin-top:10%;
+  background:#333; 
+}
+h1{
+  font-size:33px;
+  color:#000000;
+  text-align:center;
+  line-height:1.5;
+}
+h2{
+  text-align:center;
+  font-size:38px;
+  color:#fff;
+}
+sub{
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: bold;
+}
+h3{
+  font-size:14px;
+  font-weight:normal;
+  text-align:center;
+  color:#fff;
+  line-height:1;
+}
+h3:hover{
+  font-size:14px;
+  font-weight:normal;
+  text-align:center;
+  color:#DFD;
+  line-height:1;
+}
+h4{
+    margin-left:10%;
+  font-size:14px;
+  font-weight:normal;
+  text-align:left;
+  color:#fff;
+  line-height:1;
+}
+.section4{
+  width:100%;
+  min-width:500px;
+    background: #fafafa;
+  background-clip: padding-box;
+  float:left;
+  margin-top:.2%;
+  border: solid #453b5d;
+  border-width: 1px 1px 1px 1px;
+
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  text-align: center;
+}
+
+
+.plan {
+  float: left;
+  width: 220px;
+  margin: 10px 0;
+  padding: 20px;
+  text-align: center;
+  background: #fafafa;
+  background-clip: padding-box;
+  border: solid #453b5d;
+  border-width: 2px 0 2px 2px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
