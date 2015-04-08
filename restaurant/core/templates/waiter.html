@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Waiter Screen</title>
+
+		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  		
+  	{% block script %}
+	{% endblock %}
+	{% block style %}
+
+
+	<link href="css/style.css" rel="stylesheet">
+	<style type="text/css">
+		<style>
+			
+			#selectable .ui-selecting { background: #F2EBBF; }
+			#selectable .ui-selected { background: #8CBEB2; color: F2EBBF; }
+			#selectable { list-style-type: none; margin: 0; padding: 0; width: 450px; }
+			#selectable li { 
+				margin: 3px; 
+				padding: 1px; 
+				float: left; 
+				width: 150px; 
+				height: 80px; 
+				font-size: 4em; 
+				text-align: center; 
+				font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
+  				border: 1px solid #ccc;
+  				border-color: #5C4B51;
+  				background: #FFF7F4;
+			}
+		</style>
+  		<script>
+  			$(function(){
+    			
+    			$( "#selectable" ).selectable({
+      				stop: function() {
+        				var result = $( "#select-result" ).empty();
+        				$( ".ui-selected", this ).each(function() {
+          					var index = $( "#selectable li" ).index( this );
+          					result.append( " #" + ( index + 1 ) );
+        				});
+      				}	
+    			});
+    			$("input[type=submit], a, button").button().click(function( event ){
+        			event.preventDefault();
+      			});
+  			});
+  		</script>
+	{% endblock %}
+</head>
+<body>
+	{% block main %}
+	<style>
+	ol.selectable {
+			    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    background-color: #b0e0e6;
+
+
+
+	}
+	</style>
+
+
+
+
+<p>
+			<ol id="selectable">
+			<li class="ui-widget-content">Table 1</li>
+			<li class="ui-widget-content">Table 2</li>
+			<li class="ui-widget-content">Table 3</li>
+			<li class="ui-widget-content">Table 4</li>
+			<li class="ui-widget-content">Table 5</li>
+			<li class="ui-widget-content">Table 6</li>
+			<li class="ui-widget-content">Table 7</li>
+			<li class="ui-widget-content">Table 8</li>
+		
+			</ol>
+		</p>
+
+<p>
+	<p id="feedback">
+<span>You've selected:</span> <span id="select-result">none</span>.
+</p>
+</p>
+<p>
+	<br>
+			<div id="buttons">
+	<button>A button element</button>
+	</p>
+
+</div>
+	<br>
+
+			user = Employee.objects.get(passkey=request.POST['passkey'])
+			response = redirect('/waiter')
+			response.set_cookie('logged_in', 'yes')
+			response.set_cookie('uid', user.id)
+			return response
+
+
+	{% endblock %}
+</body>
+</html>
