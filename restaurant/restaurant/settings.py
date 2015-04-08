@@ -69,7 +69,7 @@ DATABASES = {
         'NAME': 'se4444',
         'USER': 'se4444',
         'PASSWORD': 'csce4444',
-        'HOST': 'cleria.org',
+        'HOST': '107.170.130.163',
         'PORT': '3306',
         'OPTIONS': {
           'autocommit': True,
