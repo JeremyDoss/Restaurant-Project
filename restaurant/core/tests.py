@@ -3,6 +3,9 @@ from .models import *
 
 # Create your tests here.
 class MenuTests(TestCase):
+	# these are mainly just placeholder tests. actual tests of the models will need to be different
+	# but as an example, this inserts a MenuItem and verifies that it got inserted properly by checking that
+	# the name returns what we expect, and the category is what we expect when we query the database
 	def setUp(self):
 		cat = Category.objects.create(parent=None, name='Entrees')
 		ing = Ingredient.objects.create(name="Potatoes")
