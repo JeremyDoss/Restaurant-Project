@@ -4,14 +4,7 @@
 
 <script src="http://www.pipmix.com/js/jquery-1.11.2.min.js"></script>
 <script src="http://www.pipmix.com/js/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="http://pipmix.com/css/menuStyle.css">
-<link rel="stylesheet" href="https://www.dropbox.com/s/d5ujhi3k6djarx5/wheel.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenLite.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/utils/Draggable.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/plugins/CSSPlugin.min.js"></script>
-<script src="https://www.dropbox.com/s/h975ugv2vnda9cq/wheel.js"></script>
-
-
+<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/162610/menuStyle.css">
 
 <script>
 // Sry I know not the best way to do it, but time is of the essence
@@ -72,23 +65,22 @@
         <h3 class ="b4">Deserts</h3>
       </div>
     </div>
-    <!--Wheel Testing-->
-    <div id="wheelContainer">
-      <img id="back" class="wheel" src="http://f.tqn.com/y/altreligion/1/S/_/1/-/-/circle.jpg">
-      <img id="category1" class="wheel1" src="http://imgur.com/4p56Ih6.png" draggable="true" ondragstart="drag(event)">
-      <img id="category2" class="wheel1" src="http://imgur.com/yl6MbQH.png" draggable="true" ondragstart="drag(event)">
-      <img id="category3" class="wheel1" src="http://imgur.com/puCtLbf.png" draggable="true" ondragstart="drag(event)">
-      <img id="category4" class="wheel1" src="http://imgur.com/iS0kDi1.png" draggable="true" ondragstart="drag(event)">
-    </div>
     <!-- APPITIZER SECTION  -->
     <div class="apps">
       <div class="section2">
         <h2> Appetizers </h2>
 
 
+
+
+
 {% for item in all_menu_items %}
-<h4>{{ item.name }}</h4>
+  {% if item.category == Appetizers %}
+  <h4>{{ item.name }}</h4>
+  {% endif %}
 {% endfor %}
+
+
 
 
 
@@ -135,6 +127,51 @@
         <h4> Pepporoni Pie</h4>
       </div>
     </div>
+
+    <div class="basebar">
+
+
+
+
+<ul>
+{# in views.py, all_menu_items is exposed so all we have to do is loop through it here and access the members #}
+{% for item in all_menu_items %}
+  <li>{{ item.name }}
+    <ul>
+      <li>Category: {{ item.category }}</li>
+      <li>Price: ${{ item.price }}</li>
+      <li>Times ordered: {{ item.times_ordered }}</li>
+      {# below is an example of iterating over a ManyToManyField relation, which MenuItem.ingredients is #}
+      <li>Ingredients: {% for ingredient in item.ingredients.all %}{{ ingredient|lower }}{% if not forloop.last %},{% endif %} {% endfor %}</li>
+    </ul>
+  </li>
+{% endfor %}
+</ul>
+
+<p>And here is a list of menu categories arranged as a tree</p>
+{# this only supports two levels, but I think that's all we're going to have, and this is just a demo anyway #}
+<ul>
+{% for category in categories %}
+  {% if category.parent == None %}
+    {{ category.name }}
+    <ul>
+    {% for subcategory in categories %}
+      {% if subcategory.parent == category %}
+        <li>{{ subcategory.name }}</li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endfor %}
+</ul>
+
+
+
+
+
+
+    </div>
+
   </div>
 </body>
 {% endblock %}
