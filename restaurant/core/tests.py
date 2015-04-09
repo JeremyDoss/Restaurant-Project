@@ -23,6 +23,10 @@ class MenuTests(TestCase):
 		item = MenuItem.objects.get(name='Soup')
 		self.assertEqual(item.category.name, 'Entrees')
 
+	def test_top_category(self):
+		item = MenuItem.objects.get(name='Soup')
+		self.assertEqual(item.top_level_category().name, 'Entrees')
+
 class ViewTests(TestCase):
 	def setUp(self):
 		cat = Category.objects.create(parent=None, name='Entrees')

@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
+from django.core import serializers
 
 from .models import *
 
@@ -13,6 +14,13 @@ def index(request):
 	categories = Category.objects.all()
 	context = {'all_menu_items': all_menu_items, 'categories': categories}
 	return render(request, 'index.html', context)
+
+def menu_json(request):
+	all_menu_items = MenuItem.objects.all()
+	context = {'all_menu_items': all_menu_items}
+	#response = JsonResponse(serializers.serialize('json', list(MenuItem.objects.all().values())), safe=False)
+	response = HttpResponse(serializers.serialize('json', MenuItem.objects.all()))
+	return response
 
 # this is the kitchen index where the kitchen staff can view kitchen stuff
 def kitchen_index(request):
@@ -67,8 +75,6 @@ def waiter_login(request):
 	# if we're already logged in, there's no reason to be here
 	if ("logged_in" in request.COOKIES):
 		return redirect('/waiter/')
-
-
 
 	# check if we're coming here via the form
 	if (request.method == 'POST'):
