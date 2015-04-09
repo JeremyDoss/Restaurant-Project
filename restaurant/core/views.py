@@ -17,6 +17,9 @@ def waiter_index(request):
 	# this is a terrible idea for a regular website, completely insecure
 	if ("logged_in" not in request.COOKIES): 
 		return redirect('/waiter/login/')
+	# DELETE THE 2 LINES BELOW TO GET BACK TO THE WAY IT WAS -PHIL
+	context = {}
+	return render(request, 'menu.html', context)
 
 	# todo: make this render to a template, provide logout links
 	return HttpResponse("logged in as %s" % Employee.objects.get(pk=request.COOKIES['uid']))
@@ -25,6 +28,8 @@ def waiter_login(request):
 	# if we're already logged in, there's no reason to be here
 	if ("logged_in" in request.COOKIES):
 		return redirect('/waiter/')
+
+
 
 	# check if we're coming here via the form
 	if (request.method == 'POST'):

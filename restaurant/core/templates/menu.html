@@ -1,74 +1,59 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <title>Menu</title>
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="jquery-1.11.2.min.js"></script>
-  <script src="jquery-ui.min.js"></script>
-  <link rel="stylesheet" href="style.css">
-</head>
+{% extends "base.html" %}
 
+{% block script %}
 
-
+<script src="http://www.pipmix.com/js/jquery-1.11.2.min.js"></script>
+<script src="http://www.pipmix.com/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://www.pipmix.com/css/menuStyle.css">
 
 <script>
-
-
+// Sry I know not the best way to do it, but time is of the essence
   $(function() {
-
+      // Show appitizer menu
       $( ".b1" ).button().click(function(event) {
           $( ".apps" ).show();
           $( ".entrees" ).hide();
           $( ".drinks" ).hide();
           $( ".deserts" ).hide();
       });
-
+      // Show entrees menu
       $( ".b2" ).button().click(function(event) {
           $( ".apps" ).hide();
           $( ".entrees" ).show();
           $( ".drinks" ).hide();
           $( ".deserts" ).hide();
       });
-
+      // Show drink menu
       $( ".b3" ).button().click(function(event) {
           $( ".apps" ).hide();
           $( ".entrees" ).hide();
           $( ".drinks" ).show();
           $( ".deserts" ).hide();
       });
-
+      // Show desert menu
       $( ".b4").button().click(function(event) {
           $( ".apps" ).hide();
           $( ".entrees" ).hide();
           $( ".drinks" ).hide();
           $( ".deserts" ).show();
       });
-
-
-
-
-
-
   });
-
-
-
-
   </script>
 
-
-
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block main %}
 
 <body>
-
-
+  <!-- CUSTOMER MENU CONTAINER  -->
   <div id="container">
     <div class="titlebar">
       <br />
-      <h1 class="title">Welcome to da Puckin Pizza Zone!, Fuck you!</h1>
+      <h1 class="title">Welcome to the Pizza Zone!</h1>
       <br />
     </div>
-
+    <!-- MENU SELECT  -->
     <div class="section">
       <div class="price"> 
         <h2> Menu </h2> 
@@ -79,78 +64,62 @@
         <h3 class="b3"> Entrees</h3>
         <h3 class ="b4">Deserts</h3>
       </div>
-
     </div>
+    <!-- APPITIZER SECTION  -->
+    <div class="apps">
+      <div class="section2">
+        <h2> Appetizers </h2>
 
-    
-      <div class="apps">
-        <div class="section2">
+        <!-- THIS IS NOT WORKING, tired li and ul too -->
+        {% for item in all_menu_items %}
+          <li>{{ item.name }}</li>
+        {% endfor %}
 
-          <h2> Appetizers </h2>
-          <h4> Chessy Sticks</h4>
-          <h4> Fried Pickles </h4>
-          <h4> Stuffed mushrooms </h4>
-          <h4> Chips and Queso</h4>
-          <h4> Dippin Sticks</h4>
-          <h4> Pepporoni Pie</h4>
 
-        </div>
+
       </div>
-
-      <div class="entrees">
-        <div class="section2">
-
-          <h2> Entrees </h2>
-          <h4> Peporoni pizz</h4>
-          <h4> Hotdog</h4>
-          <h4> Cheese creame </h4>
-
-        </div>
+    </div>
+    <!-- ENTREES SECTION  -->
+    <div class="entrees">
+      <div class="section2">
+        <h2> Entrees </h2>
+        <h4> Peporoni pizz</h4>
+        <h4> Hotdog</h4>
+        <h4> Cheese creame </h4>
       </div>
-
-
+    </div>
+    <!-- DRINKS SECTION  -->
     <div class="drinks">
       <div class="section2">
-        
         <h2> Drinks </h2>
         <h4> Coke</h4>
         <h4> Beer</h4>
         <h4> Expensive beer</h4>
         <h4> Winw </h4>
-
       </div>
     </div>
-
+    <!-- DESERET SECTIONS  -->
     <div class="deserts">
       <div class="section2">
-        
         <h2> Deserts </h2>
         <h4> Ice cream</h4>
         <h4> Fugde</h4>
         <h4> Apple pie</h4>
         <h4> Pure sugar injections</h4>
-
       </div>
     </div>
-
+    <!-- ORDER SECTIONS  -->
     <div class="order">
       <div class="section3">
         <h2> Current Items </h2>
-
         <h4> Chessy Sticks</h4>
         <h4> Fried Pickles </h4>
         <h4> Stuffed mushrooms </h4>
         <h4> Chips and Queso</h4>
         <h4> Dippin Sticks</h4>
         <h4> Pepporoni Pie</h4>
-
       </div>
     </div>
-
   </div>
-
-
-
-
 </body>
-</html> 
+{% endblock %}
