@@ -1,36 +1,125 @@
 {% extends "base.html" %}
 
-{% block main %}
-<p>Below is a list of menu items generated from the database:</p>
-<ul>
-{# in views.py, all_menu_items is exposed so all we have to do is loop through it here and access the members #}
-{% for item in all_menu_items %}
-	<li>{{ item.name }}
-		<ul>
-			<li>Category: {{ item.category }}</li>
-			<li>Price: ${{ item.price }}</li>
-			<li>Times ordered: {{ item.times_ordered }}</li>
-			{# below is an example of iterating over a ManyToManyField relation, which MenuItem.ingredients is #}
-			<li>Ingredients: {% for ingredient in item.ingredients.all %}{{ ingredient|lower }}{% if not forloop.last %},{% endif %} {% endfor %}</li>
-		</ul>
-	</li>
-{% endfor %}
-</ul>
+{% block script %}
 
-<p>And here is a list of menu categories arranged as a tree</p>
-{# this only supports two levels, but I think that's all we're going to have, and this is just a demo anyway #}
-<ul>
-{% for category in categories %}
-	{% if category.parent == None %}
-		{{ category.name }}
-		<ul>
-		{% for subcategory in categories %}
-			{% if subcategory.parent == category %}
-				<li>{{ subcategory.name }}</li>
-			{% endif %}
-		{% endfor %}
-		</ul>
-	{% endif %}
+<script src="http://www.pipmix.com/js/jquery-1.11.2.min.js"></script>
+<script src="http://www.pipmix.com/js/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="http://www.pipmix.com/css/menuStyle.css">
+
+<script>
+// Sry I know not the best way to do it, but time is of the essence
+  $(function() {
+      // Show appitizer menu
+      $( ".b1" ).button().click(function(event) {
+          $( ".apps" ).show();
+          $( ".entrees" ).hide();
+          $( ".drinks" ).hide();
+          $( ".deserts" ).hide();
+      });
+      // Show entrees menu
+      $( ".b2" ).button().click(function(event) {
+          $( ".apps" ).hide();
+          $( ".entrees" ).show();
+          $( ".drinks" ).hide();
+          $( ".deserts" ).hide();
+      });
+      // Show drink menu
+      $( ".b3" ).button().click(function(event) {
+          $( ".apps" ).hide();
+          $( ".entrees" ).hide();
+          $( ".drinks" ).show();
+          $( ".deserts" ).hide();
+      });
+      // Show desert menu
+      $( ".b4").button().click(function(event) {
+          $( ".apps" ).hide();
+          $( ".entrees" ).hide();
+          $( ".drinks" ).hide();
+          $( ".deserts" ).show();
+      });
+  });
+  </script>
+
+{% endblock %}
+{% block style %}
+{% endblock %}
+{% block main %}
+
+<body>
+  <!-- CUSTOMER MENU CONTAINER  -->
+  <div id="container">
+    <div class="titlebar">
+      <br />
+      <h1 class="title">Welcome to the Pizza Zone!</h1>
+      <br />
+    </div>
+    <!-- MENU SELECT  -->
+    <div class="section">
+      <div class="price"> 
+        <h2> Menu </h2> 
+      </div>
+      <div class="infos">
+        <h3 class="b1"> Appitizers </h3>
+        <h3 class="b2"> Drinks </h3>
+        <h3 class="b3"> Entrees</h3>
+        <h3 class ="b4">Deserts</h3>
+      </div>
+    </div>
+    <!-- APPITIZER SECTION  -->
+    <div class="apps">
+      <div class="section2">
+        <h2> Appetizers </h2>
+
+
+{% for item in all_menu_items %}
+<h4>{{ item.name }}</h4>
 {% endfor %}
-</ul>
+
+
+
+      </div>
+    </div>
+    <!-- ENTREES SECTION  -->
+    <div class="entrees">
+      <div class="section2">
+        <h2> Entrees </h2>
+        <h4> Peporoni pizz</h4>
+        <h4> Hotdog</h4>
+        <h4> Cheese creame </h4>
+      </div>
+    </div>
+    <!-- DRINKS SECTION  -->
+    <div class="drinks">
+      <div class="section2">
+        <h2> Drinks </h2>
+        <h4> Coke</h4>
+        <h4> Beer</h4>
+        <h4> Expensive beer</h4>
+        <h4> Winw </h4>
+      </div>
+    </div>
+    <!-- DESERET SECTIONS  -->
+    <div class="deserts">
+      <div class="section2">
+        <h2> Deserts </h2>
+        <h4> Ice cream</h4>
+        <h4> Fugde</h4>
+        <h4> Apple pie</h4>
+        <h4> Pure sugar injections</h4>
+      </div>
+    </div>
+    <!-- ORDER SECTIONS  -->
+    <div class="order">
+      <div class="section3">
+        <h2> Current Items </h2>
+        <h4> Chessy Sticks</h4>
+        <h4> Fried Pickles </h4>
+        <h4> Stuffed mushrooms </h4>
+        <h4> Chips and Queso</h4>
+        <h4> Dippin Sticks</h4>
+        <h4> Pepporoni Pie</h4>
+      </div>
+    </div>
+  </div>
+</body>
 {% endblock %}
