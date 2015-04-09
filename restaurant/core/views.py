@@ -15,12 +15,6 @@ def index(request):
 	context = {'all_menu_items': all_menu_items, 'categories': categories}
 	return render(request, 'index.html', context)
 
-def menu_json(request):
-	all_menu_items = MenuItem.objects.all()
-	context = {'all_menu_items': all_menu_items}
-	#response = JsonResponse(serializers.serialize('json', list(MenuItem.objects.all().values())), safe=False)
-	response = HttpResponse(serializers.serialize('json', MenuItem.objects.all()))
-	return response
 
 # this is the kitchen index where the kitchen staff can view kitchen stuff
 def kitchen_index(request):
@@ -31,7 +25,16 @@ def kitchen_index(request):
 
 	user = get_employee_from_uid(request.COOKIES['uid'])
 	if user.is_manager or len(user.cook_set.all()) > 0:
-		return HttpResponse("YO MANAGER OR COOK")
+		# get incoming (unclaimed) orders
+		unclaimed_orders = Order.objects.filter(cook=None, status="OP")
+		
+		if user.is_manager:
+			associated_orders = Order.objects.filter(status="OP")
+		else:
+			associated_orders = Order.objects.filter(cook__employee=user)
+		context = {'unclaimed_orders': unclaimed_orders, 'associated_orders': associated_orders}
+		#return HttpResponse("YO MANAGER OR COOK")
+		return render(request, 'kitchen.html', context)
 
 	else:
 		return HttpResponse('Access denied for user "%s"' % (user.name))

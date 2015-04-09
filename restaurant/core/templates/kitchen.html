@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block main %}
+	<h2>Open Orders</h2>
+	{% for order in unclaimed_orders %}
+	<p>Order #{{ order.id }}</p>
+	<ul>
+		<li>Table: {{ order.table.id }}</li>
+		<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
+		<li>Items:
+			<ul>
+			{% for item in order.menu_items.all %}
+				<li>{{ item.name }}</li>
+			{% endfor %}
+			</ul>
+		</li>
+	</ul>
+	{% endfor %}
+	<h2>My Orders</h2>
+	{% for order in associated_orders %}
+	<p>Order #{{ order.id }}</p>
+	<ul>
+		<li>Table: {{ order.table.id }}</li>
+		<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
+		<li>Items:
+			<ul>
+			{% for item in order.menu_items.all %}
+				<li>{{ item.name }}</li>
+			{% endfor %}
+			</ul>
+		</li>
+	</ul>
+	{% endfor %}
+{% endblock %}
