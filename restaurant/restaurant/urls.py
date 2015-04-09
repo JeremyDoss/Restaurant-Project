@@ -9,5 +9,8 @@ urlpatterns = patterns('',
 
     url(r'^waiter/$', 'core.views.waiter_index', name="waiter_index"),
     url(r'^waiter/login/$', 'core.views.waiter_login', name="waiter_login"),
+
+    url(r'^kitchen/$', 'core.views.kitchen_index', name="kitchen_index"),
+    url(r'^kitchen/login/$', 'core.views.kitchen_login', name="kitchen_login"),
     url(r'^admin/', include(admin.site.urls)),
 )

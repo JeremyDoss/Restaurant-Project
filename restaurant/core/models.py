@@ -50,6 +50,18 @@ class MenuItem(models.Model):
 	)
 	allergens = models.CharField(max_length=10, choices=ALLERGY_TYPES, default=ALLERGY_TYPES[0][0])
 
+	# recursive function to find the top level category for this item
+	def top_level_category(self, prev=None):
+		if prev == None: 
+			prev = self.category
+		
+		if self.category.parent == None:
+			return self.category
+		elif prev.parent == None:
+			return prev
+		else:
+			return self.top_level_category(prev.parent)
+
 	def __str__(self):
 		return "%s (%s)" % (self.name, self.category.name)
 

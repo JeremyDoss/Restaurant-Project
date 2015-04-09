@@ -3,6 +3,10 @@ from django.http import HttpResponse
 
 from .models import *
 
+def get_employee_from_uid(uid):
+	emp = Employee.objects.get(pk=uid)
+	return emp
+
 # this view is called at the base URL (front page)
 def index(request):
 	all_menu_items = MenuItem.objects.all()
@@ -10,6 +14,44 @@ def index(request):
 	context = {'all_menu_items': all_menu_items, 'categories': categories}
 	return render(request, 'index.html', context)
 
+# this is the kitchen index where the kitchen staff can view kitchen stuff
+def kitchen_index(request):
+	# if the kitchen is not logged in, we need to redirect them to the login index
+	# this is a terrible idea for a regular website, completely insecure
+	if ("logged_in" not in request.COOKIES): 
+		return redirect('/kitchen/login/')
+
+	user = get_employee_from_uid(request.COOKIES['uid'])
+	if user.is_manager or len(user.cook_set.all()) > 0:
+		return HttpResponse("YO MANAGER OR COOK")
+
+	else:
+		return HttpResponse('Access denied for user "%s"' % (user.name))
+
+def kitchen_login(request):
+	# if we're already logged in, there's no reason to be here
+	if ("logged_in" in request.COOKIES):
+		return redirect('/kitchen/')
+
+	# check if we're coming here via the form
+	if (request.method == 'POST'):
+		try:
+			# the passkey form will POST to this same URL, so we need to check if that's set
+			# and query the database for the user whose passkey matches, if any
+			user = Employee.objects.get(passkey=request.POST['passkey'])
+			response = redirect('/kitchen/')
+			response.set_cookie('logged_in', 'yes')
+			response.set_cookie('uid', user.id)
+			return response
+		except Employee.DoesNotExist:
+			user = None
+			# user does not exist, handle that
+			return redirect('/kitchen/login/')
+
+	# we need to render the login template
+	#return HttpResponse("Display login form")
+	context = {}
+	return render(request, 'kitchen_login.html', context)
 
 # this is the waiter index where a waiter can view their tables
 def waiter_index(request):
@@ -46,4 +88,4 @@ def waiter_login(request):
 	# we need to render the login template
 	#return HttpResponse("Display login form")
 	context = {}
-	return render(request, 'login.html', context)
+	return render(request, 'waiter_login.html', context)
