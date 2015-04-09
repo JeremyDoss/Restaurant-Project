@@ -62,6 +62,22 @@ img.ac_bgimage{
 }
 
 
+.apps{
+  display:none; 
+}
+.entrees{
+  display:none; 
+}
+.drinks{
+  display:none; 
+}
+.deserts{
+  display:none; 
+}
+.order{
+  display:none; 
+}
+
 
 .price{
   width:120px;
@@ -80,7 +96,7 @@ img.ac_bgimage{
 }
 h1{
   font-size:33px;
-  color:#000000;
+  color:#000;
   text-align:center;
   line-height:1.5;
 }
@@ -116,7 +132,7 @@ h4{
   color:#fff;
   line-height:1;
 }
-.section4{
+.titlebar{
   width:100%;
   min-width:500px;
     background: #fafafa;

@@ -3,53 +3,139 @@
 <head>
   <title>Menu</title>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <script src="jquery-1.11.2.min.js"></script>
+  <script src="jquery-ui.min.js"></script>
   <link rel="stylesheet" href="style.css">
 </head>
+
+
+
+
+<script>
+
+
+  $(function() {
+
+      $( ".b1" ).button().click(function(event) {
+          $( ".apps" ).show();
+          $( ".entrees" ).hide();
+          $( ".drinks" ).hide();
+          $( ".deserts" ).hide();
+      });
+
+      $( ".b2" ).button().click(function(event) {
+          $( ".apps" ).hide();
+          $( ".entrees" ).show();
+          $( ".drinks" ).hide();
+          $( ".deserts" ).hide();
+      });
+
+      $( ".b3" ).button().click(function(event) {
+          $( ".apps" ).hide();
+          $( ".entrees" ).hide();
+          $( ".drinks" ).show();
+          $( ".deserts" ).hide();
+      });
+
+      $( ".b4").button().click(function(event) {
+          $( ".apps" ).hide();
+          $( ".entrees" ).hide();
+          $( ".drinks" ).hide();
+          $( ".deserts" ).show();
+      });
+
+
+
+
+
+
+  });
+
+
+
+
+  </script>
+
+
 
 
 <body>
 
 
-
-
-
-  
   <div id="container">
-
-
-      <div class="section4">
-<br />
-<h1 class="title">Welcome to da Puckin Pizza Zone!, Fuck you!</h1>
-<br />
-
-      </div>
-
-
-
-
-
-
-
-
+    <div class="titlebar">
+      <br />
+      <h1 class="title">Welcome to da Puckin Pizza Zone!, Fuck you!</h1>
+      <br />
+    </div>
 
     <div class="section">
       <div class="price"> 
         <h2> Menu </h2> 
       </div>
       <div class="infos">
-        <h3> Appitizers </h3>
-        <h3> Drinks </h3>
-        <h3> Entrees</h3>
-        <h3> Deserts</h3>
+        <h3 class="b1"> Appitizers </h3>
+        <h3 class="b2"> Drinks </h3>
+        <h3 class="b3"> Entrees</h3>
+        <h3 class ="b4">Deserts</h3>
       </div>
 
     </div>
 
+    
+      <div class="apps">
+        <div class="section2">
 
-    <div class="section2">
-      <h1> Appetizers </h1>
+          <h2> Appetizers </h2>
+          <h4> Chessy Sticks</h4>
+          <h4> Fried Pickles </h4>
+          <h4> Stuffed mushrooms </h4>
+          <h4> Chips and Queso</h4>
+          <h4> Dippin Sticks</h4>
+          <h4> Pepporoni Pie</h4>
+
+        </div>
+      </div>
+
+      <div class="entrees">
+        <div class="section2">
+
+          <h2> Entrees </h2>
+          <h4> Peporoni pizz</h4>
+          <h4> Hotdog</h4>
+          <h4> Cheese creame </h4>
+
+        </div>
+      </div>
+
+
+    <div class="drinks">
+      <div class="section2">
+        
+        <h2> Drinks </h2>
+        <h4> Coke</h4>
+        <h4> Beer</h4>
+        <h4> Expensive beer</h4>
+        <h4> Winw </h4>
+
+      </div>
+    </div>
+
+    <div class="deserts">
+      <div class="section2">
+        
+        <h2> Deserts </h2>
+        <h4> Ice cream</h4>
+        <h4> Fugde</h4>
+        <h4> Apple pie</h4>
+        <h4> Pure sugar injections</h4>
+
+      </div>
+    </div>
+
+    <div class="order">
+      <div class="section3">
+        <h2> Current Items </h2>
 
         <h4> Chessy Sticks</h4>
         <h4> Fried Pickles </h4>
@@ -58,29 +144,13 @@
         <h4> Dippin Sticks</h4>
         <h4> Pepporoni Pie</h4>
 
-      <div class="base">
       </div>
     </div>
 
-        <div class="section3">
-      <h1> Current Items </h1>
-      <div class="appetizers">
-        <h4> Chessy Sticks</h4>
-        <h4> Fried Pickles </h4>
-        <h4> Stuffed mushrooms </h4>
-        <h4> Chips and Queso</h4>
-        <h4> Dippin Sticks</h4>
-        <h4> Pepporoni Pie</h4>
-      </div>
-      <div class="pricefooter">
-      </div>
-    </div>
-
-
-
-
-
-    </div>
   </div>
+
+
+
+
 </body>
 </html> 
