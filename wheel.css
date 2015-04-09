@@ -1,0 +1,35 @@
+.wheel1{
+    position: absolute;
+    left: 400px;
+    top: 150px;
+    height: 200px;
+    width: 200px;
+}
+#category1{
+    transform: rotate(90deg);
+}
+#category2{
+    transform: rotate(180deg);
+}
+#category3{
+    transform: rotate(270deg);
+}
+#category4{
+    transform: rotate(360deg);
+}
+
+
+#big {
+    position:absolute;
+    top:400px;
+    width:350px;
+    height:170px;
+    padding:10px;
+    border:1px solid #aaaaaa;}
+#back{
+    position:absolute;
+    left: 350px;
+    top: 100px;
+    height: 510px;
+    width: 510px;
+}
