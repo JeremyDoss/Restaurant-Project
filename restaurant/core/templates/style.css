@@ -1,5 +1,3 @@
-
-
 body{
   font-family: arial, verdana;
     background:#000;
@@ -179,4 +177,34 @@ h4{
   background-image: linear-gradient(to bottom, #6f5e96, #8770b9);
   -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
   box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.25);
+}
+
+.wheel1{
+    position: absolute;
+    left: 400px;
+    top: 150px;
+    height: 200px;
+    width: 200px;
+}
+#category1{
+    transform: rotate(90deg);
+}
+#category2{
+    transform: rotate(180deg);
+}
+#category3{
+    transform: rotate(270deg);
+}
+#category4{
+    transform: rotate(360deg);
+}
+#back{
+    position:absolute;
+    left: 350px;
+    top: 100px;
+    height: 510px;
+    width: 510px;
+}
+#wheelContainer{
+  margin-left:50%;
 }

@@ -4,7 +4,14 @@
 
 <script src="http://www.pipmix.com/js/jquery-1.11.2.min.js"></script>
 <script src="http://www.pipmix.com/js/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="http://www.pipmix.com/css/menuStyle.css">
+<link rel="stylesheet" href="http://pipmix.com/css/menuStyle.css">
+<link rel="stylesheet" href="https://www.dropbox.com/s/d5ujhi3k6djarx5/wheel.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenLite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/utils/Draggable.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/plugins/CSSPlugin.min.js"></script>
+<script src="https://www.dropbox.com/s/h975ugv2vnda9cq/wheel.js"></script>
+
+
 
 <script>
 // Sry I know not the best way to do it, but time is of the essence
@@ -64,6 +71,14 @@
         <h3 class="b3"> Entrees</h3>
         <h3 class ="b4">Deserts</h3>
       </div>
+    </div>
+    <!--Wheel Testing-->
+    <div id="wheelContainer">
+      <img id="back" class="wheel" src="http://f.tqn.com/y/altreligion/1/S/_/1/-/-/circle.jpg">
+      <img id="category1" class="wheel1" src="http://imgur.com/4p56Ih6.png" draggable="true" ondragstart="drag(event)">
+      <img id="category2" class="wheel1" src="http://imgur.com/yl6MbQH.png" draggable="true" ondragstart="drag(event)">
+      <img id="category3" class="wheel1" src="http://imgur.com/puCtLbf.png" draggable="true" ondragstart="drag(event)">
+      <img id="category4" class="wheel1" src="http://imgur.com/iS0kDi1.png" draggable="true" ondragstart="drag(event)">
     </div>
     <!-- APPITIZER SECTION  -->
     <div class="apps">
