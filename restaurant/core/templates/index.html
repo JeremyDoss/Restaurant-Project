@@ -75,22 +75,19 @@
       </div>
     </div>
     <!--Wheel Testing-->
-    <div id="wheelContainer">
-      <img id="back" class="wheelTrigger wheelRotate" src="http://www.clipartbest.com/cliparts/acq/zrb/acqzrbbdi.png">
-      <img id="category1" class="wheelCategory wheelRotate wheelOrigin b1" src="http://imgur.com/4p56Ih6.png" draggable="true" ondragstart="drag(event)">
-      <img id="category2" class="wheelCategory wheelRotate wheelOrigin b2" src="http://imgur.com/yl6MbQH.png" draggable="true" ondragstart="drag(event)">
-      <img id="category3" class="wheelCategory wheelRotate wheelOrigin b3" src="http://imgur.com/puCtLbf.png" draggable="true wheelOrigin" ondragstart="drag(event)">
-      <img id="category4" class="wheelCategory wheelRotate wheelOrigin b4" src="http://imgur.com/iS0kDi1.png" draggable="true" ondragstart="drag(event)">
-    </div>
+
     <!-- APPITIZER SECTION  -->
     <div class="apps">
       <div class="section2">
         <h2> Appetizers </h2>
 
-
-{% for item in all_menu_items %}
-<h4>{{ item.name }}</h4>
+{% for each in all_menu_items %}
+  {% if each.category.name == 'Appetizers' %}
+    <h4>{{ each.name }}</h4>
+  {% endif %}
 {% endfor %}
+
+
 
 
 
@@ -100,19 +97,29 @@
     <div class="entrees">
       <div class="section2">
         <h2> Entrees </h2>
-        <h4> Peporoni pizz</h4>
-        <h4> Hotdog</h4>
-        <h4> Cheese creame </h4>
+        <h4> 
+
+      {% for each in all_menu_items %}
+        {% if each.category.name == 'Entrees' %}
+          <h4>{{ each.name }}</h4>
+        {% endif %}
+      {% endfor %}
+      </h4>
+
       </div>
     </div>
     <!-- DRINKS SECTION  -->
     <div class="drinks">
       <div class="section2">
         <h2> Drinks </h2>
-        <h4> Coke</h4>
-        <h4> Beer</h4>
-        <h4> Expensive beer</h4>
-        <h4> Winw </h4>
+
+
+{% for each in all_menu_items %}
+  {% if each.category.name == 'Drinks' %}
+    <h4>{{ each.name }}</h4>
+  {% endif %}
+{% endfor %}
+        
       </div>
     </div>
     <!-- DESERET SECTIONS  -->
@@ -138,5 +145,12 @@
       </div>
     </div>
   </div>
+      <div id="wheelContainer">
+      <img id="back" class="wheelTrigger wheelRotate" src="http://www.clipartbest.com/cliparts/acq/zrb/acqzrbbdi.png">
+      <img id="category1" class="wheelCategory wheelRotate wheelOrigin b1" src="http://imgur.com/4p56Ih6.png" draggable="true" ondragstart="drag(event)">
+      <img id="category2" class="wheelCategory wheelRotate wheelOrigin b2" src="http://imgur.com/yl6MbQH.png" draggable="true" ondragstart="drag(event)">
+      <img id="category3" class="wheelCategory wheelRotate wheelOrigin b3" src="http://imgur.com/puCtLbf.png" draggable="true wheelOrigin" ondragstart="drag(event)">
+      <img id="category4" class="wheelCategory wheelRotate wheelOrigin b4" src="http://imgur.com/iS0kDi1.png" draggable="true" ondragstart="drag(event)">
+    </div>
 </body>
 {% endblock %}
