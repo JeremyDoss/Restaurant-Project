@@ -69,7 +69,7 @@ tr{
 
 {% block main %}
 
-
+<h2>Welcome, {{ user.name }} {% if user.is_manager %}(manager view){% endif %}</h2>
 <center>
 <div id="rcorners">
 <table>
