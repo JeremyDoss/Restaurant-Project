@@ -15,8 +15,16 @@
         				});
       				}	
     			});
+    			$('button').button().click(function(event) {
+    				alert('test');
+    			})
     			$("input[type=submit], a, button").button().click(function( event ){
     				var action = $(this).attr("name");
+    				var tables = [];
+    				$(".ui-selected").each(function() {
+    					tables.push($(this).attr("name"));
+    				});
+    				console.log(tables)
     				do_status(action);
         			event.preventDefault();
       			});
@@ -24,6 +32,14 @@
 
   			function do_status(action) {
   				console.log("Doing status "+action+"!");
+  				$.ajax({
+  					url: "/waiter/set_status/",
+  					type: "POST",
+  					data: {action: action},
+  					success: function(json) {
+  						console.log(json);
+  					}
+  				});
   			}
   		</script>
 	{% endblock %}
@@ -85,7 +101,7 @@ tr{
 		<td>
 			<ol id="selectable">
 				{% for table in tables %}
-				<li class="ui-widget-content">{{ table }}{% if table.waiter_set.get != '' %}<br/>Waiter: {{table.waiter_set.get}}{% endif %}<br/>(Status: {{ table.status_name }})</li>
+				<li class="ui-widget-content" name="{{ table.id }}">{{ table }}{% if table.waiter_set.get != '' %}<br/>Waiter: {{table.waiter_set.get}}{% endif %}<br/>(Status: {{ table.status_name }})</li>
 				{% endfor %}
 			</ol>
 		</td>

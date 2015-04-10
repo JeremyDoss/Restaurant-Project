@@ -1,12 +1,27 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
+import json
 
 from .models import *
 
 def get_employee_from_uid(uid):
 	emp = Employee.objects.get(pk=uid)
 	return emp
+
+def logout(request):
+	if ("logged_in" in request.COOKIES):
+		response = redirect('/')
+		response.delete_cookie('logged_in')
+		return response
+	return redirect('/')
+
+def logout_redirect(request, redir):
+	if ("logged_in" in request.COOKIES):
+		response = redirect('/' + redir)
+		response.delete_cookie('logged_in')
+		return response
+	return redirect('/' + redir)
 
 # this view is called at the base URL (front page)
 def index(request):
@@ -109,3 +124,8 @@ def waiter_login(request):
 	#return HttpResponse("Display login form")
 	context = {}
 	return render(request, 'waiter_login.html', context)
+
+def waiter_set_status(request):
+	# POST['action'] contains the action
+	
+	return HttpResponse(json.dumps({'yo': 'hi', 'action_was': request.POST['action']}))
