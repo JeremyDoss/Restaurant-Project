@@ -69,8 +69,8 @@ DATABASES = {
         'NAME': 'se4444',
         'USER': 'se4444',
         'PASSWORD': 'csce4444',
-        'HOST': '107.170.130.163',
-        #'HOST': 'localhost',
+        #'HOST': '107.170.130.163',
+        'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
           'autocommit': True,
