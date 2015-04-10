@@ -1,34 +1,88 @@
 {% extends "base.html" %}
+{%block script%}
+	 <script>
+	 $(function () {
+		 $("button").button().click(function(event){
+		 	var ID = $(this).attr("id");
+		 	alert(ID);
+		 	$.post("/",{orderID: ID})
+		 })
+	})
+	 </script>
+{% endblock %}
+
+{% block style %}
+	<style>
+	#kitchenContainer{
+		background-color: lightgray;
+		border-radius:15px;
+		border:1px solid black;
+	}
+	p span button{
+		float:right;
+	}
+	td{
+		vertical-align:top;
+		padding:0;
+		border-radius:15px;
+		border:1px solid black;
+		margin:5px;
+		height:100%;
+
+	}
+	.openOrder{
+		background-color: green;
+
+	}
+	.closedOrder{
+		background-color: red;
+	}
+	</style>
+
+{% endblock %}
 
 {% block main %}
-	<h2>Open Orders</h2>
-	{% for order in unclaimed_orders %}
-	<p>Order #{{ order.id }}</p>
-	<ul>
-		<li>Table: {{ order.table.id }}</li>
-		<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
-		<li>Items:
-			<ul>
-			{% for item in order.menu_items.all %}
-				<li>{{ item.name }}</li>
-			{% endfor %}
-			</ul>
-		</li>
-	</ul>
-	{% endfor %}
-	<h2>My Orders</h2>
-	{% for order in associated_orders %}
-	<p>Order #{{ order.id }}</p>
-	<ul>
-		<li>Table: {{ order.table.id }}</li>
-		<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
-		<li>Items:
-			<ul>
-			{% for item in order.menu_items.all %}
-				<li>{{ item.name }}</li>
-			{% endfor %}
-			</ul>
-		</li>
-	</ul>
+	<div id="kitchenContainer">
+		<h2>Open Orders</h2>
+		<table>
+			<tr>
+				{% for order in unclaimed_orders %}
+					<td  class = "openOrder">
+						<p>Order #{{ order.id }}<span><button name="claim" id="{{order.id}}">Claim</button></span></p>
+						<ul>
+							<li>Table: {{ order.table.id }}</li>
+							<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
+							<li>Items:
+								<ul>
+								{% for item in order.menu_items.all %}
+									<li>{{ item.name }}</li>
+								{% endfor %}
+								</ul>
+							</li>
+						</ul>
+					</td>
+				{% endfor %}
+			</tr>
+		</table>
+		<h2>My Orders</h2>
+		<table>
+			<tr>
+			{% for order in associated_orders %}
+				<td class="closedOrder">
+					<p>Order #{{ order.id }}<span><button>Ready</button>/<span></p>
+					<ul>
+						<li>Table: {{ order.table.id }}</li>
+						<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
+						<li>Items:
+							<ul>
+							{% for item in order.menu_items.all %}
+								<li>{{ item.name }}</li>
+							{% endfor %}
+							</ul>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
 	{% endfor %}
 {% endblock %}
