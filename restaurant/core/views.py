@@ -47,7 +47,7 @@ def kitchen_index(request):
 			associated_orders = Order.objects.filter(status="OP")
 		else:
 			associated_orders = Order.objects.filter(cook__employee=user)
-		context = {'unclaimed_orders': unclaimed_orders, 'associated_orders': associated_orders}
+		context = {'unclaimed_orders': unclaimed_orders, 'associated_orders': associated_orders, 'user': user}
 		#return HttpResponse("YO MANAGER OR COOK")
 		return render(request, 'kitchen.html', context)
 
