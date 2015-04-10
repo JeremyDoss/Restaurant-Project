@@ -24,6 +24,7 @@
           $( ".entrees" ).hide();
           $( ".drinks" ).hide();
           $( ".deserts" ).hide();
+          $( ".startPane" ).hide();
       });
       // Show entrees menu
       $( ".b2" ).button().click(function(event) {
@@ -31,6 +32,7 @@
           $( ".entrees" ).show();
           $( ".drinks" ).hide();
           $( ".deserts" ).hide();
+          $( ".startPane" ).hide();
       });
       // Show drink menu
       $( ".b3" ).button().click(function(event) {
@@ -38,6 +40,7 @@
           $( ".entrees" ).hide();
           $( ".drinks" ).show();
           $( ".deserts" ).hide();
+          $( ".startPane" ).hide();
       });
       // Show desert menu
       $( ".b4").button().click(function(event) {
@@ -45,6 +48,7 @@
           $( ".entrees" ).hide();
           $( ".drinks" ).hide();
           $( ".deserts" ).show();
+          $( ".startPane" ).hide();
       });
   });
   </script>
@@ -74,7 +78,6 @@
         <h3 class ="b4">Deserts</h3>
       </div>
     </div>
-    <!--Wheel Testing-->
 
     <!-- APPITIZER SECTION  -->
     <div class="apps">
@@ -83,28 +86,40 @@
 
         {% for each in all_menu_items %}
           {% if each.category.name == 'Appetizers' %}
-            <h4>{{ each.name }}</h4>
+            <h5>{{ each.name }}  : {{ each.price }}
+              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
+            <h6>{{ each.description }} </h6>
           {% endif %}
         {% endfor %}
 
+      </div>
+    </div>
 
 
+        <!-- START PAIN -->
+    <div class="startPane">
+      <div class="section2">
+        <h2> fix me </h2>
 
 
       </div>
     </div>
+
+
     <!-- ENTREES SECTION  -->
     <div class="entrees">
       <div class="section2">
         <h2> Entrees </h2>
-        <h4> 
 
-      {% for each in all_menu_items %}
-        {% if each.category.name == 'Entrees' %}
-          <h4>{{ each.name }}</h4>
-        {% endif %}
-      {% endfor %}
-      </h4>
+
+
+        {% for each in all_menu_items %}
+          {% if each.category.name == 'Entrees' %}
+            <h5>{{ each.name }}  : {{ each.price }}
+              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
+            <h6>{{ each.description }} </h6>
+          {% endif %}
+        {% endfor %}
 
       </div>
     </div>
@@ -114,11 +129,13 @@
         <h2> Drinks </h2>
 
 
-{% for each in all_menu_items %}
-  {% if each.category.name == 'Drinks' %}
-    <h4>{{ each.name }}</h4>
-  {% endif %}
-{% endfor %}
+        {% for each in all_menu_items %}
+          {% if each.category.name == 'Drinks' %}
+            <h5>{{ each.name }}  : {{ each.price }}
+              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
+            <h6>{{ each.description }} </h6>
+          {% endif %}
+        {% endfor %}
         
       </div>
     </div>
@@ -127,26 +144,26 @@
       <div class="section2">
         <h2> Deserts </h2>
 
+
         {% for each in all_menu_items %}
           {% if each.category.name == 'Desserts' %}
-            <h4>{{ each.name }}</h4>
+            <h5>{{ each.name }}  : {{ each.price }}
+              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
+            <h6>{{ each.description }} </h6>
           {% endif %}
         {% endfor %}
-
 
       </div>
     </div>
     <!-- ORDER SECTIONS  -->
     <div class="order">
-      <div class="section3">
-        <h2> Current Items </h2>
-        <h4> Chessy Sticks</h4>
-        <h4> Fried Pickles </h4>
-        <h4> Stuffed mushrooms </h4>
-        <h4> Chips and Queso</h4>
-        <h4> Dippin Sticks</h4>
-        <h4> Pepporoni Pie</h4>
-      </div>
+      <h4>test</h4>
+
+
+    </div>
+    <div class="basebar">
+      <br />
+      <br />
     </div>
   </div>
       <div id="wheelContainer">
@@ -156,5 +173,7 @@
       <img id="category3" class="wheelCategory wheelRotate wheelOrigin" src="http://imgur.com/puCtLbf.png" draggable="true wheelOrigin">
       <img id="category4" class="wheelCategory wheelRotate wheelOrigin" src="http://imgur.com/iS0kDi1.png" draggable="true">
     </div>
+
+
 </body>
 {% endblock %}
