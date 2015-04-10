@@ -141,4 +141,18 @@ def kitchen_claim(request):
 			cook.save()
 		except Cook.DoesNotExist:
 			pass
-	return HttpResponse("test")
+	return HttpResponse("OK")
+
+def kitchen_ready(request):
+	if (request.method == 'POST'):
+		user = get_employee_from_uid(request.COOKIES['uid'])
+		try:
+			cook = Cook.objects.get(employee=user)
+			orderid = request.POST['orderID']
+			order = Order.objects.get(pk=orderid)
+			order.prev_status = order.status
+			order.status = "RD"
+			order.save()
+		except Cook.DoesNotExist:
+			pass
+	return HttpResponse("OK")
