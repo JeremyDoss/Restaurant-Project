@@ -80,6 +80,11 @@ class Table(models.Model):
 	status = models.CharField(max_length=2, choices=STATUS_TYPES, default=STATUS_TYPES[0][0])
 	prev_status = models.CharField(max_length=2, choices=STATUS_TYPES, default=STATUS_TYPES[0][0]) # so we can revert from e.g. "Need refill"
 
+	def status_name(self):
+		for t in self.STATUS_TYPES:
+			if self.status == t[0]:
+				return t[1]
+
 	def __str__(self):
 		return "Table %i" % self.id
 

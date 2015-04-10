@@ -72,7 +72,18 @@ def waiter_index(request):
 		return redirect('/waiter/login/')
 
 	# todo: make this render to a template, provide logout links
-	return HttpResponse("logged in as %s" % Employee.objects.get(pk=request.COOKIES['uid']))
+	#return HttpResponse("logged in as %s" % Employee.objects.get(pk=request.COOKIES['uid']))
+	user = get_employee_from_uid(request.COOKIES['uid'])
+	if user.is_manager:
+		tables = Table.objects.all()
+	else:
+		try:
+			waiter = Waiter.objects.get(employee=user)
+			tables = waiter.table_set.all()
+		except Waiter.DoesNotExist:
+			return HttpResponse("Access denied.")
+	context = {'tables': tables, 'user': user}
+	return render(request, 'waiter.html', context)
 
 def waiter_login(request):
 	# if we're already logged in, there's no reason to be here

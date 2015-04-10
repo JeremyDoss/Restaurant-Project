@@ -1,19 +1,31 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Waiter Screen</title>
+{% extends "base.html" %}
 
+  	{% block script %}
 		<script src="//code.jquery.com/jquery-1.10.2.js"></script>
   		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-  		
-  	{% block script %}
+    		<script>
+  			$(function(){
+    			
+    			$( "#selectable" ).selectable({
+      				stop: function() {
+        				var result = $( "#select-result" ).empty();
+        				$( ".ui-selected", this ).each(function() {
+          					var index = $( "#selectable li" ).index( this );
+          					result.append( " #" + ( index + 1 ) );
+        				});
+      				}	
+    			});
+    			$("input[type=submit], a, button").button().click(function( event ){
+        			event.preventDefault();
+      			});
+  			});
+  		</script>
 	{% endblock %}
-	{% block style %}
+{% block style %}
 
 
 	<link href="css/style.css" rel="stylesheet">
 	<style type="text/css">
-		<style>
 			
 			#selectable .ui-selecting { background: #F2EBBF; }
 			#selectable .ui-selected { background: #8CBEB2; color: F2EBBF; }
@@ -31,31 +43,6 @@
   				border-color: #5C4B51;
   				background: #FFF7F4;
 			}
-		</style>
-  		<script>
-  			$(function(){
-    			
-    			$( "#selectable" ).selectable({
-      				stop: function() {
-        				var result = $( "#select-result" ).empty();
-        				$( ".ui-selected", this ).each(function() {
-          					var index = $( "#selectable li" ).index( this );
-          					result.append( " #" + ( index + 1 ) );
-        				});
-      				}	
-    			});
-    			$("input[type=submit], a, button").button().click(function( event ){
-        			event.preventDefault();
-      			});
-  			});
-  		</script>
-{% endblock %}
-</head>
-<body>
-	{% block main %}
-
-
-<style>
 
 #rcorners {
     border-radius: 10px;
@@ -77,8 +64,12 @@ tr{
 	width : 50%;
 
 }
-
 </style>
+{% endblock %}
+
+{% block main %}
+
+
 <center>
 <div id="rcorners">
 <table>
@@ -87,14 +78,9 @@ tr{
 	<tr>
 		<td>
 			<ol id="selectable">
-				<li class="ui-widget-content">Table 1</li>
-				<li class="ui-widget-content">Table 2</li>
-				<li class="ui-widget-content">Table 3</li>
-				<li class="ui-widget-content">Table 4</li>
-				<li class="ui-widget-content">Table 5</li>
-				<li class="ui-widget-content">Table 6</li>
-				<li class="ui-widget-content">Table 7</li>
-				<li class="ui-widget-content">Table 8</li>
+				{% for table in tables %}
+				<li class="ui-widget-content">{{ table }}<br/>(Status: {{ table.status_name }})</li>
+				{% endfor %}
 			</ol>
 		</td>
 	<tr>
@@ -113,5 +99,3 @@ tr{
 </div>
 
 {% endblock %}
-</body>
-</html>
