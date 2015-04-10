@@ -16,9 +16,15 @@
       				}	
     			});
     			$("input[type=submit], a, button").button().click(function( event ){
+    				var action = $(this).attr("name");
+    				do_status(action);
         			event.preventDefault();
       			});
   			});
+
+  			function do_status(action) {
+  				console.log("Doing status "+action+"!");
+  			}
   		</script>
 	{% endblock %}
 {% block style %}
@@ -35,7 +41,7 @@
 				padding: 1px; 
 				float: left; 
 				width: 150px; 
-				height: 80px; 
+				height: 100px; 
 				font-size: 4em; 
 				text-align: center; 
 				font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
@@ -79,7 +85,7 @@ tr{
 		<td>
 			<ol id="selectable">
 				{% for table in tables %}
-				<li class="ui-widget-content">{{ table }}<br/>(Status: {{ table.status_name }})</li>
+				<li class="ui-widget-content">{{ table }}{% if table.waiter_set.get != '' %}<br/>Waiter: {{table.waiter_set.get}}{% endif %}<br/>(Status: {{ table.status_name }})</li>
 				{% endfor %}
 			</ol>
 		</td>
@@ -91,7 +97,11 @@ tr{
 	<tr>
 		<td>
 			<center>
-			<button>A button element</button>
+			<button name="open">Set as Open</button>
+			<button name="occupied">Set as Occupied</button>
+			<button name="refill">Refill Request Acknowledged</button>
+			<button name="assistance">Assistance Rendered</button>
+			{% if user.is_manager %}<button name="comp">Comp Order</button>{% endif %}
 			</center>
 		</td>
 	</tr>

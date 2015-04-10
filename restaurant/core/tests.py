@@ -8,8 +8,9 @@ class MenuTests(TestCase):
 	# the name returns what we expect, and the category is what we expect when we query the database
 	def setUp(self):
 		cat = Category.objects.create(parent=None, name='Entrees')
+		subcat = Category.objects.create(parent=cat, name="Soups")
 		ing = Ingredient.objects.create(name="Potatoes")
-		item = MenuItem(name='Soup', category=cat, times_ordered=0, price=5.99, description="Test description", 
+		item = MenuItem(name='Soup', category=subcat, times_ordered=0, price=5.99, description="Test description", 
 			calories=100, sodium_mg=1000, fat_grams=150)
 		item.save()
 		item.ingredients.add(ing)
@@ -21,7 +22,7 @@ class MenuTests(TestCase):
 
 	def test_menu_item_category(self):
 		item = MenuItem.objects.get(name='Soup')
-		self.assertEqual(item.category.name, 'Entrees')
+		self.assertEqual(item.category.name, 'Soups')
 
 	def test_top_category(self):
 		item = MenuItem.objects.get(name='Soup')
