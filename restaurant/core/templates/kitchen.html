@@ -4,8 +4,9 @@
 	 $(function () {
 		 $("button").button().click(function(event){
 		 	var ID = $(this).attr("id");
-		 	alert(ID);
-		 	$.post("/",{orderID: ID})
+		 	$.post("/kitchen/claim/",{orderID: ID}, function(data) {
+		 		location.reload()
+		 	})
 		 })
 	})
 	 </script>

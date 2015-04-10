@@ -129,3 +129,16 @@ def waiter_set_status(request):
 	# POST['action'] contains the action
 	
 	return HttpResponse(json.dumps({'yo': 'hi', 'action_was': request.POST['action']}))
+
+def kitchen_claim(request):
+	if (request.method == 'POST'):
+		user = get_employee_from_uid(request.COOKIES['uid'])
+		try:
+			cook = Cook.objects.get(employee=user)
+			orderid = request.POST['orderID']
+			order = Order.objects.get(pk=orderid)
+			cook.current_orders.add(order)
+			cook.save()
+		except Cook.DoesNotExist:
+			pass
+	return HttpResponse("test")
