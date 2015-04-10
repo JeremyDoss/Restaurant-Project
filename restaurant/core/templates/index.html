@@ -9,7 +9,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/plugins/CSSPlugin.min.js"></script>
 <!--Wheel.js-->
 <script src="https://dl.dropboxusercontent.com/u/63798944/wheel.js"></script>
-<link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/162610/menuStyle.css">
+<link rel="stylesheet" href="http://pipmix.com/css/menuStyle.css">
 <!--Wheel CSS -->
 <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/63798944/wheel.css">
 
@@ -69,8 +69,8 @@
       </div>
       <div class="infos">
         <h3 class="b1"> Appitizers </h3>
-        <h3 class="b2"> Drinks </h3>
-        <h3 class="b3"> Entrees</h3>
+        <h3 class="b3"> Drinks </h3>
+        <h3 class="b2"> Entrees</h3>
         <h3 class ="b4">Deserts</h3>
       </div>
     </div>
@@ -81,11 +81,11 @@
       <div class="section2">
         <h2> Appetizers </h2>
 
-{% for each in all_menu_items %}
-  {% if each.category.name == 'Appetizers' %}
-    <h4>{{ each.name }}</h4>
-  {% endif %}
-{% endfor %}
+        {% for each in all_menu_items %}
+          {% if each.category.name == 'Appetizers' %}
+            <h4>{{ each.name }}</h4>
+          {% endif %}
+        {% endfor %}
 
 
 
@@ -126,10 +126,14 @@
     <div class="deserts">
       <div class="section2">
         <h2> Deserts </h2>
-        <h4> Ice cream</h4>
-        <h4> Fugde</h4>
-        <h4> Apple pie</h4>
-        <h4> Pure sugar injections</h4>
+
+        {% for each in all_menu_items %}
+          {% if each.category.name == 'Desserts' %}
+            <h4>{{ each.name }}</h4>
+          {% endif %}
+        {% endfor %}
+
+
       </div>
     </div>
     <!-- ORDER SECTIONS  -->
