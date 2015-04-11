@@ -157,7 +157,7 @@ def waiter_set_status(request):
 				invoice.comped = True
 				invoice.total = 0.00
 				invoice.save()
-			except Order.DoesNotExist, Invoice.DoesNotExist:
+			except (Order.DoesNotExist, Invoice.DoesNotExist):
 				pass
 		tbl.save()
 
