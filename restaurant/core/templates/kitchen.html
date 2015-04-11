@@ -84,9 +84,9 @@
 		<table>
 			<tr>
 			{% for order in associated_orders %}
-				{% if order.status != "CL" %}
+				{% if order.status != "CL" and user.is_manager != True %}
 				<td class="{% if order.status == "RD" %}openOrder{% else %}closedOrder{% endif %}">
-					<p>Order #{{ order.id }}<span>{% if order.status != "RD" %}<button name="ready" id="{{order.id}}">Ready</button>/<span>{% endif %}</p>
+					<p>Order #{{ order.id }}<span>{% if order.status != "RD" %}<button name="ready" id="{{order.id}}">Ready</button><span>{% endif %}</p>
 					<ul>
 						<li>Table: {{ order.table.id }}</li>
 						<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
