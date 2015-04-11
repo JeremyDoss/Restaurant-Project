@@ -16,6 +16,15 @@
 
 
 <script>
+  function update_total() {
+  	var elem = $('div.order')
+  	if (elem.children(".subtotal").length == 0) {
+  		elem.append("<div class='subtotal'>beep</div>")
+  	}
+  	else {
+  		elem.children(".subtotal").text("boop")
+  	}
+  }
 // Sry I know not the best way to do it, but time is of the essence
   $(function() {
       // Show appitizer menu
@@ -64,7 +73,13 @@
         if (buttonText == "Add") {
           // stuff for adding to the sidebar
           var itemInfo = $(this).parents('h5').children('.itemInfo').text();
-          $('div.order').append('<h4>'+itemInfo+'</h4>  ')
+          var split = itemInfo.split(":");
+          var item = $.trim(split[0])
+          var price = $.trim(split[1])
+
+
+          $('div.order').append('<h4>'+item+'<span style="float:right">'+price+'</span></h4>  ')
+          update_total()
         }
         event.preventDefault();
       });
