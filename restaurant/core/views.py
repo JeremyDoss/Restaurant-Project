@@ -115,6 +115,8 @@ def waiter_index(request):
 			tables = waiter.table_set.all()
 		except Waiter.DoesNotExist:
 			return HttpResponse("Access denied.")
+		except AttributeError:
+			return HttpResponse("You have no tables.")
 	context = {'tables': tables, 'user': user}
 	return render(request, 'waiter.html', context)
 
