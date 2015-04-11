@@ -7,6 +7,22 @@ import logging
 
 from .models import *
 
+class Counter:
+    count = 0
+
+    def increment_and_return(self):
+    	self.count += 1
+    	return self.count
+    	
+    def increment(self):
+        self.count += 1
+
+    def decrement(self):
+        self.count -= 1
+
+    def double(self):
+        self.count *= 2
+
 def get_employee_from_uid(uid):
 	emp = Employee.objects.get(pk=uid)
 	return emp
@@ -29,7 +45,7 @@ def logout_redirect(request, redir):
 def index(request):
 	all_menu_items = MenuItem.objects.all()
 	categories = Category.objects.all()
-	context = {'all_menu_items': all_menu_items, 'categories': categories}
+	context = {'all_menu_items': all_menu_items, 'categories': categories, 'counter': Counter()}
 	return render(request, 'index.html', context)
 
 

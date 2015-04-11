@@ -20,34 +20,34 @@
   $(function() {
       // Show appitizer menu
       $( ".b1" ).button().click(function(event) {
-          $( ".apps" ).show();
-          $( ".entrees" ).hide();
-          $( ".drinks" ).hide();
-          $( ".deserts" ).hide();
+          $( ".Appetizers" ).show();
+          $( ".Entrees" ).hide();
+          $( ".Drinks" ).hide();
+          $( ".Desserts" ).hide();
           $( ".startPane" ).hide();
       });
       // Show entrees menu
       $( ".b2" ).button().click(function(event) {
-          $( ".apps" ).hide();
-          $( ".entrees" ).show();
-          $( ".drinks" ).hide();
-          $( ".deserts" ).hide();
+          $( ".Appetizers" s).hide();
+          $( ".Entrees" ).show();
+          $( ".Drink" ).hide();
+          $( ".Desserts" ).hide();
           $( ".startPane" ).hide();
       });
       // Show drink menu
-      $( ".b3" ).button().click(function(event) {
-          $( ".apps" ).hide();
-          $( ".entrees" ).hide();
-          $( ".drinks" ).show();
-          $( ".deserts" ).hide();
+      $( ".b4" ).button().click(function(event) {
+          $( ".Appetizers" ).hide();
+          $( ".Entrees" ).hide();
+          $( ".Drinks" ).show();
+          $( ".Desserts" ).hide();
           $( ".startPane" ).hide();
       });
       // Show desert menu
-      $( ".b4").button().click(function(event) {
-          $( ".apps" ).hide();
-          $( ".entrees" ).hide();
-          $( ".drinks" ).hide();
-          $( ".deserts" ).show();
+      $( ".b3").button().click(function(event) {
+          $( ".Appetizers" ).hide();
+          $( ".Entrees" ).hide();
+          $( ".Drinks" ).hide();
+          $( ".Desserts" ).show();
           $( ".startPane" ).hide();
       });
 
@@ -92,27 +92,29 @@
         <h2> Menu </h2> 
       </div>
       <div class="infos">
-        <h3 class="b1"> Appitizers </h3>
-        <h3 class="b3"> Drinks </h3>
-        <h3 class="b2"> Entrees</h3>
-        <h3 class ="b4">Deserts</h3>
+      {% for category in categories %}
+        {% if category.parent == None %}
+        <h3 class="b{{counter.increment_and_return}}">{{ category.name}}</h3>
+        {% endif %}
+       {% endfor %}
       </div>
     </div>
 
-    <!-- APPITIZER SECTION  -->
-    <div class="apps">
-      <div class="section2">
-        <h2> Appetizers </h2>
-
-        {% for each in all_menu_items %}
-          {% if each.category.name == 'Appetizers' %}
+    {% for category in categories %}
+    {% if category.parent == None %}
+   	<div class="{{ category.name}}">
+   		<div class="section2">
+   			<h2>{{category.name}}</h2>
+   			{% for each in all_menu_items %}
+   				{% if each.category.name == category.name %}
             <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : {{ each.price }} </span>
               <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
             <h6>{{ each.description }} </h6>
-          {% endif %}
-        {% endfor %}
-      </div>
+   				{% endif %}
+   			{% endfor %}
     </div>
+    {% endif %}
+    {% endfor %}
 
 
         <!-- START PAIN -->
@@ -125,55 +127,7 @@
     </div>
 
 
-    <!-- ENTREES SECTION  -->
-    <div class="entrees">
-      <div class="section2">
-        <h2> Entrees </h2>
 
-
-
-        {% for each in all_menu_items %}
-          {% if each.category.name == 'Entrees' %}
-            <h5>{{ each.name }}  : {{ each.price }}
-              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
-            <h6>{{ each.description }} </h6>
-          {% endif %}
-        {% endfor %}
-
-      </div>
-    </div>
-    <!-- DRINKS SECTION  -->
-    <div class="drinks">
-      <div class="section2">
-        <h2> Drinks </h2>
-
-
-        {% for each in all_menu_items %}
-          {% if each.category.name == 'Drinks' %}
-            <h5>{{ each.name }}  : {{ each.price }}
-              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
-            <h6>{{ each.description }} </h6>
-          {% endif %}
-        {% endfor %}
-        
-      </div>
-    </div>
-    <!-- DESERET SECTIONS  -->
-    <div class="deserts">
-      <div class="section2">
-        <h2> Deserts </h2>
-
-
-        {% for each in all_menu_items %}
-          {% if each.category.name == 'Desserts' %}
-            <h5>{{ each.name }}  : {{ each.price }}
-              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
-            <h6>{{ each.description }} </h6>
-          {% endif %}
-        {% endfor %}
-
-      </div>
-    </div>
     <!-- ORDER SECTIONS  -->
     <div class="order">
       <h3>test</h3>
