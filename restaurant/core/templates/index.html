@@ -28,9 +28,9 @@
       });
       // Show entrees menu
       $( ".b2" ).button().click(function(event) {
-          $( ".Appetizers" s).hide();
+          $( ".Appetizers" ).hide();
           $( ".Entrees" ).show();
-          $( ".Drink" ).hide();
+          $( ".Drinks" ).hide();
           $( ".Desserts" ).hide();
           $( ".startPane" ).hide();
       });
@@ -112,6 +112,7 @@
             <h6>{{ each.description }} </h6>
    				{% endif %}
    			{% endfor %}
+   		</div>
     </div>
     {% endif %}
     {% endfor %}
