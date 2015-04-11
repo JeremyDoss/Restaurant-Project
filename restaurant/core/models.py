@@ -127,6 +127,9 @@ class Invoice(models.Model):
 	split_ways = models.IntegerField()
 	# the split is recorded in the Split model
 
+	def __str__(self):
+		return "Invoice (order %s)" % self.order.id
+
 class Split(models.Model):
 	invoice = models.ForeignKey(Invoice)
 	amount = models.DecimalField(decimal_places=2, max_digits=10)

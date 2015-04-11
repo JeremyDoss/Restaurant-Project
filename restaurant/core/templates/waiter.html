@@ -10,8 +10,9 @@
       				stop: function() {
         				var result = $( "#select-result" ).empty();
         				$( ".ui-selected", this ).each(function() {
-          					var index = $( "#selectable li" ).index( this );
-          					result.append( " #" + ( index + 1 ) );
+          					//var index = $( "#selectable li" ).index( this );
+          					var num = $(this).attr("name")
+          					result.append( " #" + ( num ) );
         				});
       				}	
     			});
@@ -59,7 +60,7 @@
 				padding: 1px; 
 				float: left; 
 				width: 150px; 
-				height: 120px; 
+				height: 190px; 
 				font-size: 4em; 
 				text-align: center; 
 				font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
@@ -103,13 +104,21 @@ tr{
 		<td>
 			<ol id="selectable">
 				{% for table in tables %}
-				<li class="ui-widget-content" name="{{ table.id }}">{{ table }}{% if table.waiter_set.get != '' %}<br/><span style="font-size: 80%">Waiter: {{table.waiter_set.get}}</span>{% endif %}<br/><span style="font-size: 80%">(Status: {{ table.status_name }})</span></li>
+				<li class="ui-widget-content" name="{{ table.id }}">{{ table }}{% if table.waiter_set.get != '' %}<br/><span style="font-size: 80%">Waiter: {{table.waiter_set.get}}</span>{% endif %}<br/><span style="font-size: 80%">(Status: {{ table.status_name }})</span>
+				<br/>
+				{% if table.order_set.get %}<span style="font-size: 80%">Order: #{{table.order_set.get.id}}</span>
+				<br/>
+				{% if table.order_set.get.status == "RD" %}<span style="font-size: 80%; color: red; font-weight: bold">ORDER READY</span>{% endif %}{% endif %}
+				{% if table.order_set.get.invoice_set.get %}{% if table.order_set.get.invoice_set.get.comped %}
+				<span style="color: green; font-weight: bold">COMPED</span>
+				{% endif %}{% endif %}
+				</li>
 				{% endfor %}
 			</ol>
 		</td>
 	<tr>
 		<td>
-			<span>You've selected:</span> <span id="select-result">none</span>
+			<span>Selected tables:</span> <span id="select-result">none</span>
 		</td>
 	</tr>
 	<tr>

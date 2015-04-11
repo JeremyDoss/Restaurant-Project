@@ -43,10 +43,10 @@ def kitchen_index(request):
 	user = get_employee_from_uid(request.COOKIES['uid'])
 	if user.is_manager or len(user.cook_set.all()) > 0:
 		# get incoming (unclaimed) orders
-		unclaimed_orders = Order.objects.filter(cook=None, status="OP")
+		unclaimed_orders = Order.objects.filter(cook__isnull=True, status="OP")
 		
 		if user.is_manager:
-			associated_orders = Order.objects.filter(status="OP")
+			associated_orders = Order.objects.filter(status="OP", cook__isnull=False)
 		else:
 			associated_orders = Order.objects.filter(cook__employee=user)
 		context = {'unclaimed_orders': unclaimed_orders, 'associated_orders': associated_orders, 'user': user}
@@ -151,7 +151,14 @@ def waiter_set_status(request):
 			if tbl.status == "NA":
 				tbl.status = tbl.prev_status
 		elif action == "comp":
-			pass
+			try:
+				order = tbl.order_set.get()
+				invoice = order.invoice_set.get()
+				invoice.comped = True
+				invoice.total = 0.00
+				invoice.save()
+			except Order.DoesNotExist, Invoice.DoesNotExist:
+				pass
 		tbl.save()
 
 	return HttpResponse(json.dumps({'status': 'OK', 'action_was': request.POST['action'], 'tables_were': tables}))
