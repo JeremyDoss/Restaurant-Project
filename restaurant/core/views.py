@@ -112,7 +112,7 @@ def waiter_index(request):
 	else:
 		try:
 			waiter = Waiter.objects.get(employee=user)
-			tables = waiter.table_set.all()
+			tables = waiter.tables.all()
 		except Waiter.DoesNotExist:
 			return HttpResponse("Access denied.")
 		except AttributeError:
