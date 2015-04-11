@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     url(r'^waiter/set_status/$', 'core.views.waiter_set_status', name="waiter_set_status"),
 
     url(r'^kitchen/$', 'core.views.kitchen_index', name="kitchen_index"),
+    url(r'^kitchen/items/$', 'core.views.kitchen_items', name="kitchen_items")
     url(r'^kitchen/login/$', 'core.views.kitchen_login', name="kitchen_login"),
     url(r'^kitchen/claim/$', 'core.views.kitchen_claim', name="kitchen_claim"),
     url(r'^kitchen/ready/$', 'core.views.kitchen_ready', name="kitchen_ready"),

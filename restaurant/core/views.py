@@ -208,3 +208,7 @@ def kitchen_ready(request):
 
 def standby(request):
 	return render(request, 'standby.html', {})
+
+def kitchen_items(request):
+	context = {}
+	return render(request, 'items.html', context)
