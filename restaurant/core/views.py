@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
 import json
+import logging
+
 
 from .models import *
 
@@ -127,8 +129,32 @@ def waiter_login(request):
 
 def waiter_set_status(request):
 	# POST['action'] contains the action
-	
-	return HttpResponse(json.dumps({'yo': 'hi', 'action_was': request.POST['action']}))
+	logger = logging.getLogger(__name__)
+
+	tables = []
+	if 'tables[]' in request.POST:
+		tables = request.POST.getlist('tables[]')
+
+	action = request.POST['action']
+	for table in tables:
+		tbl = Table.objects.get(pk=table)
+		if action == "open":
+			tbl.status = "OP"
+			tbl.prev_status = "OP"
+		elif action == "occupied":
+			tbl.prev_status = tbl.status
+			tbl.status = "OC"
+		elif action == "refill":
+			if tbl.status == "NR":
+				tbl.status = tbl.prev_status
+		elif action == "assistance":
+			if tbl.status == "NA":
+				tbl.status = tbl.prev_status
+		elif action == "comp":
+			pass
+		tbl.save()
+
+	return HttpResponse(json.dumps({'status': 'OK', 'action_was': request.POST['action'], 'tables_were': tables}))
 
 def kitchen_claim(request):
 	if (request.method == 'POST'):

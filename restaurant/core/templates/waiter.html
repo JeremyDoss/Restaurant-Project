@@ -15,29 +15,31 @@
         				});
       				}	
     			});
-    			$('button').button().click(function(event) {
-    				alert('test');
-    			})
+    			
     			$("input[type=submit], a, button").button().click(function( event ){
     				var action = $(this).attr("name");
     				var tables = [];
     				$(".ui-selected").each(function() {
     					tables.push($(this).attr("name"));
     				});
-    				console.log(tables)
-    				do_status(action);
+    				//console.log(tables)
+    				if (tables.length > 0) {
+    					do_status(action, tables);
+					}
         			event.preventDefault();
       			});
   			});
 
-  			function do_status(action) {
-  				console.log("Doing status "+action+"!");
+  			function do_status(action, tables) {
+  				//console.log("Doing status "+action+"!");
+  				//console.log("Tables: " + tables)
   				$.ajax({
   					url: "/waiter/set_status/",
   					type: "POST",
-  					data: {action: action},
+  					data: {action: action, 'tables[]': tables},
   					success: function(json) {
   						console.log(json);
+  						location.reload();
   					}
   				});
   			}
@@ -57,7 +59,7 @@
 				padding: 1px; 
 				float: left; 
 				width: 150px; 
-				height: 100px; 
+				height: 120px; 
 				font-size: 4em; 
 				text-align: center; 
 				font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
@@ -101,7 +103,7 @@ tr{
 		<td>
 			<ol id="selectable">
 				{% for table in tables %}
-				<li class="ui-widget-content" name="{{ table.id }}">{{ table }}{% if table.waiter_set.get != '' %}<br/>Waiter: {{table.waiter_set.get}}{% endif %}<br/>(Status: {{ table.status_name }})</li>
+				<li class="ui-widget-content" name="{{ table.id }}">{{ table }}{% if table.waiter_set.get != '' %}<br/><span style="font-size: 80%">Waiter: {{table.waiter_set.get}}</span>{% endif %}<br/><span style="font-size: 80%">(Status: {{ table.status_name }})</span></li>
 				{% endfor %}
 			</ol>
 		</td>
