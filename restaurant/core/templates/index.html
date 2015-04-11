@@ -2,8 +2,7 @@
 
 {% block script %}
 
-<script src="http://pipmix.com/js/jquery-1.11.2.min.js"></script>
-<script src="http://pipmix.com/js/jquery-ui.min.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenLite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/utils/Draggable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/plugins/CSSPlugin.min.js"></script>
@@ -68,7 +67,9 @@
         if (buttonText == "Info") {
           var itemInfo = $(this).parents('h5').children('.itemInfo').text();
           var itemID = $(this).parents('h5').children('.itemInfo').attr("name");
-          console.log(itemID)
+          console.log(itemID);
+          $( ".popup" ).show();
+
         }
         if (buttonText == "Add") {
           // stuff for adding to the sidebar
@@ -83,6 +84,8 @@
         }
         event.preventDefault();
       });
+
+
 
 
   });
@@ -160,19 +163,11 @@
 
 
     </div>
-    <div class="infoitem">
 
 
 
-    </div>
 
 
-
-    <div class="infoPopup">
-
-
-
-    </div>
 
 
     <div class="basebar">
@@ -188,5 +183,22 @@
       <img id="category4" class="wheelCategory wheelRotate wheelOrigin" src="http://imgur.com/iS0kDi1.png" draggable="true">
     </div>
 
+
+<div id = "popup" style="z-index:902;">
+    <div style="position: fixed; z-index:903; width: 100%; height: 100%; left: 0; top: 0;background:#ccc; display:none;">
+        Overlay
+    </div>
+    Contents of container 1
+</div>
+
+
+
+
+
 </body>
+
+
+
+
+
 {% endblock %}
