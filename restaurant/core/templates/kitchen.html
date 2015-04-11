@@ -4,11 +4,25 @@
 	 $(function () {
 		 $("button").button().click(function(event){
 		 	var ID = $(this).attr("id");
-		 	$.post("/kitchen/claim/",{orderID: ID}, function(data) {
-		 		location.reload()
-		 	})
+		 	var name = $(this).attr("name");
+		 	if(name == "claim"){
+			 	$.post("/kitchen/claim/",{orderID: ID}, function(data) {
+			 		location.reload()
+				})
+			}
+			if(name == "ready"){
+				var element = $(this).parents("td.closedOrder")
+				element.removeClass("closedOrder");
+				element.addClass("openOrder");
+			 	$.post("/kitchen/ready/",{orderID: ID}, function(data) {
+			 		location.reload()
+
+			})
+
+		 	}
 		 })
 	})
+
 	 </script>
 {% endblock %}
 
@@ -43,6 +57,7 @@
 {% endblock %}
 
 {% block main %}
+	<h3>Logged in as {{user.name}}</h3>
 	<div id="kitchenContainer">
 		<h2>Open Orders</h2>
 		<table>
@@ -69,8 +84,9 @@
 		<table>
 			<tr>
 			{% for order in associated_orders %}
-				<td class="closedOrder">
-					<p>Order #{{ order.id }}<span><button>Ready</button>/<span></p>
+				{% if order.status != "CL" %}
+				<td class="{% if order.status == "RD" %}openOrder{% else %}closedOrder{% endif %}">
+					<p>Order #{{ order.id }}<span>{% if order.status != "RD" %}<button name="ready" id="{{order.id}}">Ready</button>/<span>{% endif %}</p>
 					<ul>
 						<li>Table: {{ order.table.id }}</li>
 						<li>Date: {{ order.date|date:"SHORT_DATETIME_FORMAT" }}
@@ -83,7 +99,8 @@
 						</li>
 					</ul>
 				</td>
-			</tr>
-		</table>
-	{% endfor %}
+			{% endif %}
+			{% endfor %}
+		</tr>
+	</table>
 {% endblock %}
