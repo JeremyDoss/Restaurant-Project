@@ -207,4 +207,4 @@ def kitchen_ready(request):
 	return HttpResponse("OK")
 
 def standby(request):
-	return redirect(request, 'standby.html', {})
+	return render(request, 'standby.html', {})
