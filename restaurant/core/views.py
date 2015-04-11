@@ -212,5 +212,6 @@ def standby(request):
 	return render(request, 'standby.html', {})
 
 def kitchen_items(request):
-	context = {}
+	all_menu_items = MenuItem.objects.all()
+	context = {'all_menu_items': all_menu_items}
 	return render(request, 'items.html', context)
