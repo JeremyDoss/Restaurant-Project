@@ -13,7 +13,7 @@ class Counter:
     def increment_and_return(self):
     	self.count += 1
     	return self.count
-    	
+
     def increment(self):
         self.count += 1
 
@@ -205,3 +205,6 @@ def kitchen_ready(request):
 		except Cook.DoesNotExist:
 			pass
 	return HttpResponse("OK")
+
+def standby(request):
+	return redirect(request, 'standby.html', {})

@@ -18,4 +18,6 @@ urlpatterns = patterns('',
     url(r'^kitchen/claim/$', 'core.views.kitchen_claim', name="kitchen_claim"),
     url(r'^kitchen/ready/$', 'core.views.kitchen_ready', name="kitchen_ready"),
     url(r'^admin/', include(admin.site.urls)),
+
+    url(r'^standby/$', 'core.views.standby', name='standby'),
 )
