@@ -50,6 +50,26 @@
           $( ".deserts" ).show();
           $( ".startPane" ).hide();
       });
+
+
+    $( "input[type=submit], a, button" )
+      .button()
+      .click(function( event ) {
+        var buttonText = $(this).text();
+        if (buttonText == "Info") {
+          var itemInfo = $(this).parents('h5').children('.itemInfo').text();
+          var itemID = $(this).parents('h5').children('.itemInfo').attr("name");
+          console.log(itemID)
+        }
+        if (buttonText == "Add") {
+          // stuff for adding to the sidebar
+          var itemInfo = $(this).parents('h5').children('.itemInfo').text();
+          $('div.order').append('<h4>'+itemInfo+'</h4>  ')
+        }
+        event.preventDefault();
+      });
+
+
   });
   </script>
 
@@ -86,12 +106,11 @@
 
         {% for each in all_menu_items %}
           {% if each.category.name == 'Appetizers' %}
-            <h5>{{ each.name }}  : {{ each.price }}
+            <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : {{ each.price }} </span>
               <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
             <h6>{{ each.description }} </h6>
           {% endif %}
         {% endfor %}
-
       </div>
     </div>
 
@@ -157,10 +176,27 @@
     </div>
     <!-- ORDER SECTIONS  -->
     <div class="order">
-      <h4>test</h4>
+      <h3>test</h3>
 
 
     </div>
+    <div class="infoitem">
+
+
+
+    </div>
+
+
+
+    <div class="infoPopup">
+
+
+
+    </div>
+
+
+
+
     <div class="basebar">
       <br />
       <br />
