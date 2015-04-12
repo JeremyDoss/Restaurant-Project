@@ -78,7 +78,7 @@
         var split = itemInfo.split(":");
         var item = $.trim(split[0])
         var price = $.trim(split[1])
-        $('.popup').append('<h4>'+item+' '+itemInfo+' '+price+'</h4>');
+        $('.popup').append('<h4 id="info_text">'+item+' '+itemInfo+' '+price+'</h4>');
         $('.overlayBG').show();
         $('.popup').show();
       }
@@ -94,6 +94,7 @@
       }
       if (buttonText == "Close") {
         $('.overlayBG').hide();
+        $("#info_text").remove();
         $('.popup').hide();
       }
       $('.overlayBG').click(function() {
