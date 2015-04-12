@@ -3,13 +3,138 @@
 {% block style %}
 
 <script>
+	window.onload = function() {
+		var images = [];
+
+		//Flag Image
+		images.push('http://i.imgur.com/mcb1csP.jpg');
+		images.push('http://i.imgur.com/mcb1csP.jpg');
+		//Mushroom
+		images.push('http://i.imgur.com/TmMNnWn.jpg');
+		images.push('http://i.imgur.com/TmMNnWn.jpg');
+		//Mozarella
+		images.push('http://i.imgur.com/whoPLH5.png');
+		images.push('http://i.imgur.com/whoPLH5.png');
+		//Moustache
+		images.push('http://i.imgur.com/muPba4t.jpg');
+		images.push('http://i.imgur.com/muPba4t.jpg');
+		//Pizzacat
+		images.push('http://i.imgur.com/oxDSrxU.gif');
+		images.push('http://i.imgur.com/oxDSrxU.gif');
+		//Pizzaslice
+		images.push('http://i.imgur.com/JxgMEXj.jpg');
+		images.push('http://i.imgur.com/JxgMEXj.jpg');
+		//Spaghetti
+		images.push('http://i.imgur.com/ABT6qht.jpg');
+		images.push('http://i.imgur.com/ABT6qht.jpg');
+		//Sundae
+		images.push('http://i.imgur.com/E7TtAYA.jpg');
+		images.push('http://i.imgur.com/E7TtAYA.jpg');
+		
+		randomizeImages();
+
+		// output images then hide them
+		var output = "<ol>"; 
+		for (var i = 0; i < 16; i++) { 
+		  output += "<li>";
+		  output += "<img src = '" + images[i] + "'/>";
+		  output += "</li>";
+		}
+		output += "</ol>";
+		document.getElementById("match").innerHTML = output;
+		$("img").hide();
+
+		var guess1 = "";
+		var guess2 = "";
+		var count = 0;
+		var correct = 0;
+
+		$("li").click(function() {
+		  if ((count < 2) &&  ($(this).children("img").hasClass("face-up")) === false) {
+			count++;
+			$(this).children("img").show();
+			$(this).children("img").addClass("face-up");
+			
+			if (count === 1 ) { 
+			  guess1 = $(this).children("img").attr("src"); 
+			}
+			
+			else { 
+				guess2 = $(this).children("img").attr("src"); 
+			
+				//If you guess correctly...
+				if (guess1 === guess2) { 
+					$("li").children("img[src='" + guess2 + "']").addClass("match");
+					//Increment correct count.
+					correct++;
+					if (correct === 8) {
+						$("#match").hide();
+						$("#win").show();
+						$("img").hide();
+						$("img").removeClass("match");
+						$("img").not(".match").removeClass("face-up");
+						correct = 0;
+					}
+				} 
+				
+				//If you don't guess correctly...
+				else { 
+					setTimeout(function() {
+						$("img").not(".match").hide();
+						$("img").not(".match").removeClass("face-up");
+					}, 500);
+				}
+				
+				count = 0;
+				setTimeout(function() { console.clear(); }, 60000);      
+			}
+		  }
+		});
+
+		// randomize array of images
+		function randomizeImages(){
+		  Array.prototype.randomize = function()
+		  {
+			var i = this.length, j, temp;
+			while ( --i )
+			{
+			  j = Math.floor( Math.random() * (i - 1) );
+			  temp = this[i];
+			  this[i] = this[j];
+			  this[j] = temp;
+			}
+		  };
+		  
+		  images.randomize();
+		}
+	}
+
+
 $(function() {
 	$(".game").button().click(function(event) {
 		$(".options").toggle();
+		$(".play").hide();
+		$("#match").hide();
+		$("#tic").hide();
+		$("#win").hide();
 	});
 	
-	$(".options").button().click(function(event) {
+	$(".tictac").button().click(function(event) {
 		$(".options").hide();
+		$(".play").show();
+		
+	});
+	
+	$(".matching").button().click(function(event) {
+		$(".options").hide();
+		$(".play").show();
+		$("#match").show();
+	});
+	
+	$("#win").button().click(function(event) {
+		$(".options").hide();
+		$("#win").hide();
+		$(".play").hide();
 	});
 	
 	$(".refill").button().click(function(event) {
@@ -24,8 +149,6 @@ $(function() {
 		})
 	});
 });
-
-
 </script>
 
 <style>
@@ -33,6 +156,49 @@ body {
 	background-image: url("http://i.imgur.com/ucjverw.jpg");
 	background-size: cover;
 	background-color: black;
+}
+
+#win {
+	display: none;
+	width: 800px;
+	margin: auto auto;
+	padding-top: 150px;
+	text-align: center;
+	color: #ff1111;
+}
+
+#tic {
+	display: none;
+	margin: auto;
+	width: 800px;
+}
+
+#match {
+	display: none;
+	margin: auto;
+	width: 800px;
+}
+
+ul {
+	padding: 0;
+	margin: 0;
+}
+
+li {
+	background-image: url("http://i.imgur.com/l11LCqi.gif");
+	background-size: 150px 150px;
+	padding: 0;
+	float: left;
+	margin: 10px;
+	list-style: none;
+	outline: solid;
+	width: 150px;
+	height: 150px;
+}
+
+img { 
+	width: 100%;
+	height: 100%;
 }
 
 .game {
@@ -138,6 +304,10 @@ body {
 .help:active {
 	bottom: 10px;
 }
+
+.play {
+	display: none;
+}
 </style>
 
 {% endblock %}
@@ -153,6 +323,11 @@ body {
 	<div class="options">
 		<div class="tictac" alt="Play Tic-Tac-Toe" title="Play Tic-Tac-Toe"></div>
 		<div class="matching" alt="Play Matching" title="Play Matching"></div>
+	</div>
+	<div class="play">
+		<div id="tic"></div>
+		<div id="match"></div>
+		<div id="win"><h1>You are a winner!!!</h1><h5>A free gift was added!</h5></div>
 	</div>
 </div>
 
