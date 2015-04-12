@@ -10,6 +10,7 @@
 		margin:5px;
 	}
 	table{
+		width:100%;
 		float:left;
 	}
 	th{
@@ -20,6 +21,8 @@
 		border:solid black 1px;
 	}
 	div{
+		clear: both;
+		width: 600px;
 		float:left;
 		border: solid black 1px;
 		margin:5px;
@@ -51,7 +54,7 @@
 			<table>
 				<th colspan="2">Order #:{{order.id}}</th>
 				<tr>
-					<td>
+					<td style="width:65%">
 						<ul>
 							{%for item in order.menu_items.all%}
 							<li>{{item.name}}</li>
@@ -62,6 +65,7 @@
 						<ul>
 							<li>Date: {{order.date | date:"m/d/y h:i"}}</li>
 							<li>{{order.table}}</li>
+							<li>Order Status: {{order.status}}</li>
 						</ul>
 					</td>
 				</tr>
