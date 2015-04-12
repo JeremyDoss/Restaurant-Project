@@ -325,5 +325,8 @@ def place_order(request):
                 itm = MenuItem.objects.get(pk=item)
                 order.menu_items.add(itm)
             order.save()
-            return HttpResponse("New order with ID %s created" % order.id)
+            response = HttpResponse("New order with ID %s created" % order.id)
+            response.set_cookie("order_id", order.id)
+            return response
+            
     return HttpResponse("Nothing here.")
