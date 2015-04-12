@@ -12,6 +12,17 @@ $(function() {
 		$(".options").hide();
 	});
 	
+	$(".refill").button().click(function(event) {
+		$.post("/standby/refill/", {tableID: ID}, function(data) {
+			location.reload()
+		})
+	});
+	
+	$(".help").button().click(function(event) {
+		$.post("/standby/help/", {tableID: ID}, function(data) {
+			location.reload()
+		})
+	});
 });
 
 
