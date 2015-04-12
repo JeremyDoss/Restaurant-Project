@@ -1,0 +1,93 @@
+{% extends "base.html"%}
+
+{% block script %}
+<script>
+	 $(function () {
+		 $("button").button().click(function(event){
+		 	var item = $(this).attr("id");
+		 	var name = $(this).attr("name");
+		 	if(name == "OUT_OF_STOCK"){
+			 	$.post("/kitchen/ingredients/out/",{ingredient: item}, function(data) {
+			 		location.reload()
+				})
+			}
+			if(name == "IN_STOCK"){
+			 	$.post("/kitchen/ingredients/in/",{ingredient: item}, function(data) {
+			 		location.reload()
+
+			})
+
+		 	}
+		 })
+	})
+</script>
+{% endblock %}
+
+{% block style %}
+	<style>
+		div{
+			width:100%;
+			height:510px;
+		}
+		.column_list{
+			width:700;
+			height:100;
+
+		}
+		li{
+			list-style-type: none;
+			border-radius: 15px;
+			border: solid black 1px;
+			width: 350px;
+			height: 30px;
+			float:left;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow:ellipsis;
+		}
+		.green{
+			background-color:green;
+		}
+		.red{
+			background-color: red;
+		}
+		p{
+			margin:0px;
+			padding:5px;
+		}
+		p span button{
+			float:right;
+		}
+
+	</style>
+{% endblock %}
+
+<!--MenuItem.objects.filter()ingredients__name=""-->
+
+{% block main %}
+<a href=".."><button>Kitchen Page</button></a>
+<div class = "column_list">
+	<h2>In Stock</h2>
+	<ul>
+		{% for ingredient in all_ingredients %}
+		{% if ingredient.in_stock %}
+		<li class = "green">
+			<p>{{ ingredient.name | truncatechars:34}}<span><button name="OUT_OF_STOCK" id="{{ingredient.name}}">Out of Stock</button><span></p>
+		</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+</div>
+<div class = "column_list">
+	<h2>Out of Stock</h2>
+	<ul>
+		{% for ingredient in all_ingredients %}
+		{% if ingredient.in_stock != True %}
+		<li class = "red">
+			<p>{{ ingredient.name | truncatechars:34}}<span><button name="IN_STOCK" id="{{ingredient.name}}">In Stock</button><span></p>
+		</li>
+		{% endif %}
+		{% endfor %}
+	</ul>
+</div>
+{% endblock %}

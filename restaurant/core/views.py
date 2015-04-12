@@ -223,6 +223,59 @@ def kitchen_items(request):
 	context = {'all_menu_items': all_menu_items}
 	return render(request, 'items.html', context)
 
+def kitchen_ingredients(request):
+	all_ingredients = Ingredient.objects.all()
+	context = {'all_ingredients': all_ingredients}
+	return render(request, 'ingredients.html', context)
+
+def menu_item_in(request):
+	if (request.method == 'POST'):
+		try:
+			menu_item = request.POST["menu_item"]
+			item = MenuItem.objects.get(name=menu_item)
+			item.in_stock = True
+			item.save()
+		except MenuItem.DoesNotExist:
+			pass
+	return HttpResponse("OK")
+
+def menu_item_out(request):
+	if (request.method == 'POST'):
+		try:
+			menu_item = request.POST["menu_item"]
+			item = MenuItem.objects.get(name=menu_item)
+			item.in_stock = False
+			item.save()
+		except MenuItem.DoesNotExist:
+			pass
+	return HttpResponse("OK")
+
+def ingredient_out(request):
+	if (request.method == 'POST'):
+		try:
+			menu_item = request.POST["ingredient"]
+			item = Ingredient.objects.get(name=menu_item)
+			item.in_stock = False
+			item.save()
+			for menu_item in MenuItem.objects.filter(ingredients__name=item):
+				menu_item.in_stock = False
+				menu_item.save()
+			
+		except Ingredient.DoesNotExist:
+			pass
+	return HttpResponse("OK")
+
+def ingredient_in(request):
+	if (request.method == 'POST'):
+		try:
+			menu_item = request.POST["ingredient"]
+			item = Ingredient.objects.get(name=menu_item)
+			item.in_stock = True
+			item.save()
+		except Ingredient.DoesNotExist:
+			pass
+	return HttpResponse("OK")
+
 def view_order(request, orderID):
 	order = Order.objects.get(pk=orderID)
 	return HttpResponse("Order view for order #%s" % orderID)
