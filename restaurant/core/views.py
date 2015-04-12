@@ -279,3 +279,21 @@ def ingredient_in(request):
 def view_order(request, orderID):
 	order = Order.objects.get(pk=orderID)
 	return HttpResponse("Order view for order #%s" % orderID)
+
+def refill_request(request):
+	if (request.method == 'POST'):
+		tbl = Table.objects.get(pk=table)
+		try:
+			if tbl.status != "NR":
+				tbl.status = "NR"
+		except:
+			pass
+	return HttpResponse("OK")
+
+
+
+
+
+
+
+
