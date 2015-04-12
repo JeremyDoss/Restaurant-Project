@@ -2,6 +2,21 @@
 
 {% block style %}
 
+<script>
+$(function() {
+	$(".game").button().click(function(event) {
+		$(".options").toggle();
+	});
+	
+	$(".options").button().click(function(event) {
+		$(".options").hide();
+	});
+	
+});
+
+
+</script>
+
 <style>
 body {
 	background-color: black;
@@ -61,7 +76,7 @@ body {
 }
 
 .options {
-
+	display: none;
 	width: 420px;
 	margin: auto auto;
 	padding-top: 100px;
