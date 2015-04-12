@@ -53,14 +53,14 @@ def index(request):
 def kitchen_index(request):
 	# if the kitchen is not logged in, we need to redirect them to the login index
 	# this is a terrible idea for a regular website, completely insecure
-	if ("logged_in" not in request.COOKIES): 
+	if ("logged_in" not in request.COOKIES):
 		return redirect('/kitchen/login/')
 
 	user = get_employee_from_uid(request.COOKIES['uid'])
 	if user.is_manager or len(user.cook_set.all()) > 0:
 		# get incoming (unclaimed) orders
 		unclaimed_orders = Order.objects.filter(cook__isnull=True, status="OP")
-		
+
 		if user.is_manager:
 			associated_orders = Order.objects.filter(status="OP", cook__isnull=False)
 		else:
@@ -101,7 +101,7 @@ def kitchen_login(request):
 def waiter_index(request):
 	# if the waiter is not logged in, we need to redirect them to the login index
 	# this is a terrible idea for a regular website, completely insecure
-	if ("logged_in" not in request.COOKIES): 
+	if ("logged_in" not in request.COOKIES):
 		return redirect('/waiter/login/')
 
 	# todo: make this render to a template, provide logout links
@@ -179,7 +179,7 @@ def waiter_set_status(request):
 				pass
 		elif action == "vieworder":
 			try:
-				order = tbl.order_set.get() 
+				order = tbl.order_set.get()
 				#return redirect('/view_order/%s/' % order.id)
 				return HttpResponse(json.dumps({'redirect_order': order.id}), content_type='application/json')
 			except (Order.DoesNotExist):
@@ -260,7 +260,7 @@ def ingredient_out(request):
 			for menu_item in MenuItem.objects.filter(ingredients__name=item):
 				menu_item.in_stock = False
 				menu_item.save()
-			
+
 		except Ingredient.DoesNotExist:
 			pass
 	return HttpResponse("OK")
@@ -290,10 +290,12 @@ def refill_request(request):
 			pass
 	return HttpResponse("OK")
 
-
-
-
-
-
-
-
+def menuitem_details(request):
+    if (request.method == 'POST'):
+        if 'itemID' in request.POST:
+            item = MenuItem.objects.get(pk=request.POST['itemID'])
+            data = serializers.serialize('json', [item,])
+            struct = json.loads(data)
+            data = json.dumps(struct[0])
+            return HttpResponse(data, content_type='application/json')
+    return HttpResponse("Nothing here.")

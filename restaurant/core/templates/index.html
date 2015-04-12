@@ -73,14 +73,31 @@
     $( "input[type=submit], a, button" ).button().click(function( event ) {
       var buttonText = $(this).text();
       if (buttonText == "Info") {
-        var itemInfo = $(this).parents('h5').children('.itemInfo').text();
-        var itemID = $(this).parents('h5').children('.itemInfo').attr("name");
-        var split = itemInfo.split(":");
-        var item = $.trim(split[0])
-        var price = $.trim(split[1])
-        $('.popup').append('<h4 id="info_text">'+item+' '+itemInfo+' '+price+'</h4>');
-        $('.overlayBG').show();
-        $('.popup').show();
+          var itemID = $(this).parents('h5').children('.itemInfo').attr("name");
+          $.ajax({
+             url: '/menuitem_details/',
+             type: 'POST',
+             data: {itemID: itemID},
+             success: function(json) {
+                 data = json.fields;
+                 // put all of the popup stuff that accesses data in here
+                 // data is a dictionary that has keys just like MenuItem in models.py
+                 // data.price, data.image, data.description, etc.
+                 // you can view what's in each one by leaving the below console.log in
+                 // and checking what's printed to the console
+                 console.log(data)
+                 //$('.popup').append('<h4 id="info_text">'+item+' '+itemInfo+' '+price+'</h4>');
+                 //$('.overlayBG').show();
+                 //$('.popup').show();
+             }
+          });
+
+        // below is no longer needed
+        //var itemInfo = $(this).parents('h5').children('.itemInfo').text();
+        //var split = itemInfo.split(":");
+        //var item = $.trim(split[0])
+        //var price = $.trim(split[1])
+
       }
       if (buttonText == "Add") {
         // stuff for adding to the sidebar
@@ -132,8 +149,8 @@
     </div>
     <!-- MENU SELECT  -->
     <div class="section">
-      <div class="price"> 
-        <h2> Menu </h2> 
+      <div class="price">
+        <h2> Menu </h2>
       </div>
       <div class="infos">
       {% for category in categories %}

@@ -32,4 +32,5 @@ urlpatterns = patterns('',
     url(r'^standby/help$', 'core.views.help_request', name="help_request"),
 
     url(r'view_order/(\d+?)/', 'core.views.view_order', name="view_order"),
+    url(r'menuitem_details/', 'core.views.menuitem_details', name="menuitem_details"),
 )
