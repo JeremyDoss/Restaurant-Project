@@ -228,6 +228,11 @@ def waiter_statistics(request):
 	context = {'all_menu_items': all_menu_items}
 	return render(request, 'statistics.html', context)
 
+def waiter_order_list(request):
+	all_orders = Order.objects.all()
+	context = {'all_orders': all_orders}
+	return render(request, 'order_list.html', context)
+
 def kitchen_ingredients(request):
 	all_ingredients = Ingredient.objects.all()
 	context = {'all_ingredients': all_ingredients}

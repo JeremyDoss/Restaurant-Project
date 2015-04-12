@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block style %}
+	<style>
+	#button_div{
+		width:100%;
+		border:0px;
+	}
+	button{
+		margin:5px;
+	}
+	table{
+		float:left;
+	}
+	th{
+		border: solid black 1px;
+		background-color: gray;
+	}
+	td{
+		border:solid black 1px;
+	}
+	div{
+		float:left;
+		border: solid black 1px;
+		margin:5px;
+	}
+	ul{
+		float:left;
+		list-style-type: none;
+		margin:5px;
+		margin-left:-20px;
+	}
+
+	</style>
+{% endblock %}
+
+
+{% block script %}
+	<script>
+
+	</script>
+{% endblock %}
+
+
+{% block main %}
+<div id="button_div">
+	<a href="/waiter/"><button>Waiter Page</button></a>
+</div>
+	{% for order in all_orders %}
+		<div name="{{order.id}}">
+			<table>
+				<th colspan="2">Order #:{{order.id}}</th>
+				<tr>
+					<td>
+						<ul>
+							{%for item in order.menu_items.all%}
+							<li>{{item.name}}</li>
+							{% endfor %}
+						</ul>
+					</td>
+					<td>
+						<ul>
+							<li>Date: {{order.date | date:"m/d/y h:i"}}</li>
+							<li>{{order.table}}</li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</div>
+	{% endfor %}
+{% endblock %}

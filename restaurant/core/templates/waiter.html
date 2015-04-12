@@ -96,11 +96,18 @@ tr{
 	width : 50%;
 
 }
+button{
+  margin:5px;
+}
 </style>
 {% endblock %}
 
 {% block main %}
-<a href="/waiter/statistics/"><button>Statistics</button></a>
+{% if user.is_manager %}
+<a href="/waiter/statistics/" onclick="location.href='/waiter/statistics/'"><button>Statistics</button></a>
+<a href="/waiter/order_list/" onclick="location.href='/waiter/order_list/'"><button>Order List</button></a>
+{% endif %}
+<a style="float:right"href="/logout/waiter/" onclick="location.href='/logout/waiter/'"><button>Logout</button></a>
 <h2>Welcome, {{ user.name }} {% if user.is_manager %}(manager view){% endif %}</h2>
 <center>
 <div id="rcorners">
