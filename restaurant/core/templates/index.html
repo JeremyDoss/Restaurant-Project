@@ -2,18 +2,15 @@
 
 {% block script %}
 
-
+<!--JS-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/TweenLite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/utils/Draggable.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.16.1/plugins/CSSPlugin.min.js"></script>
-<!--Wheel.js-->
 <script src="https://dl.dropboxusercontent.com/u/63798944/wheel.js"></script>
+<!--CSS-->
 <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/162610/menuStyle.css">
-<!--Wheel CSS -->
 <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/63798944/wheel.css">
-
-
-
+<!--Script-->
 <script>
   function update_cart() {
   	var elem = $('div.order')
@@ -37,72 +34,76 @@
   }
 
   orders = [];
-// Sry I know not the best way to do it, but time is of the essence
+
   $(function() {
 
-      // Show appitizer menu
-      $( ".b1" ).button().click(function(event) {
-          $( ".Appetizers" ).show();
-          $( ".Entrees" ).hide();
-          $( ".Drinks" ).hide();
-          $( ".Desserts" ).hide();
-          $( ".startPane" ).hide();
+    // Show appitizer menu
+    $( ".b1" ).button().click(function(event) {
+      $( ".Appetizers" ).show();
+      $( ".Entrees" ).hide();
+      $( ".Drinks" ).hide();
+      $( ".Desserts" ).hide();
+      $( ".startPane" ).hide();
+    });
+    // Show entrees menu
+    $( ".b2" ).button().click(function(event) {
+      $( ".Appetizers" ).hide();
+      $( ".Entrees" ).show();
+      $( ".Drinks" ).hide();
+      $( ".Desserts" ).hide();
+      $( ".startPane" ).hide();
+    });
+    // Show drink menu
+    $( ".b4" ).button().click(function(event) {
+      $( ".Appetizers" ).hide();
+      $( ".Entrees" ).hide();
+      $( ".Drinks" ).show();
+      $( ".Desserts" ).hide();
+      $( ".startPane" ).hide();
+    });
+    // Show desert menu
+    $( ".b3").button().click(function(event) {
+      $( ".Appetizers" ).hide();
+      $( ".Entrees" ).hide();
+      $( ".Drinks" ).hide();
+      $( ".Desserts" ).show();
+      $( ".startPane" ).hide();
+    });
+
+    $( "input[type=submit], a, button" ).button().click(function( event ) {
+      var buttonText = $(this).text();
+      if (buttonText == "Info") {
+        var itemInfo = $(this).parents('h5').children('.itemInfo').text();
+        var itemID = $(this).parents('h5').children('.itemInfo').attr("name");
+        var split = itemInfo.split(":");
+        var item = $.trim(split[0])
+        var price = $.trim(split[1])
+        $('.popup').append('<h4>'+item+' '+itemInfo+' '+price+'</h4>');
+        $('.overlayBG').show();
+        $('.popup').show();
+      }
+      if (buttonText == "Add") {
+        // stuff for adding to the sidebar
+        var itemInfo = $(this).parents('h5').children('.itemInfo').text();
+        var split = itemInfo.split(":");
+        var item = $.trim(split[0])
+        var price = $.trim(split[1])
+
+        orders.push([item, price])
+        update_cart()
+      }
+      if (buttonText == "Close") {
+        $('.overlayBG').hide();
+        $('.popup').hide();
+      }
+      $('.overlayBG').click(function() {
+        $('.overlayBG').hide();
+        $('.popup').hide();
       });
-      // Show entrees menu
-      $( ".b2" ).button().click(function(event) {
-          $( ".Appetizers" ).hide();
-          $( ".Entrees" ).show();
-          $( ".Drinks" ).hide();
-          $( ".Desserts" ).hide();
-          $( ".startPane" ).hide();
-      });
-      // Show drink menu
-      $( ".b4" ).button().click(function(event) {
-          $( ".Appetizers" ).hide();
-          $( ".Entrees" ).hide();
-          $( ".Drinks" ).show();
-          $( ".Desserts" ).hide();
-          $( ".startPane" ).hide();
-      });
-      // Show desert menu
-      $( ".b3").button().click(function(event) {
-          $( ".Appetizers" ).hide();
-          $( ".Entrees" ).hide();
-          $( ".Drinks" ).hide();
-          $( ".Desserts" ).show();
-          $( ".startPane" ).hide();
-      });
-
-
-    $( "input[type=submit], a, button" )
-      .button()
-      .click(function( event ) {
-        var buttonText = $(this).text();
-        if (buttonText == "Info") {
-          var itemInfo = $(this).parents('h5').children('.itemInfo').text();
-          var itemID = $(this).parents('h5').children('.itemInfo').attr("name");
-          console.log(itemID);
-          $( ".popup" ).show();
-
-        }
-        if (buttonText == "Add") {
-          // stuff for adding to the sidebar
-          var itemInfo = $(this).parents('h5').children('.itemInfo').text();
-          var split = itemInfo.split(":");
-          var item = $.trim(split[0])
-          var price = $.trim(split[1])
-
-          orders.push([item, price])
-          update_cart()
-        }
-        event.preventDefault();
-      });
-
-
-
-
+      event.preventDefault();
+    });
   });
-  </script>
+</script>
 
 {% endblock %}
 {% block style %}
@@ -111,14 +112,14 @@
 
 <body>
 
-
-  
-
-
-
-
-
-
+  <!--OVERLAY DIV-->
+  <div class="overlayBG">
+  </div>
+  <!--POPUP DIV-->
+  <div class="popup">
+    <h4>Item info</h4>
+    <button>Close</button>
+  </div>
 
   <br />
   <!-- CUSTOMER MENU CONTAINER  -->
@@ -136,7 +137,7 @@
       <div class="infos">
       {% for category in categories %}
         {% if category.parent == None %}
-        <h3 class="b{{counter.increment_and_return}}">{{ category.name}}</h3>
+          <h3 class="b{{counter.increment_and_return}}">{{ category.name}}</h3>
         {% endif %}
        {% endfor %}
       </div>
@@ -149,7 +150,7 @@
    			<h2>{{category.name}}</h2>
    			{% for each in all_menu_items %}
    				{% if each.category.name == category.name %}
-            <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : {{ each.price }} </span>
+            <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : {{ each.price }} : {{ each.description }} </span>
               <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
             <h6>{{ each.description }} </h6>
    				{% endif %}
@@ -159,35 +160,23 @@
     {% endif %}
     {% endfor %}
 
-
-        <!-- START PAIN -->
+    <!-- WELCOME CENTER START PANE -->
     <div class="startPane">
       <div class="section2">
         <h2>Welcome!</h2>
         <center><h4>Select from the menu or drag from the wheel.</h4></center>
       </div>
     </div>
-
-
-
-    <!-- ORDER SECTIONS  -->
+    <!-- RIGHT MENU / ORDER SECTION  -->
     <div class="order">
-
-
-
     </div>
-
-
-
-
-
-
-
+    <!--WHITE BASE BAR-->
     <div class="basebar">
       <br />
       <br />
     </div>
   </div>
+  <!--WHEEL-->
       <div id="wheelContainer">
       <img id="back" class="wheelTrigger wheelRotate" src="http://udisglutenfree.com/wp-content/themes/udis/static/udis/images/circle.png">
       <img id="category1" class="wheelCategory wheelRotate wheelOrigin" src="http://imgur.com/4p56Ih6.png" draggable="true">
@@ -196,22 +185,5 @@
       <img id="category4" class="wheelCategory wheelRotate wheelOrigin" src="http://imgur.com/iS0kDi1.png" draggable="true">
     </div>
 
-
-<div id = "popup" style="z-index:902;">
-    <div style="position: fixed; z-index:903; width: 100%; height: 100%; left: 0; top: 0;background:#ccc; display:none;">
-        Overlay
-    </div>
-    Contents of container 1
-</div>
-
-
-
-
-
 </body>
-
-
-
-
-
 {% endblock %}
