@@ -43,7 +43,7 @@
   						console.log(json['redirect_order'])
   						if (json.hasOwnProperty("redirect_order")) {
   							console.log("has property")
-  							window.location.replace('/view_order/' + json['redirect_order'])
+  							window.location.href = '/view_order/' + json['redirect_order']
   						}
   						else {
   							location.reload();
