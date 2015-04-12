@@ -28,6 +28,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^standby/$', 'core.views.standby', name='standby'),
+    url(r'^standby/refill$', 'core.views.refill_request', name="refill_request"),
+    url(r'^standby/help$', 'core.views.help_request', name="help_request"),
 
     url(r'view_order/(\d+?)/', 'core.views.view_order', name="view_order"),
 )
