@@ -27,7 +27,6 @@
 {% endblock %}
 
 {% block style %}
-<a href="/kitchen/items/"><button>Menu Items Page</button></a><a href="/kitchen/ingredients/"><button>Ingredients Page</button></a>
 	<style>
 	#kitchenContainer{
 		background-color: lightgray;
@@ -58,6 +57,8 @@
 {% endblock %}
 
 {% block main %}
+<a href="/kitchen/items/"><button>Menu Items Page</button></a>
+<a href="/kitchen/ingredients/"><button>Ingredients Page</button></a>
 	<h3>Logged in as {{user.name}}</h3>
 	<div id="kitchenContainer">
 		<h2>Open Orders</h2>

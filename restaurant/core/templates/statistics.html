@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block style %}
+	<style>
+	button{
+		margin:5px;
+	}
+	table{
+		border: solid #1F4B00 1px;
+	}
+	th{
+		background-color:#255E69;
+		padding:4px;
+	}
+	tr{
+		background-color:#5C9632;
+	}
+	td{
+		border: solid #1F4B00 1px;
+	}
+	.times_ordered{
+		text-align: center;
+	}
+
+	</style>
+{% endblock %}
+
+
+{% block script %}
+	<script>
+
+	</script>
+{% endblock %}
+
+
+{% block main %}
+<a href="/waiter/"><button>Waiter Page</button></a>
+	<table>
+		<th>Menu Item</th>
+		<th>Times Ordered</th>
+		{% for item in all_menu_items %}
+			<tr>
+				<td class="item_name">{{item.name}}</td>
+				<td class="times_ordered">{{item.times_ordered}}</td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock %}

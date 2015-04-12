@@ -15,6 +15,7 @@ urlpatterns = patterns('',
 
     url(r'^kitchen/$', 'core.views.kitchen_index', name="kitchen_index"),
     url(r'^kitchen/items/$', 'core.views.kitchen_items', name="kitchen_items"),
+    url(r'^waiter/statistics/$', 'core.views.waiter_statistics', name="waiter_statistics"),
     url(r'^kitchen/ingredients/$', 'core.views.kitchen_ingredients', name="kitchen_ingredients"),
     url(r'^kitchen/login/$', 'core.views.kitchen_login', name="kitchen_login"),
     url(r'^kitchen/claim/$', 'core.views.kitchen_claim', name="kitchen_claim"),
@@ -28,8 +29,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^standby/$', 'core.views.standby', name='standby'),
-    url(r'^standby/refill$', 'core.views.refill_request', name="refill_request"),
-    url(r'^standby/help$', 'core.views.help_request', name="help_request"),
+    #url(r'^standby/refill$', 'core.views.refill_request', name="refill_request"),
+    #url(r'^standby/help$', 'core.views.help_request', name="help_request"),
 
     url(r'view_order/(\d+?)/', 'core.views.view_order', name="view_order"),
     url(r'menuitem_details/', 'core.views.menuitem_details', name="menuitem_details"),

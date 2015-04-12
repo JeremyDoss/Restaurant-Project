@@ -223,6 +223,11 @@ def kitchen_items(request):
 	context = {'all_menu_items': all_menu_items}
 	return render(request, 'items.html', context)
 
+def waiter_statistics(request):
+	all_menu_items = MenuItem.objects.all()
+	context = {'all_menu_items': all_menu_items}
+	return render(request, 'statistics.html', context)
+
 def kitchen_ingredients(request):
 	all_ingredients = Ingredient.objects.all()
 	context = {'all_ingredients': all_ingredients}
