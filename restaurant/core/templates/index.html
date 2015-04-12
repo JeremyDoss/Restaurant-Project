@@ -1,5 +1,31 @@
 {% extends "base.html" %}
 
+{% block style %}
+<style>
+    #infoImage img {
+        max-width: 175px;
+        float: left;
+        padding-right: 10px;
+        height: auto;
+    }
+    #infoText #topLine {
+        font-size: 120%;
+    }
+    #closeButton {
+        clear: both;
+        float: right;
+    }
+    #nutritionalInfo {
+        clear: both;
+        margin-right: 0;
+        padding-left: 185px;
+    }
+    #nutritionalInfo span {
+        float: right;
+    }
+</style>
+{% endblock %}
+
 {% block script %}
 
 <!--JS-->
@@ -20,7 +46,7 @@
   	subtotal = 0
   	$.each(orders, function (index, value) {
   		elem.append('<h4 class="cartItem"><a href="#" name="'+index+'">'+value[0]+'</a><span style="float:right">'+value[1]+'</span></h4>  ')
-  		subtotal += parseFloat(value[1])
+          subtotal += parseFloat(value[1].slice(1))
   	})
 
   	elem.append("<div id='subtotal'><span style='font-weight: bold'>Subtotal</span><span style='float: right'>"+subtotal.toFixed(2)+"</span></div>")
@@ -80,15 +106,20 @@
              data: {itemID: itemID},
              success: function(json) {
                  data = json.fields;
-                 // put all of the popup stuff that accesses data in here
-                 // data is a dictionary that has keys just like MenuItem in models.py
-                 // data.price, data.image, data.description, etc.
-                 // you can view what's in each one by leaving the below console.log in
-                 // and checking what's printed to the console
                  console.log(data)
-                 //$('.popup').append('<h4 id="info_text">'+item+' '+itemInfo+' '+price+'</h4>');
-                 //$('.overlayBG').show();
-                 //$('.popup').show();
+                 $('.popup div#infoContainer').empty();
+                 $('.popup div#infoContainer').append('<div id="infoImage"><img src="'+data.image+'"/></div>')
+                 $('.popup div#infoContainer').append('<div id="infoText"></div>')
+                 $('.popup div#infoText').append('<div id="topLine"><strong>'+data.name+'</strong><span style="float: right">$'+data.price+'</span></div>');
+                 $('.popup div#infoText').append('<div>'+data.description+'</div>');
+                 $('.popup div#infoContainer').append('<div id="nutritionalInfo"></div>')
+                 $('.popup div#nutritionalInfo').append('<div><strong>Nutrition Facts</strong></div>')
+                 $('.popup div#nutritionalInfo').append('<div>Calories <span>'+data.calories+'</span></div>')
+                 $('.popup div#nutritionalInfo').append('<div>Fat (g) <span>'+data.fat_grams+'</span></div>')
+                 $('.popup div#nutritionalInfo').append('<div>Sodium (mg) <span>'+data.sodium_mg+'</span></div>')
+                 //$('.popup div#infoContainer').append('<h4 id="info_text">'+data.name+' '+data.description+' '+data.price+'</h4>');
+                 $('.overlayBG').show();
+                 $('.popup').show();
              }
           });
 
@@ -124,8 +155,7 @@
 </script>
 
 {% endblock %}
-{% block style %}
-{% endblock %}
+
 {% block main %}
 
 <body>
@@ -135,8 +165,8 @@
   </div>
   <!--POPUP DIV-->
   <div class="popup">
-    <h4>Item info</h4>
-    <button>Close</button>
+    <div id="infoContainer">Item info</div>
+    <div id="closeButton"><button>Close</button></div>
   </div>
 
   <br />
@@ -168,7 +198,7 @@
    			<h2>{{category.name}}</h2>
    			{% for each in all_menu_items %}
    				{% if each.category.name == category.name %}
-            <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : {{ each.price }} : {{ each.description }} </span>
+            <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : ${{ each.price }} </span>
               <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
             <h6>{{ each.description }} </h6>
    				{% endif %}
