@@ -296,7 +296,18 @@ def refill_request(request):
         if tbl.status != "NR":
             tbl.prev_status = tbl.status
             tbl.status = "NR"
+            tbl.save()
         return HttpResponse("OK")
+
+def help_request(request):
+    if (request.method == 'POST'):
+        tbl = Table.objects.get(pk=1)
+        if tbl.status != "NA":
+            tbl.prev_status = tbl.status
+            tbl.status = "NA"
+            tbl.save()
+        return HttpResponse("OK")
+
 
 def menuitem_details(request):
     if (request.method == 'POST'):
