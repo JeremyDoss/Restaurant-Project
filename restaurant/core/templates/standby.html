@@ -30,12 +30,12 @@
 		//Sundae
 		images.push('http://i.imgur.com/E7TtAYA.jpg');
 		images.push('http://i.imgur.com/E7TtAYA.jpg');
-		
+
 		randomizeImages();
 
 		// output images then hide them
-		var output = "<ol>"; 
-		for (var i = 0; i < 16; i++) { 
+		var output = "<ol>";
+		for (var i = 0; i < 16; i++) {
 		  output += "<li>";
 		  output += "<img src = '" + images[i] + "'/>";
 		  output += "</li>";
@@ -54,16 +54,16 @@
 			count++;
 			$(this).children("img").show();
 			$(this).children("img").addClass("face-up");
-			
-			if (count === 1 ) { 
-			  guess1 = $(this).children("img").attr("src"); 
+
+			if (count === 1 ) {
+			  guess1 = $(this).children("img").attr("src");
 			}
-			
-			else { 
-				guess2 = $(this).children("img").attr("src"); 
-			
+
+			else {
+				guess2 = $(this).children("img").attr("src");
+
 				//If you guess correctly...
-				if (guess1 === guess2) { 
+				if (guess1 === guess2) {
 					$("li").children("img[src='" + guess2 + "']").addClass("match");
 					//Increment correct count.
 					correct++;
@@ -75,18 +75,18 @@
 						$("img").not(".match").removeClass("face-up");
 						correct = 0;
 					}
-				} 
-				
+				}
+
 				//If you don't guess correctly...
-				else { 
+				else {
 					setTimeout(function() {
 						$("img").not(".match").hide();
 						$("img").not(".match").removeClass("face-up");
 					}, 500);
 				}
-				
+
 				count = 0;
-				setTimeout(function() { console.clear(); }, 60000);      
+				setTimeout(function() { console.clear(); }, 60000);
 			}
 		  }
 		});
@@ -104,7 +104,7 @@
 			  this[j] = temp;
 			}
 		  };
-		  
+
 		  images.randomize();
 		}
 	}
@@ -118,33 +118,34 @@ $(function() {
 		$("#tic").hide();
 		$("#win").hide();
 	});
-	
+
 	$(".tictac").button().click(function(event) {
 		$(".options").hide();
 		$(".play").show();
-		
+
 	});
-	
+
 	$(".matching").button().click(function(event) {
 		$(".options").hide();
 		$(".play").show();
 		$("#match").show();
 	});
-	
+
 	$("#win").button().click(function(event) {
 		$(".options").hide();
 		$("#win").hide();
 		$(".play").hide();
 	});
-	
+
 	$(".refill").button().click(function(event) {
-		$.post("/standby/refill/", {tableID: ID}, function(data) {
+
+		$.post("/standby/refill/", {tableID: 1}, function(data) {
 			location.reload()
 		})
 	});
-	
+
 	$(".help").button().click(function(event) {
-		$.post("/standby/help/", {tableID: ID}, function(data) {
+		$.post("/standby/help/", {tableID: 1}, function(data) {
 			location.reload()
 		})
 	});
@@ -196,7 +197,7 @@ li {
 	height: 150px;
 }
 
-img { 
+img {
 	width: 100%;
 	height: 100%;
 }

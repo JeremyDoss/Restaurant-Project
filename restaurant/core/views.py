@@ -291,15 +291,12 @@ def view_order(request, orderID):
 	return HttpResponse("Order view for order #%s" % orderID)
 
 def refill_request(request):
-	if (request.method == 'POST'):
-		tbl = Table.objects.get(pk=1)
-		try:
-			if tbl.status != "NR":
-				tbl.prev_status = tbl.status
-                tbl.status = "NR"
-		except:
-			pass
-	return HttpResponse("OK")
+    if (request.method == 'POST'):
+        tbl = Table.objects.get(pk=1)
+        if tbl.status != "NR":
+            tbl.prev_status = tbl.status
+            tbl.status = "NR"
+        return HttpResponse("OK")
 
 def menuitem_details(request):
     if (request.method == 'POST'):
