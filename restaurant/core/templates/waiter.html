@@ -5,7 +5,7 @@
   		<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
     		<script>
   			$(function(){
-    			
+
     			$( "#selectable" ).selectable({
       				stop: function() {
         				var result = $( "#select-result" ).empty();
@@ -14,9 +14,9 @@
           					var num = $(this).attr("name")
           					result.append( " #" + ( num ) );
         				});
-      				}	
+      				}
     			});
-    			
+
     			$("input[type=submit], a, button").button().click(function( event ){
     				var action = $(this).attr("name");
     				var tables = [];
@@ -58,18 +58,18 @@
 
 	<link href="css/style.css" rel="stylesheet">
 	<style type="text/css">
-			
+
 			#selectable .ui-selecting { background: #F2EBBF; }
 			#selectable .ui-selected { background: #8CBEB2; color: F2EBBF; }
 			#selectable { list-style-type: none; margin: 0; padding: 0;   }
-			#selectable li { 
-				margin: 3px; 
-				padding: 1px; 
-				float: left; 
-				width: 150px; 
-				height: 190px; 
-				font-size: 4em; 
-				text-align: center; 
+			#selectable li {
+				margin: 3px;
+				padding: 1px;
+				float: left;
+				width: 150px;
+				height: 190px;
+				font-size: 4em;
+				text-align: center;
 				font: 200 20px/1.5 Helvetica, Verdana, sans-serif;
   				border: 1px solid #ccc;
   				border-color: #5C4B51;
@@ -96,18 +96,11 @@ tr{
 	width : 50%;
 
 }
-button{
-  margin:5px;
-}
 </style>
 {% endblock %}
 
 {% block main %}
-{% if user.is_manager %}
-<a href="/waiter/statistics/" onclick="location.href='/waiter/statistics/'"><button>Statistics</button></a>
-<a href="/waiter/order_list/" onclick="location.href='/waiter/order_list/'"><button>Order List</button></a>
-{% endif %}
-<a style="float:right"href="/logout/waiter/" onclick="location.href='/logout/waiter/'"><button>Logout</button></a>
+
 <h2>Welcome, {{ user.name }} {% if user.is_manager %}(manager view){% endif %}</h2>
 <center>
 <div id="rcorners">
@@ -118,14 +111,17 @@ button{
 		<td>
 			<ol id="selectable">
 				{% for table in tables %}
+                {% if table.id != 5 %}
 				<li class="ui-widget-content" name="{{ table.id }}">{{ table }}{% if table.waiter_set.get != '' %}<br/><span style="font-size: 80%">Waiter: {{table.waiter_set.get}}</span>{% endif %}<br/><span style="font-size: 80%">(Status: {{ table.status_name }})</span>
 				<br/>
+
 				{% if table.order_set.get %}{% if table.order_set.get.status != "CL" %}<span style="font-size: 80%">Order: #{{table.order_set.get.id}}</span>{% endif %}
 				<br/>
 				{% if table.order_set.get.status == "RD" %}<span style="font-size: 80%; color: red; font-weight: bold">ORDER READY</span>{% endif %}{% endif %}
 				{% if table.order_set.get.invoice_set.get %}{% if table.order_set.get.invoice_set.get.comped %}
 				<span style="color: green; font-weight: bold">COMPED</span>
 				{% endif %}{% endif %}
+                {% endif %}
 				</li>
 				{% endfor %}
 			</ol>
