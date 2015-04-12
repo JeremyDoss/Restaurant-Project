@@ -292,10 +292,11 @@ def view_order(request, orderID):
 
 def refill_request(request):
 	if (request.method == 'POST'):
-		tbl = Table.objects.get(pk=table)
+		tbl = Table.objects.get(pk=1)
 		try:
 			if tbl.status != "NR":
-				tbl.status = "NR"
+				tbl.prev_status = tbl.status
+                tbl.status = "NR"
 		except:
 			pass
 	return HttpResponse("OK")
@@ -328,5 +329,5 @@ def place_order(request):
             response = HttpResponse("New order with ID %s created" % order.id)
             response.set_cookie("order_id", order.id)
             return response
-            
+
     return HttpResponse("Nothing here.")
