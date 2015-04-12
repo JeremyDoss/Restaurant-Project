@@ -23,6 +23,9 @@
     #nutritionalInfo span {
         float: right;
     }
+    #placeorder {
+        float: right;
+    }
 </style>
 {% endblock %}
 
@@ -41,6 +44,7 @@
   function update_cart() {
   	var elem = $('div.order')
   	elem.empty();
+      console.log(orders)
 
   	//$('div.order').append('<h4>'+item+'<span style="float:right">'+price+'</span></h4>  ')
   	subtotal = 0
@@ -55,8 +59,24 @@
   	  	console.log("clicked "+$(this).attr("name"))
   	  	orders.splice(parseInt($(this).attr("name")), 1)
   	  	update_cart()
+        if (orders.length == 0) {
+            $('#subtotal').remove()
+            $('#placeorder').remove()
+        }
   	  	event.preventDefault();
   	  })
+    elem.append("<div id='placeorder'><button name='placeorder'>Place Order</button></div>")
+
+    $("#placeorder button").button().click(function(event) {
+        item_ids = []
+        $.each(orders, function (index, value) {
+            item_ids.push(value[2])
+        })
+        $.post("/place_order/", {items: item_ids}, function(data) {
+            alert("Order placed successfully!")
+            location.href = "/standby";
+        });
+    })
   }
 
   orders = [];
@@ -136,8 +156,8 @@
         var split = itemInfo.split(":");
         var item = $.trim(split[0])
         var price = $.trim(split[1])
-
-        orders.push([item, price])
+        var id = $(this).parents('h5').children('.itemInfo').attr("name")
+        orders.push([item, price, id])
         update_cart()
       }
       if (buttonText == "Close") {

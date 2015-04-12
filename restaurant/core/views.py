@@ -309,3 +309,21 @@ def menuitem_details(request):
             data = json.dumps(struct[0])
             return HttpResponse(data, content_type='application/json')
     return HttpResponse("Nothing here.")
+
+def place_order(request):
+    if (request.method == 'POST'):
+        if 'items[]' in request.POST:
+            items = request.POST.getlist('items[]')
+            table = Table.objects.get(pk=1)
+            # first, remove the order associated with the table
+            for order in table.order_set.all():
+                order.table = Table.objects.get(pk=5)
+            	order.save()
+            order = Order(table=table, status="OP")
+            order.save()
+            for item in items:
+                itm = MenuItem.objects.get(pk=item)
+                order.menu_items.add(itm)
+            order.save()
+            return HttpResponse("New order with ID %s created" % order.id)
+    return HttpResponse("Nothing here.")
