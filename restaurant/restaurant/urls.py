@@ -21,4 +21,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^standby/$', 'core.views.standby', name='standby'),
+
+    url(r'view_order/(\d+?)/', 'core.views.view_order', name="view_order"),
 )

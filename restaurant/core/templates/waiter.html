@@ -40,7 +40,14 @@
   					data: {action: action, 'tables[]': tables},
   					success: function(json) {
   						console.log(json);
-  						location.reload();
+  						console.log(json['redirect_order'])
+  						if (json.hasOwnProperty("redirect_order")) {
+  							console.log("has property")
+  							window.location.replace('/view_order/' + json['redirect_order'])
+  						}
+  						else {
+  							location.reload();
+  						}
   					}
   				});
   			}

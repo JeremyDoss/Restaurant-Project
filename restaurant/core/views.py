@@ -177,9 +177,16 @@ def waiter_set_status(request):
 				invoice.save()
 			except (Order.DoesNotExist, Invoice.DoesNotExist):
 				pass
+		elif action == "vieworder":
+			try:
+				order = tbl.order_set.get() 
+				#return redirect('/view_order/%s/' % order.id)
+				return HttpResponse(json.dumps({'redirect_order': order.id}), content_type='application/json')
+			except (Order.DoesNotExist):
+				pass
 		tbl.save()
 
-	return HttpResponse(json.dumps({'status': 'OK', 'action_was': request.POST['action'], 'tables_were': tables}))
+	return HttpResponse(json.dumps({'status': 'OK', 'action_was': request.POST['action'], 'tables_were': tables}), content_type='application/json')
 
 def kitchen_claim(request):
 	if (request.method == 'POST'):
@@ -215,3 +222,7 @@ def kitchen_items(request):
 	all_menu_items = MenuItem.objects.all()
 	context = {'all_menu_items': all_menu_items}
 	return render(request, 'items.html', context)
+
+def view_order(request, orderID):
+	order = Order.objects.get(pk=orderID)
+	return HttpResponse("Order view for order #%s" % orderID)
