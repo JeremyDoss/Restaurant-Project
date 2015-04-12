@@ -106,7 +106,7 @@ tr{
 				{% for table in tables %}
 				<li class="ui-widget-content" name="{{ table.id }}">{{ table }}{% if table.waiter_set.get != '' %}<br/><span style="font-size: 80%">Waiter: {{table.waiter_set.get}}</span>{% endif %}<br/><span style="font-size: 80%">(Status: {{ table.status_name }})</span>
 				<br/>
-				{% if table.order_set.get %}<span style="font-size: 80%">Order: #{{table.order_set.get.id}}</span>
+				{% if table.order_set.get %}{% if table.order_set.get.status != "CL" %}<span style="font-size: 80%">Order: #{{table.order_set.get.id}}</span>{% endif %}
 				<br/>
 				{% if table.order_set.get.status == "RD" %}<span style="font-size: 80%; color: red; font-weight: bold">ORDER READY</span>{% endif %}{% endif %}
 				{% if table.order_set.get.invoice_set.get %}{% if table.order_set.get.invoice_set.get.comped %}

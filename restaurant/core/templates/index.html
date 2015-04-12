@@ -15,17 +15,31 @@
 
 
 <script>
-  function update_total() {
+  function update_cart() {
   	var elem = $('div.order')
-  	if (elem.children(".subtotal").length == 0) {
-  		elem.append("<div class='subtotal'>beep</div>")
-  	}
-  	else {
-  		elem.children(".subtotal").text("boop")
-  	}
+  	elem.empty();
+
+  	//$('div.order').append('<h4>'+item+'<span style="float:right">'+price+'</span></h4>  ')
+  	subtotal = 0
+  	$.each(orders, function (index, value) {
+  		elem.append('<h4 class="cartItem"><a href="#" name="'+index+'">'+value[0]+'</a><span style="float:right">'+value[1]+'</span></h4>  ')
+  		subtotal += parseFloat(value[1])
+  	})
+
+  	elem.append("<div id='subtotal'><span style='font-weight: bold'>Subtotal</span><span style='float: right'>"+subtotal.toFixed(2)+"</span></div>")
+  	  // cart item onclick for removal
+  	  $(".cartItem a").click(function(event) {
+  	  	console.log("clicked "+$(this).attr("name"))
+  	  	orders.splice(parseInt($(this).attr("name")), 1)
+  	  	update_cart()
+  	  	event.preventDefault();
+  	  })
   }
+
+  orders = [];
 // Sry I know not the best way to do it, but time is of the essence
   $(function() {
+
       // Show appitizer menu
       $( ".b1" ).button().click(function(event) {
           $( ".Appetizers" ).show();
@@ -78,9 +92,8 @@
           var item = $.trim(split[0])
           var price = $.trim(split[1])
 
-
-          $('div.order').append('<h4>'+item+'<span style="float:right">'+price+'</span></h4>  ')
-          update_total()
+          orders.push([item, price])
+          update_cart()
         }
         event.preventDefault();
       });
