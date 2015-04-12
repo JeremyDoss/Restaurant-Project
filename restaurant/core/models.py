@@ -46,15 +46,15 @@ class MenuItem(models.Model):
 	ALLERGY_TYPES = (
 		("NONE", 'None'),
 		("PEANUT", 'Peanuts'),
-		("GLUTEN", 'Gluten'),
+		("GLUTENFREE", 'Gluten-Free'),
 	)
 	allergens = models.CharField(max_length=10, choices=ALLERGY_TYPES, default=ALLERGY_TYPES[0][0])
 
 	# recursive function to find the top level category for this item
 	def top_level_category(self, prev=None):
-		if prev == None: 
+		if prev == None:
 			prev = self.category
-		
+
 		if self.category.parent == None:
 			return self.category
 		elif prev.parent == None:
@@ -69,7 +69,7 @@ class MenuItem(models.Model):
 # tables
 class Table(models.Model):
 	#table_number = models.AutoField()
-	
+
 	STATUS_TYPES = (
 		("OP", "Open"),
 		("OC", "Occupied"),
@@ -93,7 +93,7 @@ class Table(models.Model):
 # orders
 # Order number, table, list of menu items
 class Order(models.Model):
-	#order_number = models.AutoField() # auto increments 
+	#order_number = models.AutoField() # auto increments
 	table = models.ForeignKey(Table)
 	menu_items = models.ManyToManyField(MenuItem)
 	date = models.DateTimeField(auto_now_add=True, default=timezone.now)
@@ -160,4 +160,3 @@ class Cook(models.Model):
 
 	def __str__(self):
 		return self.employee.name
-
