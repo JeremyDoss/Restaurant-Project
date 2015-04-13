@@ -31,82 +31,83 @@
 		images.push('http://i.imgur.com/E7TtAYA.jpg');
 		images.push('http://i.imgur.com/E7TtAYA.jpg');
 
-		randomizeImages();
+		//Randomize images every time.
+		Array.prototype.rando = function() {
+			var i = this.length;
+			var pick, temp;
 
-		// output images then hide them
-		var output = "<ol>";
+			while (--i) {
+				pick = Math.floor(Math.random() * (i - 1));
+				temp = this[i];
+				this[i] = this[pick];
+				this[pick] = temp;
+			}
+		};
+		images.rando();
+
+		//Build HTML list of images and hide them.
+		var htmlLine = "<ol>";
 		for (var i = 0; i < 16; i++) {
-		  output += "<li>";
-		  output += "<img src = '" + images[i] + "'/>";
-		  output += "</li>";
+		  htmlLine += "<li>";
+		  htmlLine += "<img src = '" + images[i] + "'/>";
+		  htmlLine += "</li>";
 		}
-		output += "</ol>";
-		document.getElementById("match").innerHTML = output;
+		htmlLine += "</ol>";
+		document.getElementById("match").innerHTML = htmlLine;
 		$("img").hide();
 
-		var guess1 = "";
-		var guess2 = "";
+		var first = "";
+		var second = "";
 		var count = 0;
 		var correct = 0;
 
 		$("li").click(function() {
 		  if ((count < 2) &&  ($(this).children("img").hasClass("face-up")) === false) {
-			count++;
-			$(this).children("img").show();
-			$(this).children("img").addClass("face-up");
+				count++;
+				$(this).children("img").show();
+				$(this).children("img").addClass("face-up");
 
-			if (count === 1 ) {
-			  guess1 = $(this).children("img").attr("src");
-			}
-
-			else {
-				guess2 = $(this).children("img").attr("src");
-
-				//If you guess correctly...
-				if (guess1 === guess2) {
-					$("li").children("img[src='" + guess2 + "']").addClass("match");
-					//Increment correct count.
-					correct++;
-					if (correct === 8) {
-						$("#match").hide();
-						$("#win").show();
-						$("img").hide();
-						$("img").removeClass("match");
-						$("img").not(".match").removeClass("face-up");
-						correct = 0;
-					}
+				if (count === 1) {
+			  	first = $(this).children("img").attr("src");
 				}
-
-				//If you don't guess correctly...
 				else {
-					setTimeout(function() {
-						$("img").not(".match").hide();
-						$("img").not(".match").removeClass("face-up");
-					}, 500);
-				}
+					second = $(this).children("img").attr("src");
 
-				count = 0;
-				setTimeout(function() { console.clear(); }, 60000);
-			}
+					//If you guess correctly...
+					if (first === second) {
+						$("li").children("img[src='" + second + "']").addClass("match");
+						//Increment correct count.
+						correct++;
+						//If all matches are found...
+						if (correct === 8) {
+							var r = Math.floor(Math.random() * (6 - 1) + 1);
+							$("#match").hide();
+							$("img").hide();
+							$("img").removeClass("match");
+							$("img").not(".match").removeClass("face-up");
+							if (r === 1) {
+								$("#win").show();
+							}
+							else {
+								$("#lose").show();
+							}
+							correct = 0;
+						}
+					}
+
+					//If you don't guess correctly...
+					else {
+						setTimeout(function() {
+							$("img").not(".match").hide();
+							$("img").not(".match").removeClass("face-up");
+						}, 500);
+					}
+
+					count = 0;
+					setTimeout(function() { console.clear(); }, 60000);
+				}
 		  }
 		});
-
-		// randomize array of images
-		function randomizeImages(){
-		  Array.prototype.randomize = function()
-		  {
-			var i = this.length, j, temp;
-			while ( --i )
-			{
-			  j = Math.floor( Math.random() * (i - 1) );
-			  temp = this[i];
-			  this[i] = this[j];
-			  this[j] = temp;
-			}
-		  };
-
-		  images.randomize();
-		}
 	}
 
 
@@ -117,6 +118,7 @@ $(function() {
 		$("#match").hide();
 		$("#tic").hide();
 		$("#win").hide();
+		$("#lose").hide();
 	});
 
 	$(".tictac").button().click(function(event) {
@@ -134,6 +136,12 @@ $(function() {
 	$("#win").button().click(function(event) {
 		$(".options").hide();
 		$("#win").hide();
+		$(".play").hide();
+	});
+
+	$("#lose").button().click(function(event) {
+		$(".options").hide();
+		$("#lose").hide();
 		$(".play").hide();
 	});
 
@@ -167,7 +175,16 @@ body {
 	margin: auto auto;
 	padding-top: 150px;
 	text-align: center;
-	color: #ff1111;
+	color: #ff0000;
+}
+
+#lose {
+	display: none;
+	width: 800px;
+	margin: auto auto;
+	padding-top: 150px;
+	text-align: center;
+	color: #ff0000;
 }
 
 #tic {
@@ -331,6 +348,7 @@ img {
 		<div id="tic"></div>
 		<div id="match"></div>
 		<div id="win"><h1>You are a winner!!!</h1><h5>A free gift was added!</h5></div>
+		<div id="lose"><h1>You didn't win this time :(</h1><h5>Keep trying!!</h5></div>
 	</div>
 </div>
 
