@@ -339,3 +339,12 @@ def place_order(request):
             return response
 
     return HttpResponse("Nothing here.")
+
+
+def checkout(request):
+    if ("order_id" in request.COOKIES):
+        orderID = request.COOKIES['order_id']
+        order = Order.objects.get(pk=orderID)
+        context = {'order': order}
+        return render(request, 'payment.html', context)
+    return HttpResponse("No order on file.")

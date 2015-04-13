@@ -38,4 +38,5 @@ urlpatterns = patterns('',
     url(r'menuitem_details/', 'core.views.menuitem_details', name="menuitem_details"),
 
     url(r'place_order/$', 'core.views.place_order', name="place_order"),
+    url(r'checkout/$', 'core.views.checkout', name="checkout"),
 )

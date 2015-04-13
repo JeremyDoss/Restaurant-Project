@@ -140,12 +140,14 @@ $(function() {
 	$(".refill").button().click(function(event) {
 
 		$.post("/standby/refill/", {tableID: 1}, function(data) {
+			alert("Refill request sent!")
 			location.reload()
 		})
 	});
 
 	$(".help").button().click(function(event) {
 		$.post("/standby/help/", {tableID: 1}, function(data) {
+			alert("Help request sent!")
 			location.reload()
 		})
 	});
