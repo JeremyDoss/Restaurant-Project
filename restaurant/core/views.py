@@ -334,6 +334,16 @@ def place_order(request):
                 itm = MenuItem.objects.get(pk=item)
                 order.menu_items.add(itm)
             order.save()
+            invoice = Invoice(order=order)
+            subtotal = 0
+            for item in order.menu_items.all():
+                subtotal += item.price
+            invoice.subtotal = subtotal
+            invoice.tax = 0
+            invoice.tip = 0
+            invoice.total = 0
+            invoice.split_ways = 1
+            invoice.save()
             response = HttpResponse("New order with ID %s created" % order.id)
             response.set_cookie("order_id", order.id)
             return response

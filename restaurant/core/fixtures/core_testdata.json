@@ -1,0 +1,1454 @@
+[
+{
+    "fields": {
+        "name": "Appetizers",
+        "parent": null
+    },
+    "model": "core.category",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "Entrees",
+        "parent": null
+    },
+    "model": "core.category",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "Pasta",
+        "parent": 2
+    },
+    "model": "core.category",
+    "pk": 3
+},
+{
+    "fields": {
+        "name": "Chicken",
+        "parent": 2
+    },
+    "model": "core.category",
+    "pk": 4
+},
+{
+    "fields": {
+        "name": "Desserts",
+        "parent": null
+    },
+    "model": "core.category",
+    "pk": 5
+},
+{
+    "fields": {
+        "name": "Drinks",
+        "parent": null
+    },
+    "model": "core.category",
+    "pk": 6
+},
+{
+    "fields": {
+        "name": "Soup",
+        "parent": 1
+    },
+    "model": "core.category",
+    "pk": 7
+},
+{
+    "fields": {
+        "name": "Salad",
+        "parent": 2
+    },
+    "model": "core.category",
+    "pk": 8
+},
+{
+    "fields": {
+        "name": "Beef",
+        "parent": 2
+    },
+    "model": "core.category",
+    "pk": 9
+},
+{
+    "fields": {
+        "name": "Seafood",
+        "parent": 2
+    },
+    "model": "core.category",
+    "pk": 10
+},
+{
+    "fields": {
+        "in_stock": false,
+        "name": "Tomato sauce"
+    },
+    "model": "core.ingredient",
+    "pk": 1
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Lasagna pasta"
+    },
+    "model": "core.ingredient",
+    "pk": 2
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Mozzarella cheese"
+    },
+    "model": "core.ingredient",
+    "pk": 3
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Ricotta cheese"
+    },
+    "model": "core.ingredient",
+    "pk": 4
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Beef"
+    },
+    "model": "core.ingredient",
+    "pk": 5
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Asparagus"
+    },
+    "model": "core.ingredient",
+    "pk": 6
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Clams"
+    },
+    "model": "core.ingredient",
+    "pk": 7
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Parmesan cheese"
+    },
+    "model": "core.ingredient",
+    "pk": 8
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Romano cheese"
+    },
+    "model": "core.ingredient",
+    "pk": 9
+},
+{
+    "fields": {
+        "in_stock": false,
+        "name": "Mushrooms"
+    },
+    "model": "core.ingredient",
+    "pk": 10
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Rice"
+    },
+    "model": "core.ingredient",
+    "pk": 11
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Spaghetti"
+    },
+    "model": "core.ingredient",
+    "pk": 12
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Italian sausage"
+    },
+    "model": "core.ingredient",
+    "pk": 13
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Spinach"
+    },
+    "model": "core.ingredient",
+    "pk": 14
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Tomatoes"
+    },
+    "model": "core.ingredient",
+    "pk": 15
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Red wine"
+    },
+    "model": "core.ingredient",
+    "pk": 16
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Chicken breast"
+    },
+    "model": "core.ingredient",
+    "pk": 17
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Provolone cheese"
+    },
+    "model": "core.ingredient",
+    "pk": 18
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "N/A"
+    },
+    "model": "core.ingredient",
+    "pk": 19
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "N/A"
+    },
+    "model": "core.ingredient",
+    "pk": 20
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Fish"
+    },
+    "model": "core.ingredient",
+    "pk": 21
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Martini"
+    },
+    "model": "core.ingredient",
+    "pk": 22
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "bread"
+    },
+    "model": "core.ingredient",
+    "pk": 23
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Marinara Sauce"
+    },
+    "model": "core.ingredient",
+    "pk": 24
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "peppers"
+    },
+    "model": "core.ingredient",
+    "pk": 25
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "chicken"
+    },
+    "model": "core.ingredient",
+    "pk": 26
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "vegetables "
+    },
+    "model": "core.ingredient",
+    "pk": 27
+},
+{
+    "fields": {
+        "in_stock": false,
+        "name": "fruits"
+    },
+    "model": "core.ingredient",
+    "pk": 28
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "whipped cream"
+    },
+    "model": "core.ingredient",
+    "pk": 29
+},
+{
+    "fields": {
+        "in_stock": false,
+        "name": "chocolate"
+    },
+    "model": "core.ingredient",
+    "pk": 30
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Pistachios"
+    },
+    "model": "core.ingredient",
+    "pk": 31
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "ice cream"
+    },
+    "model": "core.ingredient",
+    "pk": 32
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Caramel"
+    },
+    "model": "core.ingredient",
+    "pk": 33
+},
+{
+    "fields": {
+        "in_stock": false,
+        "name": "vanill"
+    },
+    "model": "core.ingredient",
+    "pk": 34
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "vanilla"
+    },
+    "model": "core.ingredient",
+    "pk": 35
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "vanilla"
+    },
+    "model": "core.ingredient",
+    "pk": 36
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "beef"
+    },
+    "model": "core.ingredient",
+    "pk": 37
+},
+{
+    "fields": {
+        "in_stock": true,
+        "name": "Pepperoni"
+    },
+    "model": "core.ingredient",
+    "pk": 38
+},
+{
+    "fields": {
+        "category": 3,
+        "allergens": "NONE",
+        "name": "Lasagna with meat sauce",
+        "sodium_mg": 2360,
+        "times_ordered": 0,
+        "price": "12.99",
+        "ingredients": [
+            1,
+            2,
+            3,
+            5,
+            8,
+            9
+        ],
+        "calories": 960,
+        "fat_grams": 58,
+        "in_stock": false,
+        "nutritional_info": "http://broken.link/",
+        "image": "http://i.imgur.com/2w2C6uX.jpg",
+        "is_vegetarian": false,
+        "description": "Prepared fresh daily with layers of pasta, parmesan, mozzarella, pecorino romano and our homemade meat sauce."
+    },
+    "model": "core.menuitem",
+    "pk": 1
+},
+{
+    "fields": {
+        "category": 1,
+        "allergens": "NONE",
+        "name": "Stuffed mushrooms",
+        "sodium_mg": 860,
+        "times_ordered": 0,
+        "price": "7.29",
+        "ingredients": [
+            7,
+            8,
+            9,
+            10
+        ],
+        "calories": 380,
+        "fat_grams": 30,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/h3ltrLP.jpg",
+        "is_vegetarian": true,
+        "description": "Baked with clams, parmesan, romano, mozzarella and herb breadcrumbs."
+    },
+    "model": "core.menuitem",
+    "pk": 2
+},
+{
+    "fields": {
+        "category": 1,
+        "allergens": "NONE",
+        "name": "Crispy risotto bites",
+        "sodium_mg": 1110,
+        "times_ordered": 0,
+        "price": "5.99",
+        "ingredients": [
+            1,
+            3,
+            4,
+            11
+        ],
+        "calories": 490,
+        "fat_grams": 22,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/likWamZ.jpg",
+        "is_vegetarian": true,
+        "description": "A bite-sized blend of Italian cheeses and rice, lightly fried and served with marinara sauce."
+    },
+    "model": "core.menuitem",
+    "pk": 3
+},
+{
+    "fields": {
+        "category": 3,
+        "allergens": "NONE",
+        "name": "Spaghetti with meat sauce",
+        "sodium_mg": 1080,
+        "times_ordered": 0,
+        "price": "10.99",
+        "ingredients": [
+            1,
+            5,
+            12,
+            13
+        ],
+        "calories": 700,
+        "fat_grams": 22,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "",
+        "is_vegetarian": false,
+        "description": "Our traditional meat sauce is made fresh every morning with pan-seared beef and Italian sausage."
+    },
+    "model": "core.menuitem",
+    "pk": 4
+},
+{
+    "fields": {
+        "category": 4,
+        "allergens": "NONE",
+        "name": "Grilled chicken toscano",
+        "sodium_mg": 1620,
+        "times_ordered": 0,
+        "price": "13.99",
+        "ingredients": [
+            11,
+            14,
+            15,
+            16,
+            17
+        ],
+        "calories": 760,
+        "fat_grams": 28,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/6IGC2tQ.jpg",
+        "is_vegetarian": false,
+        "description": "Brushed with sweet red wine sauce. Served with fresh spinach and creamy parmesan risotto with tomatoes."
+    },
+    "model": "core.menuitem",
+    "pk": 5
+},
+{
+    "fields": {
+        "category": 1,
+        "allergens": "NONE",
+        "name": "Smoked mozzarella fonduta",
+        "sodium_mg": 1940,
+        "times_ordered": 0,
+        "price": "8.49",
+        "ingredients": [
+            3,
+            8,
+            9,
+            18
+        ],
+        "calories": 910,
+        "fat_grams": 51,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/8YiTp1C.jpg",
+        "is_vegetarian": true,
+        "description": "Oven-baked smoked mozzarella, provolone, parmesan and romano cheese."
+    },
+    "model": "core.menuitem",
+    "pk": 6
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Water",
+        "sodium_mg": 0,
+        "times_ordered": 0,
+        "price": "0.00",
+        "ingredients": [
+            20
+        ],
+        "calories": 0,
+        "fat_grams": 0,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/4WlTiaZ.jpg",
+        "is_vegetarian": true,
+        "description": "Low Calorie stream water."
+    },
+    "model": "core.menuitem",
+    "pk": 7
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Pepsi",
+        "sodium_mg": 30,
+        "times_ordered": 0,
+        "price": "1.95",
+        "ingredients": [
+            19
+        ],
+        "calories": 100,
+        "fat_grams": 10,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/iadtEoC.png",
+        "is_vegetarian": true,
+        "description": "Crisp and refreshing Pepsi Cola"
+    },
+    "model": "core.menuitem",
+    "pk": 8
+},
+{
+    "fields": {
+        "category": 5,
+        "allergens": "NONE",
+        "name": "Cake",
+        "sodium_mg": 25,
+        "times_ordered": 0,
+        "price": "6.99",
+        "ingredients": [
+            19
+        ],
+        "calories": 500,
+        "fat_grams": 200,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/CncAaxO.jpg",
+        "is_vegetarian": true,
+        "description": "Yum yum, it's cake!"
+    },
+    "model": "core.menuitem",
+    "pk": 9
+},
+{
+    "fields": {
+        "category": 3,
+        "allergens": "NONE",
+        "name": "Pasta Mediterraneo",
+        "sodium_mg": 1030,
+        "times_ordered": 0,
+        "price": "10.95",
+        "ingredients": [
+            1
+        ],
+        "calories": 1320,
+        "fat_grams": 71,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/hiBSP3m.jpg",
+        "is_vegetarian": false,
+        "description": "pasta served with assorted vegetables in out homemade mediterranean sauce: garlic, marsala, pesto, and marinara"
+    },
+    "model": "core.menuitem",
+    "pk": 10
+},
+{
+    "fields": {
+        "category": 4,
+        "allergens": "NONE",
+        "name": "Pollo Siciliano",
+        "sodium_mg": 477,
+        "times_ordered": 0,
+        "price": "13.95",
+        "ingredients": [
+            17
+        ],
+        "calories": 598,
+        "fat_grams": 21,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://i.imgur.com/d9f59sS.jpg",
+        "is_vegetarian": false,
+        "description": "breaded chicken breast stuffed with sausage served with a rosemary garlic and red wine marinara sauce with capers and tomatoes, with a side of garlic mashed potatoes"
+    },
+    "model": "core.menuitem",
+    "pk": 11
+},
+{
+    "fields": {
+        "category": 4,
+        "allergens": "NONE",
+        "name": "Chicken Marsala",
+        "sodium_mg": 994,
+        "times_ordered": 0,
+        "price": "13.95",
+        "ingredients": [
+            17
+        ],
+        "calories": 455,
+        "fat_grams": 23,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/Chkn-Marsala_Horz-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Wood-grilled and topped with mushrooms and our Lombardo Marsala wine sauce. Served with your choice of a cup of soup or a side salad and your choice of side."
+    },
+    "model": "core.menuitem",
+    "pk": 12
+},
+{
+    "fields": {
+        "category": 2,
+        "allergens": "NONE",
+        "name": "Mahi Wulfe",
+        "sodium_mg": 1177,
+        "times_ordered": 0,
+        "price": "10.95",
+        "ingredients": [
+            21
+        ],
+        "calories": 475,
+        "fat_grams": 31,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/mahi-wulfe-720x480.jpg",
+        "is_vegetarian": false,
+        "description": "Lightly breaded, wood-grilled and topped with artichokes, sun-dried tomatoes and our basil lemon butter sauce. Served with your choice of a cup of soup or a side salad and your choice of side."
+    },
+    "model": "core.menuitem",
+    "pk": 13
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Sicilian Seabreeze",
+        "sodium_mg": 4,
+        "times_ordered": 0,
+        "price": "6.95",
+        "ingredients": [
+            22
+        ],
+        "calories": 177,
+        "fat_grams": 0,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/Sicilian-Seabreeze1-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Solerno Blood Orange liqueur, Absolut Vodka, cranberry juice, fresh mint and hint of grapefruit juice mixed then topped with a splash of Rosa Regale Sparkling wine"
+    },
+    "model": "core.menuitem",
+    "pk": 14
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Genovese Basil Breeze",
+        "sodium_mg": 105,
+        "times_ordered": 0,
+        "price": "6.95",
+        "ingredients": [
+            22
+        ],
+        "calories": 80,
+        "fat_grams": 0,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/Basil-Breeze1-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Bacardi Rum, St Germaine Elderflower liqueur, hand-squeezed lime juice and fresh basil shaken together then topped with a bubbly splash of soda"
+    },
+    "model": "core.menuitem",
+    "pk": 15
+},
+{
+    "fields": {
+        "category": 1,
+        "allergens": "NONE",
+        "name": "Calamari",
+        "sodium_mg": 1960,
+        "times_ordered": 0,
+        "price": "7.95",
+        "ingredients": [
+            23
+        ],
+        "calories": 941,
+        "fat_grams": 66,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Appetizers/calamari-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Hand-breaded to order and served with our housemade marinara or spicy Italian pepper and lemon butter sauce\r\n"
+    },
+    "model": "core.menuitem",
+    "pk": 16
+},
+{
+    "fields": {
+        "category": 1,
+        "allergens": "NONE",
+        "name": "Mozzarella Marinara",
+        "sodium_mg": 2369,
+        "times_ordered": 0,
+        "price": "6.95",
+        "ingredients": [
+            3,
+            24
+        ],
+        "calories": 888,
+        "fat_grams": 60,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://bloominbrandscms.blob.core.windows.net/carrabbas/mozzarella_marinara_961.jpg",
+        "is_vegetarian": false,
+        "description": "Hand-cut and breaded, served with our housemade marinara sauce"
+    },
+    "model": "core.menuitem",
+    "pk": 17
+},
+{
+    "fields": {
+        "category": 1,
+        "allergens": "NONE",
+        "name": "Shrimp Diavalo",
+        "sodium_mg": 1764,
+        "times_ordered": 0,
+        "price": "7.95",
+        "ingredients": [
+            24,
+            25
+        ],
+        "calories": 626,
+        "fat_grams": 47,
+        "in_stock": true,
+        "nutritional_info": "https://carrabbas.blob.core.windows.net/assets/LARGE-IMAGES/appetizers/shrimp-diavolo-961x646.jpg",
+        "image": "",
+        "is_vegetarian": false,
+        "description": "Hand-breaded to order, lightly fried and tossed in our housemade lemon butter sauce. Topped with pepperoncini, red bell peppers and crushed red pepper"
+    },
+    "model": "core.menuitem",
+    "pk": 18
+},
+{
+    "fields": {
+        "category": 7,
+        "allergens": "NONE",
+        "name": "Mandola's Sicilian Chicken Soup",
+        "sodium_mg": 1993,
+        "times_ordered": 0,
+        "price": "7.95",
+        "ingredients": [
+            2,
+            26,
+            27
+        ],
+        "calories": 242,
+        "fat_grams": 5,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "http://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Soups-and-Salads/mama-mandolas-sicilian-chicken-soup-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Our signature chicken soup made in house with whole chicken, pasta and hand chopped veggies with a hint of spicy. This is the soup that Mama Mandola has served to soothed the family for generations."
+    },
+    "model": "core.menuitem",
+    "pk": 19
+},
+{
+    "fields": {
+        "category": 8,
+        "allergens": "NONE",
+        "name": "Parmesan Crusted Chicken Salad",
+        "sodium_mg": 952,
+        "times_ordered": 0,
+        "price": "6.95",
+        "ingredients": [
+            26,
+            27
+        ],
+        "calories": 321,
+        "fat_grams": 15,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Soups-and-Salads/parmesan-crusted-chicken-salad-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Arugula, roasted grape tomatoes, and red onion tossed in our lemon vinaigrette topped with panko and parmesan-crusted chicken and parmesan shavings"
+    },
+    "model": "core.menuitem",
+    "pk": 20
+},
+{
+    "fields": {
+        "category": 5,
+        "allergens": "NONE",
+        "name": "Desert Rosa",
+        "sodium_mg": 572,
+        "times_ordered": 0,
+        "price": "4.95",
+        "ingredients": [
+            28,
+            29
+        ],
+        "calories": 595,
+        "fat_grams": 22,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Desserts/dessert-rosa-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Butter cake topped with pastry cream, bananas, strawberries, pineapple and whipped cream"
+    },
+    "model": "core.menuitem",
+    "pk": 21
+},
+{
+    "fields": {
+        "category": 5,
+        "allergens": "NONE",
+        "name": "Sogno Di Cioccolata \"Chocolate Dream\"",
+        "sodium_mg": 810,
+        "times_ordered": 0,
+        "price": "5.95",
+        "ingredients": [
+            29,
+            30
+        ],
+        "calories": 1185,
+        "fat_grams": 69,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Desserts/sogno-di-cioccolata-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "A rich fudge brownie with chocolate mousse, fresh whipped cream and housemade chocolate sauce"
+    },
+    "model": "core.menuitem",
+    "pk": 22
+},
+{
+    "fields": {
+        "category": 5,
+        "allergens": "NONE",
+        "name": "Mini Cannoli",
+        "sodium_mg": 86,
+        "times_ordered": 0,
+        "price": "6.95",
+        "ingredients": [
+            4,
+            30,
+            31
+        ],
+        "calories": 497,
+        "fat_grams": 33,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Desserts/mini-cannoli-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Two crisp mini pastry shells stuffed with sweet ricotta and chocolate chip filling, topped with pistachios and powdered sugar"
+    },
+    "model": "core.menuitem",
+    "pk": 23
+},
+{
+    "fields": {
+        "category": 5,
+        "allergens": "NONE",
+        "name": "John Cole",
+        "sodium_mg": 302,
+        "times_ordered": 0,
+        "price": "6.95",
+        "ingredients": [
+            31,
+            32,
+            33,
+            36
+        ],
+        "calories": 650,
+        "fat_grams": 32,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Desserts/john-cole-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Vanilla ice cream with caramel sauce and roasted cinnamon rum pecans"
+    },
+    "model": "core.menuitem",
+    "pk": 24
+},
+{
+    "fields": {
+        "category": 9,
+        "allergens": "NONE",
+        "name": "Sirloin Marsala ",
+        "sodium_mg": 663,
+        "times_ordered": 0,
+        "price": "10.95",
+        "ingredients": [
+            27,
+            37
+        ],
+        "calories": 530,
+        "fat_grams": 37,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Beef-Pork-Veal/sirloin-marsala-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Wood-grilled and topped with mushrooms, proscuitto and our housemade Lombardo Marsala wine sauce"
+    },
+    "model": "core.menuitem",
+    "pk": 25
+},
+{
+    "fields": {
+        "category": 9,
+        "allergens": "NONE",
+        "name": "Grilled Tuscan Skewers",
+        "sodium_mg": 674,
+        "times_ordered": 0,
+        "price": "11.95",
+        "ingredients": [
+            27,
+            28,
+            29,
+            30,
+            37
+        ],
+        "calories": 420,
+        "fat_grams": 23,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "https://bloominbrandscms.blob.core.windows.net/carrabbas/tuscan-grilled-skewers.jpg",
+        "is_vegetarian": false,
+        "description": "Wood-grilled sirloin, red onion and tomato skewers topped with our Chianti wine sauce"
+    },
+    "model": "core.menuitem",
+    "pk": 26
+},
+{
+    "fields": {
+        "category": 10,
+        "allergens": "NONE",
+        "name": "Wood Grilled Salmon",
+        "sodium_mg": 521,
+        "times_ordered": 0,
+        "price": "10.95",
+        "ingredients": [
+            21
+        ],
+        "calories": 643,
+        "fat_grams": 47,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Seafood/Wood-Grilled-Salmon_s.jpg",
+        "is_vegetarian": false,
+        "description": "Topped with tomato basil vinaigrette"
+    },
+    "model": "core.menuitem",
+    "pk": 27
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Sprite",
+        "sodium_mg": 30,
+        "times_ordered": 0,
+        "price": "1.95",
+        "ingredients": [
+            19
+        ],
+        "calories": 100,
+        "fat_grams": 10,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://www.liquorlockerla.com/wp-content/uploads/Sprite-1-Liter-Bottle.jpg",
+        "is_vegetarian": false,
+        "description": "Crisp and refreshing Sprite"
+    },
+    "model": "core.menuitem",
+    "pk": 28
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Dr. Pepper",
+        "sodium_mg": 30,
+        "times_ordered": 0,
+        "price": "1.95",
+        "ingredients": [
+            19
+        ],
+        "calories": 100,
+        "fat_grams": 10,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://www.drpeppersnapplegroup.com/smedia/www/2011/03/30/img-dr-pepper-original_07242963365.png",
+        "is_vegetarian": false,
+        "description": "Crisp and refreshing Dr. Pepper\r\n"
+    },
+    "model": "core.menuitem",
+    "pk": 29
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Mountain Dew",
+        "sodium_mg": 30,
+        "times_ordered": 0,
+        "price": "1.95",
+        "ingredients": [
+            19
+        ],
+        "calories": 100,
+        "fat_grams": 10,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://www.dairyqueen.com/PageFiles/4960/dq-drinks-soft-mtdew.png?width=&height=810",
+        "is_vegetarian": false,
+        "description": "Crisp and refreshing Mountain Dew"
+    },
+    "model": "core.menuitem",
+    "pk": 30
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Sunkist ",
+        "sodium_mg": 30,
+        "times_ordered": 0,
+        "price": "1.95",
+        "ingredients": [
+            19
+        ],
+        "calories": 100,
+        "fat_grams": 10,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://2.bp.blogspot.com/-7CTf5AJpalg/T1qASLmFjbI/AAAAAAAAG9U/XgXJGbenuGA/s1600/sunkist-orange-soda-bottle.jpg",
+        "is_vegetarian": false,
+        "description": "Crisp and refreshing Sunkist"
+    },
+    "model": "core.menuitem",
+    "pk": 31
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Coke",
+        "sodium_mg": 30,
+        "times_ordered": 0,
+        "price": "1.95",
+        "ingredients": [
+            19
+        ],
+        "calories": 100,
+        "fat_grams": 10,
+        "in_stock": true,
+        "nutritional_info": "",
+        "image": "http://www.dairyqueen.com/PageFiles/6085/dq-drinks-soft-coke.png?width=&height=810",
+        "is_vegetarian": false,
+        "description": "Crisp and refreshing Sunkist"
+    },
+    "model": "core.menuitem",
+    "pk": 32
+},
+{
+    "fields": {
+        "category": 6,
+        "allergens": "NONE",
+        "name": "Root Beer",
+        "sodium_mg": 30,
+        "times_ordered": 0,
+        "price": "1.95",
+        "ingredients": [
+            19
+        ],
+        "calories": 100,
+        "fat_grams": 10,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "http://www.bonappetit.com/wp-content/uploads/2009/07/maar_top_root_beers_v.jpg",
+        "is_vegetarian": false,
+        "description": "Crisp and refreshing Root Beer"
+    },
+    "model": "core.menuitem",
+    "pk": 33
+},
+{
+    "fields": {
+        "category": 2,
+        "allergens": "NONE",
+        "name": "Baked Ravioli Parmesan",
+        "sodium_mg": 2433,
+        "times_ordered": 0,
+        "price": "9.95",
+        "ingredients": [
+            1,
+            3,
+            4,
+            8,
+            9,
+            18,
+            24
+        ],
+        "calories": 808,
+        "fat_grams": 42,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Oven-Baked/baked-ravioli-parmesan-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Panko breaded ravioli filled with five Italian cheeses, lightly fried then baked and topped with our marinana sauce, romano and mozzarella cheese"
+    },
+    "model": "core.menuitem",
+    "pk": 35
+},
+{
+    "fields": {
+        "category": 2,
+        "allergens": "NONE",
+        "name": "Carnevale",
+        "sodium_mg": 1177,
+        "times_ordered": 0,
+        "price": "10.95",
+        "ingredients": [
+            1,
+            3,
+            9,
+            13,
+            25,
+            38
+        ],
+        "calories": 497,
+        "fat_grams": 21,
+        "in_stock": false,
+        "nutritional_info": "",
+        "image": "https://carrabbas.blob.core.windows.net/assets/CIG_MENU_ITEMS/Roman-Style-Pizza/create-your-own-pizza-600x379.jpg",
+        "is_vegetarian": false,
+        "description": "Pepperoni, Italian fennel sausage, roasted red bell peppers, romano, mozzarella, and our housemade sauce"
+    },
+    "model": "core.menuitem",
+    "pk": 36
+},
+{
+    "fields": {
+        "status": "OC",
+        "prev_status": "OC"
+    },
+    "model": "core.table",
+    "pk": 1
+},
+{
+    "fields": {
+        "status": "OC",
+        "prev_status": "OP"
+    },
+    "model": "core.table",
+    "pk": 2
+},
+{
+    "fields": {
+        "status": "OP",
+        "prev_status": "OP"
+    },
+    "model": "core.table",
+    "pk": 3
+},
+{
+    "fields": {
+        "status": "OP",
+        "prev_status": "OP"
+    },
+    "model": "core.table",
+    "pk": 4
+},
+{
+    "fields": {
+        "status": "OC",
+        "prev_status": "OC"
+    },
+    "model": "core.table",
+    "pk": 5
+},
+{
+    "fields": {
+        "date": "2015-04-08T02:59:57Z",
+        "table": 5,
+        "status": "CL",
+        "menu_items": [
+            1,
+            2
+        ]
+    },
+    "model": "core.order",
+    "pk": 1
+},
+{
+    "fields": {
+        "date": "2015-04-09T22:14:01Z",
+        "table": 2,
+        "status": "RD",
+        "menu_items": [
+            1,
+            3,
+            5
+        ]
+    },
+    "model": "core.order",
+    "pk": 2
+},
+{
+    "fields": {
+        "date": "2015-04-10T20:19:22Z",
+        "table": 3,
+        "status": "RD",
+        "menu_items": [
+            5,
+            7,
+            8,
+            14,
+            16
+        ]
+    },
+    "model": "core.order",
+    "pk": 3
+},
+{
+    "fields": {
+        "date": "2015-04-12T22:36:41Z",
+        "table": 5,
+        "status": "CL",
+        "menu_items": [
+            2,
+            6
+        ]
+    },
+    "model": "core.order",
+    "pk": 4
+},
+{
+    "fields": {
+        "date": "2015-04-12T22:45:37Z",
+        "table": 5,
+        "status": "CL",
+        "menu_items": [
+            6,
+            16
+        ]
+    },
+    "model": "core.order",
+    "pk": 5
+},
+{
+    "fields": {
+        "date": "2015-04-12T22:46:14Z",
+        "table": 5,
+        "status": "OP",
+        "menu_items": [
+            3,
+            6
+        ]
+    },
+    "model": "core.order",
+    "pk": 6
+},
+{
+    "fields": {
+        "date": "2015-04-12T23:11:31Z",
+        "table": 5,
+        "status": "OP",
+        "menu_items": [
+            2,
+            3
+        ]
+    },
+    "model": "core.order",
+    "pk": 7
+},
+{
+    "fields": {
+        "date": "2015-04-12T23:15:15Z",
+        "table": 5,
+        "status": "OP",
+        "menu_items": [
+            2,
+            6,
+            16
+        ]
+    },
+    "model": "core.order",
+    "pk": 8
+},
+{
+    "fields": {
+        "date": "2015-04-12T23:24:41Z",
+        "table": 1,
+        "status": "OP",
+        "menu_items": [
+            9,
+            22
+        ]
+    },
+    "model": "core.order",
+    "pk": 9
+},
+{
+    "fields": {
+        "comped": true,
+        "split_ways": 1,
+        "tip": "3.00",
+        "tax": "3.00",
+        "total": "0.00",
+        "subtotal": "15.00",
+        "order": 1
+    },
+    "model": "core.invoice",
+    "pk": 1
+},
+{
+    "fields": {
+        "comped": true,
+        "split_ways": 1,
+        "tip": "3.00",
+        "tax": "8.00",
+        "total": "0.00",
+        "subtotal": "30.00",
+        "order": 2
+    },
+    "model": "core.invoice",
+    "pk": 2
+},
+{
+    "fields": {
+        "comped": false,
+        "split_ways": 1,
+        "tip": "2.00",
+        "tax": "2.00",
+        "total": "21.32",
+        "subtotal": "17.32",
+        "order": 3
+    },
+    "model": "core.invoice",
+    "pk": 3
+},
+{
+    "fields": {
+        "name": "Matt",
+        "is_manager": true,
+        "passkey": 1234
+    },
+    "model": "core.employee",
+    "pk": 1
+},
+{
+    "fields": {
+        "name": "Jack",
+        "is_manager": false,
+        "passkey": 0
+    },
+    "model": "core.employee",
+    "pk": 2
+},
+{
+    "fields": {
+        "name": "Jill",
+        "is_manager": false,
+        "passkey": 101
+    },
+    "model": "core.employee",
+    "pk": 3
+},
+{
+    "fields": {
+        "employee": 3,
+        "tables": [
+            1,
+            2
+        ]
+    },
+    "model": "core.waiter",
+    "pk": 1
+},
+{
+    "fields": {
+        "employee": 2,
+        "current_orders": [
+            1
+        ]
+    },
+    "model": "core.cook",
+    "pk": 1
+}
+]
