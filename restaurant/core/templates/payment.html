@@ -7,6 +7,7 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
+  
 <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/162610/menuStyle.css">
 
 </head>
@@ -17,6 +18,8 @@
 
 
 <body>
+<div id="fb-root"></div>
+
 
   <!--OVERLAY DIV-->
   <div class="overlayBG">
@@ -76,10 +79,30 @@
     <div class="splitCheckEdge">
     </div>
 
-        <div class="paymentText">
-
-      <h4 class="title">add cc buttons</h1>
-    </div>
+    <div class="paymentText">
+		<!-- Facebook Button -->
+		<div class="fb-like" data-href="https://www.facebook.com/DentonDanceCollective" data-layout="button_count" data-action="like" data-show-faces="false" data-share="true"></div>
+		<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.3";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+		<!-- Twitter Button -->
+		<a href="https://twitter.com/intent/tweet?button_hashtag=JaneKeyesItalianDiner&text=I%20just%20ate%20at%20" class="twitter-hashtag-button" data-size="large">Tweet About Us!</a>
+		<script>
+			!function(d, s, id) {
+				var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
+				if(!d.getElementById(id)) {
+					js = d.createElement(s);
+					js.id = id;
+					js.src = p+'://platform.twitter.com/widgets.js';
+					fjs.parentNode.insertBefore(js,fjs);
+				}
+			}(document, 'script', 'twitter-wjs');
+		</script>
+	</div>
 
     
 
