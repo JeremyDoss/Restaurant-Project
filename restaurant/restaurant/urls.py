@@ -30,13 +30,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
 
     url(r'^standby/$', 'core.views.standby', name='standby'),
-<<<<<<< Updated upstream
+
     url(r'^standby/refill/$', 'core.views.refill_request', name="refill_request"),
     url(r'^standby/help/$', 'core.views.help_request', name="help_request"),
-=======
-    url(r'^standby/refill$', 'core.views.refill_request', name="refill_request"),
-    #url(r'^standby/help$', 'core.views.help_request', name="help_request"),
->>>>>>> Stashed changes
 
     url(r'view_order/(\d+?)/', 'core.views.view_order', name="view_order"),
     url(r'menuitem_details/', 'core.views.menuitem_details', name="menuitem_details"),
