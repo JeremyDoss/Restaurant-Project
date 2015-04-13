@@ -223,6 +223,41 @@
             <h6>{{ each.description }} </h6>
    				{% endif %}
    			{% endfor %}
+         <button>Vegetarian</button>
+   		</div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% for category in categories %}
+    {% if category.parent == None %}
+   	<div class="{{ category.name}}_veg">
+   		<div class="section2">
+   			<h2>{{category.name}}</h2>
+   			{% for each in all_menu_items %}
+   				{% if each.category.name == category.name and each.in_stock and each.is_vegetarian %}
+            <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : ${{ each.price }} </span>
+              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
+            <h6>{{ each.description }} </h6>
+   				{% endif %}
+   			{% endfor %}
+   		</div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+    {% for category in categories %}
+    {% if category.parent == None %}
+   	<div class="{{ category.name}}_gluten">
+   		<div class="section2">
+   			<h2>{{category.name}}</h2>
+   			{% for each in all_menu_items %}
+   				{% if each.category.name == category.name and each.in_stock and each.allergens = "GLUTENFREE" %}
+            <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : ${{ each.price }} </span>
+              <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
+            <h6>{{ each.description }} </h6>
+   				{% endif %}
+   			{% endfor %}
    		</div>
     </div>
     {% endif %}

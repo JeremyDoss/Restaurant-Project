@@ -46,7 +46,7 @@ class MenuItem(models.Model):
 	ALLERGY_TYPES = (
 		("NONE", 'None'),
 		("PEANUT", 'Peanuts'),
-		("GLUTENFREE", 'Gluten-Free'),
+		("GLUTEN", 'Gluten'),
 	)
 	allergens = models.CharField(max_length=10, choices=ALLERGY_TYPES, default=ALLERGY_TYPES[0][0])
 
