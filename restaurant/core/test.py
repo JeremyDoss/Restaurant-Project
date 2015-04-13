@@ -1,4 +1,6 @@
 from django.test import TestCase
+from django.core.urlresolvers import reverse
+
 from .models import *
 
 # Create your tests here.
@@ -49,3 +51,37 @@ class ViewTests(TestCase):
 		# and finally, make sure that all_menu_items actually has what it's supposed to have in it
 		# which in this case is the single Soup item we added above
 		self.assertEqual([item.name for item in response.context['all_menu_items']], ['Soup'])
+
+
+class PostTests(TestCase):
+	def setUp(self):
+		# add a table
+		table = Table()
+		table.save()
+
+		manager = Employee(name='Matt', is_manager=True, passkey=1234)
+		manager.save()
+
+		waiter_user = Employee(name='Jill', is_manager=False, passkey=101)
+		waiter_user.save()
+		waiter = Waiter(employee=waiter_user)
+		waiter.save()
+		waiter.tables.add(table)
+		waiter.save()
+
+		cook_user = Employee(name='Jack', is_manager=False, passkey=0)
+		cook_user.save()
+		cook = Cook(employee=cook_user)
+		cook.save()
+
+	def test_waiter_login(self):
+		response = self.client.post('/waiter/login/', {'passkey': '101'})
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], 'http://testserver/waiter/')
+		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')
+
+	def test_cook_login(self):
+		response = self.client.post('/kitchen/login/', {'passkey': '0'})
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], 'http://testserver/kitchen/')
+		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')

@@ -131,7 +131,7 @@ def waiter_login(request):
 			# the passkey form will POST to this same URL, so we need to check if that's set
 			# and query the database for the user whose passkey matches, if any
 			user = Employee.objects.get(passkey=request.POST['passkey'])
-			response = redirect('/waiter')
+			response = redirect('/waiter/')
 			response.set_cookie('logged_in', 'yes')
 			response.set_cookie('uid', user.id)
 			return response
@@ -327,6 +327,8 @@ def place_order(request):
             # first, remove the order associated with the table
             for order in table.order_set.all():
                 order.table = Table.objects.get(pk=5)
+                order.prev_status = order.status
+                order.status = "CL"
                 order.save()
             order = Order(table=table, status="OP")
             order.save()
