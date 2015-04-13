@@ -217,7 +217,7 @@
    		<div class="section2">
    			<h2>{{category.name}}</h2>
    			{% for each in all_menu_items %}
-   				{% if each.category.name == category.name and each.in_stock %}
+   				{% if each.category.name == category.name or each.category.name == category.parent.name and each.in_stock %}
             <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : ${{ each.price }} </span>
               <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
             <h6>{{ each.description }} </h6>

@@ -19,6 +19,9 @@ class MenuTests(TestCase):
 		item.ingredients.add(ing)
 		item.save()
 
+		table = Table()
+		table.save()
+
 	def test_menu_item_name(self):
 		item = MenuItem.objects.get(name='Soup')
 		self.assertEqual(item.name, 'Soup')
@@ -30,6 +33,7 @@ class MenuTests(TestCase):
 	def test_top_category(self):
 		item = MenuItem.objects.get(name='Soup')
 		self.assertEqual(item.top_level_category().name, 'Entrees')
+
 
 class ViewTests(TestCase):
 	def setUp(self):
