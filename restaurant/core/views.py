@@ -327,7 +327,7 @@ def place_order(request):
             # first, remove the order associated with the table
             for order in table.order_set.all():
                 order.table = Table.objects.get(pk=5)
-            	order.save()
+                order.save()
             order = Order(table=table, status="OP")
             order.save()
             for item in items:
