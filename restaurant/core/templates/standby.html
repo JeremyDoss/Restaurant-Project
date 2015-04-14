@@ -113,6 +113,10 @@
 
 
 $(function() {
+	$(".pay").button().click(function(event) {
+		location.href = "/checkout/"
+	});
+
 	$(".games").button().click(function(event) {
 		$(".options").toggle();
 		$(".play").hide();
