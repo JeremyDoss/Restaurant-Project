@@ -1,11 +1,72 @@
 {% extends "base.html" %}
 
 {% block style %}
+<style>
+h7 {
+    width: 100%;
+    font-size: 110%;
+}
+h7 a {
+    color: black;
+}
+</style>
 {% endblock %}
 
 {% block script %}
 
 <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/162610/menuStyle.css">
+<script>
+
+items = []
+
+function move_item_right(itemID) {
+    id = -1;
+    $.each(items, function(key, value) {
+        if (value[0] == itemID) {
+            id = key
+        }
+    })
+    //console.log(items[id][3] + ' -> ')
+    items[id][3] = ((parseInt(items[id][3])) % 4) + 1
+    //console.log(items[id][3])
+}
+
+function update_items() {
+    $('#itemList1').empty()
+    $('#itemList2').empty()
+    $('#itemList3').empty()
+    $('#itemList4').empty()
+    subtotal = [0,0,0,0]
+    $.each(items, function(key,value) {
+        $("#itemList"+value[3]).append("<h7><a class='item' href='#' name='"+value[0]+"'>"+value[1]+"</a><span style='float: right;'>$"+value[2]+"</h7><br>")
+        subtotal[value[3]-1] += value[2]
+    })
+
+    console.log(subtotal)
+
+    $.each(subtotal, function(key, value) {
+        $('#subtotal' + key).empty()
+        $('#subtotal' + key).append('hi')
+    })
+
+
+
+    $("a.item").click(function(event) {
+        console.log($(this).text())
+        move_item_right($(this).attr("name"))
+        console.log(items)
+        update_items()
+        event.preventDefault();
+    })
+}
+$(function() {
+{% for item in order.menu_items.all %}
+    items.push([{{item.id}}, "{{item.name}}", {{item.price}}, 1]);
+{% endfor %}
+
+    update_items()
+})
+</script>
 
 {% endblock %}
 
@@ -62,13 +123,10 @@
       </div>
 
 
+      <div id="itemList1">
 
-      {% for each in order.menu_items.all %}
-
-      <h7> {{ each.name }} {{ each.price }}</h7><br />
-
-      {% endfor %}
-
+      </div>
+      <div id="subtotal1"></div>
 
       <button>Add Tip</button>
     </div>
@@ -79,6 +137,10 @@
         <h7> CHECK 2 </h7>
       </div>
 
+      <div id="itemList2">
+
+      </div>
+      <div id="subtotal2"></div>
       <button>Add Tip</button>
     </div>
 
@@ -87,7 +149,10 @@
       <div class="topCheck">
         <h7> CHECK 3 </h7>
     </div>
+    <div id="itemList3">
 
+    </div>
+    <div id="subtotal3"></div>
       <button>Add Tip</button>
     </div>
 
@@ -96,7 +161,10 @@
       <div class="topCheck">
         <h7> CHECK 4 </h7>
       </div>
+      <div id="itemList4">
 
+      </div>
+      <div id="subtotal4"></div>
       <button>Add Tip</button>
 
 

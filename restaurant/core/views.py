@@ -287,8 +287,9 @@ def ingredient_in(request):
 	return HttpResponse("OK")
 
 def view_order(request, orderID):
-	order = Order.objects.get(pk=orderID)
-	return HttpResponse("Order view for order #%s" % orderID)
+    order = Order.objects.get(pk=orderID)
+    context = {"order": order}
+    return render(request, 'view_order.html', context)
 
 def refill_request(request):
     if (request.method == 'POST'):
@@ -358,5 +359,5 @@ def checkout(request):
         orderID = request.COOKIES['order_id']
         order = Order.objects.get(pk=orderID)
         context = {'order': order}
-        return render(request, 'payment.html', context)
+        return render(request, 'checkout.html', context)
     return HttpResponse("No order on file.")
