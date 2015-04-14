@@ -136,6 +136,7 @@ $(function() {
 
     })
     $("button").button().click(function(event){
+      if($(this).attr("id")=="pay_button"){
       var rtax1 = subtotal[0]*.0825;
       var rtip1 = tip[0]*subtotal[0];
       var rtotal1 = subtotal[0]*(1+.0825)*(1+tip[0]);
@@ -175,6 +176,7 @@ $(function() {
       $("#rTotal4").append(rtotal4.toFixed(2));
       $("#receipt4").css("display", "block");
       $("#4pay").append($("input[name=cashcredit4]:checked").val());
+    }
     });
 })
 </script>
@@ -230,6 +232,7 @@ $(function() {
       <p id="rTip1" >Tip: </p>
       <p id="rTotal1" >Total: </p>
       <h1 id="1pay" style="color:green;"></h1>
+      <a href=".."><button>Main Screen</button></a>
     </div>
 
     <div id="receipt2" style=" border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:550px; z-index:1;background-color:white; ">
@@ -336,7 +339,7 @@ $(function() {
 
 
 		<!-- Twitter Button -->
-		<a href="https://twitter.com/intent/tweet?button_hashtag=JaneKeyesItalianDiner&text=I%20just%20ate%20at%20" class="twitter-hashtag-button" data-size="large">Tweet About Us!</a>
+		<a href="https://twitter.com/intent/tweet?button_hashtag=JaneKeyesItalianDiner&text=I%20just%20ate%20at%20" class="twitter-hashtag-button" data-size="large">Tweet #JaneKeyesItalianDiner</a>
 		<script>
 			!function(d, s, id) {
 				var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location)?'http':'https';
@@ -375,7 +378,7 @@ $(function() {
 
         <div class="payment">
           <br>
-        <button>Pay Check</button>
+        <button id="pay_button">Pay Check</button>
         </div>
 
 
