@@ -15,7 +15,9 @@ class MenuTests(TestCase):
             description = "Tomato Sauce, Pepperoni, and Mozzarella Cheese",
             calories = 850,
             sodium_mg = 250,
-            fat_grams= 350
+            fat_grams= 350,
+            is_vegetarian = True,
+            allergens="GLUTEN"
         )
         ingredient = []
         ingredient.append(Ingredient.objects.create(name="Pepperoni"))
@@ -39,59 +41,32 @@ class MenuTests(TestCase):
         item = MenuItem.objects.get(name="Pepperoni Pizza")
         self.assertEqual(item.price, Decimal("11.99"))
 
-"""
-class ViewTests(TestCase):
-	def setUp(self):
-		cat = Category.objects.create(parent=None, name='Entrees')
-		ing = Ingredient.objects.create(name="Potatoes")
-		item = MenuItem(name='Soup', category=cat, times_ordered=0, price=5.99, description="Test description",
-			calories=100, sodium_mg=1000, fat_grams=150)
-		item.save()
-		item.ingredients.add(ing)
-		item.save()
+    def test_menu_item_calories(self):
+        item = MenuItem.objects.get(name="Pepperoni Pizza")
+        self.assertEqual(item.calories, 850)
 
-	# these will test the various views we've configured
-	# for now, this verifies that the index gives us the HTTP OK status code 200
-	def test_index(self):
-		response = self.client.get('/')
-		self.assertEqual(response.status_code, 200)
-		# also make sure our view is actually executing, so we check a variable that is filled by it
-		self.assertTrue('all_menu_items' in response.context)
-		# and finally, make sure that all_menu_items actually has what it's supposed to have in it
-		# which in this case is the single Soup item we added above
-		self.assertEqual([item.name for item in response.context['all_menu_items']], ['Soup'])
+    def test_menu_item_sodium_mg(self):
+        item = MenuItem.objects.get(name="Pepperoni Pizza")
+        self.assertEqual(item.sodium_mg, 250)
 
+    def test_menu_item_fat_grams(self):
+        item = MenuItem.objects.get(name="Pepperoni Pizza")
+        self.assertEqual(item.fat_grams, 350)
 
-class PostTests(TestCase):
-	def setUp(self):
-		# add a table
-		table = Table()
-		table.save()
+    def test_menu_item_times_ordered(self):
+        item = MenuItem.objects.get(name="Pepperoni Pizza")
+        self.assertEqual(item.times_ordered, 5)
 
-		manager = Employee(name='Matt', is_manager=True, passkey=1234)
-		manager.save()
+    def test_menu_item_allergens(self):
+        item = MenuItem.objects.get(name="Pepperoni Pizza")
+        self.assertEqual(item.allergens, "GLUTEN")
 
-		waiter_user = Employee(name='Jill', is_manager=False, passkey=101)
-		waiter_user.save()
-		waiter = Waiter(employee=waiter_user)
-		waiter.save()
-		waiter.tables.add(table)
-		waiter.save()
+    def test_menu_item_vegetarian(self):
+        item = MenuItem.objects.get(name="Pepperoni Pizza")
+        self.assertEqual(item.is_vegetarian, True)
 
-		cook_user = Employee(name='Jack', is_manager=False, passkey=0)
-		cook_user.save()
-		cook = Cook(employee=cook_user)
-		cook.save()
-
-	def test_waiter_login(self):
-		response = self.client.post('/waiter/login/', {'passkey': '101'})
-		self.assertEqual(response.status_code, 302)
-		self.assertEqual(response['location'], 'http://testserver/waiter/')
-		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')
-
-	def test_cook_login(self):
-		response = self.client.post('/kitchen/login/', {'passkey': '0'})
-		self.assertEqual(response.status_code, 302)
-		self.assertEqual(response['location'], 'http://testserver/kitchen/')
-		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')
-"""
+    def test_menu_item_ingredients(self):
+        item = MenuItem.objects.get(name="Pepperoni Pizza")
+        lst = ["Pepperoni", "Tomato Sauce", "Mozzarella Cheese"]
+        lst_ = [x.name for x in item.ingredients.all()]
+        self.assertEqual(lst, lst_)
