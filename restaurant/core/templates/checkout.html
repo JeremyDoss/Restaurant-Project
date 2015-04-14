@@ -46,6 +46,8 @@ items = []
 tip = [0,0,0,0]
 comped = {% if comped %}true{% else %}false{% endif %};
 
+
+
 function move_item_right(itemID) {
     id = -1;
     $.each(items, function(key, value) {
@@ -133,6 +135,43 @@ $(function() {
         }
 
     })
+    $("button").button().click(function(event){
+      var rtax1 = subtotal[0]*.0825;
+      var rtip1 = tip[0]*subtotal[0];
+      var rtotal1 = subtotal[0]*(1+.0825)*(1+tip[0]);
+
+      $.each(items, function(key, value) {
+        $('#rMenu' + value[3]).append("<h4 style='color:black; padding-right:10px;'>"+value[1]+"<span style='float: right; color: black'>"+value[2]+"</span></h4>");
+      })
+      $("#rTax1").append(rtax1.toFixed(2));
+      $("#rTip1").append(rtip1.toFixed(2));
+      $("#rTotal1").append(rtotal1.toFixed(2));
+      $("#receipt1").css("display", "block");
+
+      var rtax2 = subtotal[1]*.0825;
+      var rtip2 = tip[1]*subtotal[0];
+      var rtotal2 = subtotal[1]*(1+.0825)*(1+tip[1]);
+      $("#rTax2").append(rtax2.toFixed(2));
+      $("#rTip2").append(rtip2.toFixed(2));
+      $("#rTotal2").append(rtotal2.toFixed(2));
+      $("#receipt2").css("display", "block");
+
+      var rtax3 = subtotal[2]*.0825;
+      var rtip3 = tip[2]*subtotal[0];
+      var rtotal3 = subtotal[2]*(1+.0825)*(1+tip[2]);
+      $("#rTax3").append(rtax3.toFixed(2));
+      $("#rTip3").append(rtip3.toFixed(2));
+      $("#rTotal3").append(rtotal3.toFixed(2));
+      $("#receipt3").css("display", "block");
+
+      var rtax4 = subtotal[3]*.0825;
+      var rtip4 = tip[3]*subtotal[0];
+      var rtotal4 = subtotal[3]*(1+.0825)*(1+tip[3]);
+      $("#rTax4").append(rtax4.toFixed(2));
+      $("#rTip4").append(rtip4.toFixed(2));
+      $("#rTotal4").append(rtotal4.toFixed(2));
+      $("#receipt4").css("display", "block");
+    });
 })
 </script>
 
@@ -176,14 +215,41 @@ $(function() {
       <h2 class="title">You may split the check  below by clicking on items.</h2>
 
 
-
-
-
     </div>
 
     <div class="splitCheckEdge">
     </div>
+    <div id="receipt1" style="border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:250px; z-index:1;background-color:white; ">
+      <h2 style="color:black";>Receipt</h2>
+      <p id="rMenu1" ></p>
+      <p id="rTax1" >Tax: </p>
+      <p id="rTip1" >Tip: </p>
+      <p id="rTotal1" >Total: </p>
+    </div>
 
+    <div id="receipt2" style=" border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:550px; z-index:1;background-color:white; ">
+      <h2 style="color:black";>Receipt</h2>
+      <p id="rMenu2" ></p>
+      <p id="rTax2" >Tax: </p>
+      <p id="rTip2" >Tip: </p>
+      <p id="rTotal2" >Total: </p>
+    </div>
+
+    <div id="receipt3" style=" border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:850px; z-index:1;background-color:white; ">
+      <h2 style="color:black";>Receipt</h2>
+      <p id="rMenu3" ></p>
+      <p id="rTax3" >Tax: </p>
+      <p id="rTip3" >Tip: </p>
+      <p id="rTotal3" >Total: </p>
+    </div>
+
+    <div id="receipt4" style=" border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:1150px; z-index:1;background-color:white; ">
+      <h2 style="color:black";>Receipt</h2>
+      <p id="rMenu4" ></p>
+      <p id="rTax4" >Tax: </p>
+      <p id="rTip4" >Tip: </p>
+      <p id="rTotal4" >Total: </p>
+    </div>
     <div class="splitCheckPane">
           <br />
       <div class="topCheck">
@@ -296,6 +362,7 @@ $(function() {
         </div>
 
         <div class="payment">
+          <br>
         <button>Pay Check</button>
         </div>
 
