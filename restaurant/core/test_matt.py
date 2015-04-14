@@ -22,6 +22,11 @@ class MenuTests(TestCase):
 		table = Table()
 		table.save()
 
+		order = Order(table=table, status="OP")
+		order.save()
+		order.menu_items.add(item)
+		order.save()
+
 	def test_menu_item_name(self):
 		item = MenuItem.objects.get(name='Soup')
 		self.assertEqual(item.name, 'Soup')
