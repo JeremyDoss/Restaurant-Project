@@ -150,6 +150,45 @@
         //var price = $.trim(split[1])
 
       }
+
+      if (buttonText == "Vegetarian"){
+          if($(this).attr("name") == "Entrees_veg"){
+            $(".Entrees").hide();
+            $(".Entrees_veg").show();
+          }
+          if($(this).attr("name") == "Appetizers_veg"){
+            $(".Appetizers").hide();
+            $(".Appetizers_veg").show();
+          }
+          if($(this).attr("name") == "Drinks_veg"){
+            $(".Drinks").hide();
+            $(".Drinks_veg").show();
+          }
+          if($(this).attr("name") == "Desserts_veg"){
+            $(".Desserts").hide();
+            $(".Desserts_veg").show();
+          }
+      }
+
+      if (buttonText == "Gluten-Free"){
+        if($(this).attr("name") == "Entrees_gluten"){
+          $(".Entrees").hide();
+          $(".Entrees_gluten").show();
+        }
+        if($(this).attr("name") == "Appetizers_gluten"){
+          $(".Appetizers").hide();
+          $(".Appetizers_gluten").show();
+        }
+        if($(this).attr("name") == "Drinks_gluten"){
+          $(".Drinks").hide();
+          $(".Drinks_gluten").show();
+        }
+        if($(this).attr("name") == "Desserts_gluten"){
+          $(".Desserts").hide();
+          $(".Desserts_gluten").show();
+        }
+      }
+
       if (buttonText == "Add") {
         // stuff for adding to the sidebar
         var itemInfo = $(this).parents('h5').children('.itemInfo').text();
@@ -223,7 +262,7 @@
             <h6>{{ each.description }} </h6>
    				{% endif %}
    			{% endfor %}
-         <button>Vegetarian</button>
+         <span><button name = "{{category.name}}_veg">Vegetarian</button><button name = "{{category.name}}_gluten">Gluten-Free</button></span>
    		</div>
     </div>
     {% endif %}
@@ -235,10 +274,12 @@
    		<div class="section2">
    			<h2>{{category.name}}</h2>
    			{% for each in all_menu_items %}
-   				{% if each.category.name == category.name and each.in_stock and each.is_vegetarian %}
+   				{% if each.category.name == category.name or each.category.name == category.parent.name and each.in_stock %}
+           {% if each.is_vegetarian %}
             <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : ${{ each.price }} </span>
               <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
             <h6>{{ each.description }} </h6>
+            {% endif %}
    				{% endif %}
    			{% endfor %}
    		</div>
@@ -252,10 +293,12 @@
    		<div class="section2">
    			<h2>{{category.name}}</h2>
    			{% for each in all_menu_items %}
-   				{% if each.category.name == category.name and each.in_stock and each.allergens = "GLUTENFREE" %}
+   				{% if each.category.name == category.name or each.category.name == category.parent.name and each.in_stock %}
+           {%if each.allergens != "GLUTEN"%}
             <h5><span name="{{ each.id  }}" class="itemInfo">{{ each.name }}  : ${{ each.price }} </span>
               <right>  <span style="float: right"><button>Info</button><button>Add</button></span></h5></right>
             <h6>{{ each.description }} </h6>
+          {% endif%}
    				{% endif %}
    			{% endfor %}
    		</div>
