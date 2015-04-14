@@ -106,3 +106,17 @@ class PostTests(TestCase):
 		response = self.client.get('/waiter/')
 		self.assertTrue('tables' in response.context)
 		self.assertTrue('user' in response.context)
+
+	def test_waiter_page_logged_out(self):
+		response = self.client.get('/waiter/')
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], 'http://testserver/waiter/login/')
+
+	def test_kitchen_page_logged_in(self):
+		response = self.client.post('/kitchen/login/', {'passkey': '0'})
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], 'http://testserver/kitchen/')
+		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')
+		response = self.client.get('/kitchen/')
+		self.assertTrue('unclaimed_orders' in response.context)
+		self.assertTrue('associated_orders' in response.context)

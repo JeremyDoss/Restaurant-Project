@@ -335,6 +335,8 @@ def place_order(request):
             order.save()
             for item in items:
                 itm = MenuItem.objects.get(pk=item)
+                itm.times_ordered = itm.times_ordered + 1
+                itm.save()
                 order.menu_items.add(itm)
             order.save()
             invoice = Invoice(order=order)
