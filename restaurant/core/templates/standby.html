@@ -58,16 +58,16 @@
 
 		var first = "";
 		var second = "";
-		var count = 0;
+		var counter = 0;
 		var correct = 0;
 
-		$("li").click(function() {
-		  if ((count < 2) &&  ($(this).children("img").hasClass("face-up")) === false) {
-				count++;
+		$("ol li").click(function() {
+		  if ((counter < 2) &&  ($(this).children("img").hasClass("face-up")) === false) {
+				counter++;
 				$(this).children("img").show();
 				$(this).children("img").addClass("face-up");
 
-				if (count === 1) {
+				if (counter === 1) {
 			  	first = $(this).children("img").attr("src");
 				}
 				else {
@@ -76,7 +76,7 @@
 					//If you guess correctly...
 					if (first === second) {
 						$("li").children("img[src='" + second + "']").addClass("match");
-						//Increment correct count.
+						//Increment correct counter.
 						correct++;
 						//If all matches are found...
 						if (correct === 8) {
@@ -92,6 +92,7 @@
 								$("#lose").show();
 							}
 							correct = 0;
+							r = 0;
 						}
 					}
 
@@ -103,7 +104,7 @@
 						}, 500);
 					}
 
-					count = 0;
+					counter = 0;
 					setTimeout(function() { console.clear(); }, 60000);
 				}
 		  }
@@ -112,7 +113,7 @@
 
 
 $(function() {
-	$(".game").button().click(function(event) {
+	$(".games").button().click(function(event) {
 		$(".options").toggle();
 		$(".play").hide();
 		$("#match").hide();
@@ -124,7 +125,7 @@ $(function() {
 	$(".tictac").button().click(function(event) {
 		$(".options").hide();
 		$(".play").show();
-
+		$("#tic").show();
 	});
 
 	$(".matching").button().click(function(event) {
@@ -160,9 +161,233 @@ $(function() {
 		})
 	});
 });
+
+//Tic Tac Toe
+$(document).ready(function() {
+var x = "x"
+var o = "o"
+var count = 0;
+var o_win = 0;
+var x_win = 0;
+$('#game li').click(function(){
+
+  if ($("#one").hasClass('o') && $("#two").hasClass('o') && $("#three").hasClass('o') || $("#four").hasClass('o') && $("#five").hasClass('o') && $("#six").hasClass('o') || $("#seven").hasClass('o') && $("#eight").hasClass('o') && $("#nine").hasClass('o') || $("#one").hasClass('o') && $("#four").hasClass('o') && $("#seven").hasClass('o') || $("#two").hasClass('o') && $("#five").hasClass('o') && $("#eight").hasClass('o') || $("#three").hasClass('o') && $("#six").hasClass('o') && $("#nine").hasClass('o') || $("#one").hasClass('o') && $("#five").hasClass('o') && $("#nine").hasClass('o') || $("#three").hasClass('o') && $("#five").hasClass('o') && $("#seven").hasClass('o'))
+   {
+	 alert('O has won the game. Start a new game')
+	 $("#game li").text("+");
+	$("#game li").removeClass('disable')
+	$("#game li").removeClass('o')
+	$("#game li").removeClass('x')
+	$("#game li").removeClass('btn-primary')
+	$("#game li").removeClass('btn-info')
+   }
+  else if ($("#one").hasClass('x') && $("#two").hasClass('x') && $("#three").hasClass('x') || $("#four").hasClass('x') && $("#five").hasClass('x') && $("#six").hasClass('x') || $("#seven").hasClass('x') && $("#eight").hasClass('x') && $("#nine").hasClass('x') || $("#one").hasClass('x') && $("#four").hasClass('x') && $("#seven").hasClass('x') || $("#two").hasClass('x') && $("#five").hasClass('x') && $("#eight").hasClass('x') || $("#three").hasClass('x') && $("#six").hasClass('x') && $("#nine").hasClass('x') || $("#one").hasClass('x') && $("#five").hasClass('x') && $("#nine").hasClass('x') || $("#three").hasClass('x') && $("#five").hasClass('x') && $("#seven").hasClass('x'))
+  {
+   alert('X wins has won the game. Start a new game')
+   $("#game li").text("+");
+	$("#game li").removeClass('disable')
+	$("#game li").removeClass('o')
+	$("#game li").removeClass('x')
+	$("#game li").removeClass('btn-primary')
+	$("#game li").removeClass('btn-info')
+  }
+  else if (count == 9)
+  {
+	alert('Its a tie. It will restart.')
+	$("#game li").text("+");
+	$("#game li").removeClass('disable')
+	$("#game li").removeClass('o')
+	$("#game li").removeClass('x')
+	$("#game li").removeClass('btn-primary')
+	$("#game li").removeClass('btn-info')
+	count = 0
+  }
+  else if ($(this).hasClass('disable'))
+  {
+    alert('Already selected')
+  }
+  else if (count%2 == 0)
+  {
+	  count++
+	  $(this).text(o)
+      $(this).addClass('disable o btn-primary')
+	    if ($("#one").hasClass('o') && $("#two").hasClass('o') && $("#three").hasClass('o') || $("#four").hasClass('o') && $("#five").hasClass('o') && $("#six").hasClass('o') || $("#seven").hasClass('o') && $("#eight").hasClass('o') && $("#nine").hasClass('o') || $("#one").hasClass('o') && $("#four").hasClass('o') && $("#seven").hasClass('o') || $("#two").hasClass('o') && $("#five").hasClass('o') && $("#eight").hasClass('o') || $("#three").hasClass('o') && $("#six").hasClass('o') && $("#nine").hasClass('o') || $("#one").hasClass('o') && $("#five").hasClass('o') && $("#nine").hasClass('o') || $("#three").hasClass('o') && $("#five").hasClass('o') && $("#seven").hasClass('o')) {
+	   		count = 0
+	   		o_win++
+				$('#o_win').text(o_win)
+				if (o_win === 5) {
+					$("#tic").hide();
+					$("#win").show();
+					o_win = 0
+				}
+      }
+  }
+  else
+  {
+	  count++
+    $(this).text(x)
+    $(this).addClass('disable x btn-info')
+	  if ($("#one").hasClass('x') && $("#two").hasClass('x') && $("#three").hasClass('x') || $("#four").hasClass('x') && $("#five").hasClass('x') && $("#six").hasClass('x') || $("#seven").hasClass('x') && $("#eight").hasClass('x') && $("#nine").hasClass('x') || $("#one").hasClass('x') && $("#four").hasClass('x') && $("#seven").hasClass('x') || $("#two").hasClass('x') && $("#five").hasClass('x') && $("#eight").hasClass('x') || $("#three").hasClass('x') && $("#six").hasClass('x') && $("#nine").hasClass('x') || $("#one").hasClass('x') && $("#five").hasClass('x') && $("#nine").hasClass('x') || $("#three").hasClass('x') && $("#five").hasClass('x') && $("#seven").hasClass('x')) {
+			count = 0
+	 		x_win++
+	 		$('#x_win').text(x_win)
+			if (x_win === 5) {
+				$("#tic").hide();
+				$("#win").show();
+				x_win = 0
+			}
+    }
+  }
+
+   });
+    $("#reset").click(function () {
+    $("#game li").text("+");
+	$("#game li").removeClass('disable')
+	$("#game li").removeClass('o')
+	$("#game li").removeClass('x')
+	$("#game li").removeClass('btn-primary')
+	$("#game li").removeClass('btn-info')
+	count = 0
+
+  });
+});
 </script>
 
+<link rel="stylesheet" type="text/css" href="http://getbootstrap.com/2.3.2/assets/css/bootstrap.css">
 <style>
+#tic-tac-toe .disable {
+	text-transform:uppercase;
+	font-size:30px;
+	font-family:Georgia, "Times New Roman", Times, serif;
+}
+
+#tic-tac-toe #game li {
+	float:left;
+	padding:0;
+	list-style:none;
+	text-align:center;
+	margin-bottom:20px;
+	color:#fff;
+	height:60px;
+	line-height:60px;
+	font-size:40px;
+	color:#ccc000;
+}
+
+#tic-tac-toe #game li.disable{
+	color:#ffffff;
+}
+
+#tic-tac-toe #game {
+	float:left;
+	padding:0;
+	clear:both
+}
+
+.new_span {width:226px}
+
+#tic-tac-toe #reset {
+	padding:5px 10px;
+	color:#fff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:20px;
+	clear:both;
+	cursor:pointer;
+	float:left;
+	text-align:center;
+	text-transform:uppercase;
+	outline:none;
+	width:204px
+}
+
+.input-prepend span.pre_text {width:55px}
+.input-prepend .span1{width:93px}
+.input-prepend {margin-bottom:10px}
+.clr {clear:both; height:0}
+
+#tic-tac-toe h1 {text-align:center; font-size:28px}
+
+#tic-tac-toe li::-moz-selection {
+	background:none;
+	color:#000;
+}
+
+#tic-tac-toe li::-webkit-selection {
+	background:none;
+	color:#000;
+}
+
+#tic-tac-toe {width:220px; margin:0 auto}
+.input-append .win_times {background:#fff; width:101px}
+.input-append .win_text {width:52px}
+
+.btn-info {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #49afcd;
+  *background-color: #2f96b4;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2f96b4));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: -o-linear-gradient(top, #5bc0de, #2f96b4);
+  background-image: linear-gradient(to bottom, #ff0000, #FFE2E2);
+  background-repeat: repeat-x;
+  border-color: #2f96b4 #2f96b4 #1f6377;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bc0de', endColorstr='#ff2f96b4', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.btn-primary {
+  color: #ffffff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #006dcc;
+  *background-color: #0044cc;
+  background-image: -moz-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#0088cc), to(#0044cc));
+  background-image: -webkit-linear-gradient(top, #0088cc, #0044cc);
+  background-image: -o-linear-gradient(top, #0088cc, #0044cc);
+  background-image: linear-gradient(to bottom, #0022CC, #00CCB5);
+  background-repeat: repeat-x;
+  border-color: #0044cc #0044cc #002a80;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0044cc', GradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+
+.line{
+display: inline; border-left: 3px solid; padding-left: 2.0em;
+}
+.btn-primary:hover{
+background-color:transparent;
+ background-position: 0px;
+}
+
+.btn:hover,
+.btn:focus {
+  color: #333333;
+  background-position: 0px;
+}
+
+.vertical{
+  width: 0px;
+  background-color: black;
+  height: 100%;
+  position: right;
+}
+<!--
+ul:after {
+  content: '';
+  width: 0;
+  height: 35%;
+  position: absolute;
+  border: 0px solid black;
+  top: 60;
+  left: 655px;
+  background-color: transparent;
+}
+-->
+
 body {
 	background-image: url("http://i.imgur.com/ucjverw.jpg");
 	background-size: cover;
@@ -204,7 +429,7 @@ ul {
 	margin: 0;
 }
 
-li {
+ol li {
 	background-image: url("http://i.imgur.com/l11LCqi.gif");
 	background-size: 150px 150px;
 	padding: 0;
@@ -221,7 +446,7 @@ img {
 	height: 100%;
 }
 
-.game {
+.games {
 	background:linear-gradient(to bottom, #fa3e0f 5%, #000000 100%);
 	background-color:#fa3e0f;
 	border-radius:15px;
@@ -336,7 +561,7 @@ img {
 
 <!-- STANDBY PAGE -->
 <div class="standby">
-	<div class="game">Play a Game?</div>
+	<div class="games">Play a Game?</div>
 	<div class="pay">Pay Bill</div>
 	<div class="refill">Refill Request</div>
 	<div class="help">Request Assistance</div>
@@ -345,7 +570,48 @@ img {
 		<div class="matching" alt="Play Matching" title="Play Matching"></div>
 	</div>
 	<div class="play">
-		<div id="tic"></div>
+		<div id="tic">
+
+
+			<div id="tic-tac-toe">
+			  <div class="span3 new_span">
+			    <div class="row">
+			      <h1 class="span3">Tic Tac Toe</h1>
+			      <div class="span3">
+			        <div class="input-prepend input-append">
+			          <span class="add-on win_text">O won</span><strong id="o_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
+			        </div>
+			        <div class="input-prepend input-append">
+			          <span class="add-on win_text">X won</span><strong id="x_win" class="win_times add-on">0</strong><span class="add-on">time(s)</span>
+			        </div>
+
+			      </div>
+
+			    </div>
+			    <ul class="row" id="game">
+
+			      <li id="one" class="btn span1" >+</li>
+
+
+			      <li id="two" class="btn span1">+</li>
+			      <li id="three" class="btn span1">+</li>
+
+			      <li id="four" class="btn span1">+</li>
+			      <li id="five" class="btn span1">+</li>
+			      <li id="six" class="btn span1">+</li>
+			      <li id="seven" class="btn span1">+</li>
+			      <li id="eight" class="btn span1">+</li>
+			      <li id="nine" class="btn span1">+</li>
+			    </ul>
+			    <div class="clr">&nbsp;</div>
+			    <div class="row"><a href="#" id="reset" class="btn-success btn span3" >Restart</a></div></div>
+			</div>
+
+
+
+
+
+		</div>
 		<div id="match"></div>
 		<div id="win"><h1>You are a winner!!!</h1><h5>A free gift was added!</h5></div>
 		<div id="lose"><h1>You didn't win this time :(</h1><h5>Keep trying!!</h5></div>
