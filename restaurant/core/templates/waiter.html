@@ -107,6 +107,7 @@ button{
 
 <h2>Welcome, {{ user.name }} {% if user.is_manager %}(manager view){% endif %}</h2>
 <center>
+      {% if user.is_manager %}<a href="../kitchen">Kitchen View</button></a>{% endif %}
 <div id="rcorners">
 <table>
 	<th>Tables
