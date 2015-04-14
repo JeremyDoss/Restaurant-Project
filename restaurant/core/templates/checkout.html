@@ -9,6 +9,31 @@ h7 {
 h7 a {
     color: black;
 }
+#subtotal1, #subtotal2, #subtotal3, #subtotal4 {
+    color: black;
+    padding: 10px;
+}
+
+.tip_buttons1, .tip_buttons2, .tip_buttons3, .tip_buttons4 {
+    color: black;
+    padding-left: 5px;
+}
+
+#tip1, #tip2, #tip3, #tip4 {
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#tax1, #tax2, #tax3, #tax4 {
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+#total1, #total2, #total3, #total4 {
+    color: black;
+    padding-left: 10px;
+    padding-right: 10px;
+}
 </style>
 {% endblock %}
 
@@ -18,6 +43,8 @@ h7 a {
 <script>
 
 items = []
+tip = [0,0,0,0]
+comped = {% if comped %}true{% else %}false{% endif %};
 
 function move_item_right(itemID) {
     id = -1;
@@ -36,17 +63,42 @@ function update_items() {
     $('#itemList2').empty()
     $('#itemList3').empty()
     $('#itemList4').empty()
+    $('#tip1').empty()
+    $('#tip2').empty()
+    $('#tip3').empty()
+    $('#tip4').empty()
+    $('#tax1').empty()
+    $('#tax2').empty()
+    $('#tax3').empty()
+    $('#tax4').empty()
+    $('#total1').empty()
+    $('#total2').empty()
+    $('#total3').empty()
+    $('#total4').empty()
     subtotal = [0,0,0,0]
     $.each(items, function(key,value) {
         $("#itemList"+value[3]).append("<h7><a class='item' href='#' name='"+value[0]+"'>"+value[1]+"</a><span style='float: right;'>$"+value[2]+"</h7><br>")
         subtotal[value[3]-1] += value[2]
     })
 
-    console.log(subtotal)
+    //console.log(subtotal)
 
     $.each(subtotal, function(key, value) {
-        $('#subtotal' + key).empty()
-        $('#subtotal' + key).append('hi')
+        _key = key+1
+        $('#subtotal' + _key).empty()
+        $('#subtotal' + _key).append('<strong>Subtotal</strong> <span style="color: black; float: right">$'+subtotal[key].toFixed(2)+'</span>')
+        var tipval = subtotal[key] * tip[key]
+        var tax = subtotal[key] * 0.0825
+        $('#tip' + _key).append("Tip <span style='color: black; float: right'>$"+tipval.toFixed(2)+'</span>')
+        $('#tax' + _key).append("Tax <span style='color: black; float: right'>$"+tax.toFixed(2)+"</span>")
+
+        var total = subtotal[key] + tax + tipval;
+        if (comped) {
+            $('#total' + _key).append("<strong>Total</strong> <span style='color: black; float: right'>COMPED</span>")
+        }
+        else {
+            $('#total' + _key).append("<strong>Total</strong> <span style='color: black; float: right'>$"+total.toFixed(2)+"</span>")
+        }
     })
 
 
@@ -54,7 +106,7 @@ function update_items() {
     $("a.item").click(function(event) {
         console.log($(this).text())
         move_item_right($(this).attr("name"))
-        console.log(items)
+        //console.log(items)
         update_items()
         event.preventDefault();
     })
@@ -65,6 +117,22 @@ $(function() {
 {% endfor %}
 
     update_items()
+
+    $('button').button().click(function(event) {
+        var btncls = $(this).parent().attr("class")
+        var cls = btncls.slice(0, -1)
+        var num = btncls.slice(-1)
+
+        if (cls == "tip_buttons") {
+            var text = $(this).text()
+            var percent = text.slice(0,-1)
+            percent = parseInt(percent)
+            percent = percent / 100
+            tip[num-1] = percent
+            update_items()
+        }
+
+    })
 })
 </script>
 
@@ -105,7 +173,7 @@ $(function() {
     </div>
     <div class="paymentText">
 
-      <h2 class="title">You may split the check  below by selecting the arrows.</h2>
+      <h2 class="title">You may split the check  below by clicking on items.</h2>
 
 
 
@@ -127,8 +195,10 @@ $(function() {
 
       </div>
       <div id="subtotal1"></div>
-
-      <button>Add Tip</button>
+      <div id="tip1"></div>
+      <div id="tax1"></div>
+      <div id="total1"></div>
+      <div class="tip_buttons1">Tip <button>5%</button><button>10%</button><button>15%</button></div>
     </div>
 
     <div class="splitCheckPane">
@@ -141,7 +211,10 @@ $(function() {
 
       </div>
       <div id="subtotal2"></div>
-      <button>Add Tip</button>
+      <div id="tip2"></div>
+      <div id="tax2"></div>
+      <div id="total2"></div>
+      <div class="tip_buttons2">Tip <button>5%</button><button>10%</button><button>15%</button></div>
     </div>
 
     <div class="splitCheckPane">
@@ -153,7 +226,10 @@ $(function() {
 
     </div>
     <div id="subtotal3"></div>
-      <button>Add Tip</button>
+    <div id="tip3"></div>
+    <div id="tax3"></div>
+    <div id="total3"></div>
+    <div class="tip_buttons3">Tip <button>5%</button><button>10%</button><button>15%</button></div>
     </div>
 
     <div class="splitCheckPane">
@@ -165,7 +241,10 @@ $(function() {
 
       </div>
       <div id="subtotal4"></div>
-      <button>Add Tip</button>
+      <div id="tip4"></div>
+      <div id="tax4"></div>
+      <div id="total4"></div>
+      <div class="tip_buttons4">Tip <button>5%</button><button>10%</button><button>15%</button></div>
 
 
     </div>

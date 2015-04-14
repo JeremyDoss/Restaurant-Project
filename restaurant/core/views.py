@@ -358,6 +358,7 @@ def checkout(request):
     if ("order_id" in request.COOKIES):
         orderID = request.COOKIES['order_id']
         order = Order.objects.get(pk=orderID)
-        context = {'order': order}
+        comped = order.invoice_set.get().comped
+        context = {'order': order, 'comped': comped}
         return render(request, 'checkout.html', context)
     return HttpResponse("No order on file.")
