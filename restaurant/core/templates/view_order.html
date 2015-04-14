@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block style %}
+{% endblock %}
+
+{% block script %}
+
+
+
+{% endblock %}
+
+
+{% block main %}
+
+
+
+
+<body>
+
+
+  <h7> {{ order.date }} </h7> <br / > <br />
+  <h7> Order #: {{ order.id }} </h7> <br / > <br / >
+  <h7> Table #: {{ order.table }} </h7> <br / > <br / >
+  <h7> Status : {{ order.status }} </h7> <br / > <br / >
+  <h7> Items : </h7> <br / > <br / >
+      {% for each in order.menu_items.all %}
+
+      <h7> {{ each.name }} {{ each.price }} </h7><br />
+
+
+
+
+      {% endfor %}
+
+      <a href="javascript:history.go(-1)">Back</a>
+
+
+</div>
+
+
+
+
+
+
+</body>
+
+
+{% endblock %}
