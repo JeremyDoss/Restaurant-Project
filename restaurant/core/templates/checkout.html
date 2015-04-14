@@ -147,6 +147,7 @@ $(function() {
       $("#rTip1").append(rtip1.toFixed(2));
       $("#rTotal1").append(rtotal1.toFixed(2));
       $("#receipt1").css("display", "block");
+      $("#1pay").append($("input[name=cashcredit1]:checked").val());
 
       var rtax2 = subtotal[1]*.0825;
       var rtip2 = tip[1]*subtotal[0];
@@ -225,6 +226,7 @@ $(function() {
       <p id="rTax1" >Tax: </p>
       <p id="rTip1" >Tip: </p>
       <p id="rTotal1" >Total: </p>
+      <h1 id="1pay" style="color:green;"></h1>
     </div>
 
     <div id="receipt2" style=" border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:550px; z-index:1;background-color:white; ">
@@ -233,6 +235,7 @@ $(function() {
       <p id="rTax2" >Tax: </p>
       <p id="rTip2" >Tip: </p>
       <p id="rTotal2" >Total: </p>
+      <h1 id="2pay" style="color:green;"></h1>
     </div>
 
     <div id="receipt3" style=" border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:850px; z-index:1;background-color:white; ">
@@ -241,6 +244,7 @@ $(function() {
       <p id="rTax3" >Tax: </p>
       <p id="rTip3" >Tip: </p>
       <p id="rTotal3" >Total: </p>
+      <h1 id="3pay" style="color:green;"></h1>
     </div>
 
     <div id="receipt4" style=" border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:1150px; z-index:1;background-color:white; ">
@@ -249,6 +253,7 @@ $(function() {
       <p id="rTax4" >Tax: </p>
       <p id="rTip4" >Tip: </p>
       <p id="rTotal4" >Total: </p>
+      <h1 id="4pay" style="color:green;"></h1>
     </div>
     <div class="splitCheckPane">
           <br />
