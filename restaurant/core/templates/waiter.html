@@ -106,8 +106,13 @@ button{
 {% block main %}
 
 <h2>Welcome, {{ user.name }} {% if user.is_manager %}(manager view){% endif %}</h2>
+{% if user.is_manager %}
+<a href="/kitchen/" onclick="location.href='/kitchen/'"><button>Kitchen View</button></a>
+<a href="/kitchen/items/" onclick="location.href='/waiter/statistics/'"><button>Statistics</button></a>
+<a href="/kitchen/ingredients/" onclick="location.href='/waiter/order_list/'"><button>Orders List</button></a>
+{% endif %}
+<a style="float:right"href="/logout/waiter/" onclick="location.href='/logout/waiter/'"><button>Logout</button></a>
 <center>
-      {% if user.is_manager %}<a href="../kitchen">Kitchen View</button></a>{% endif %}
 <div id="rcorners">
 <table>
 	<th>Tables

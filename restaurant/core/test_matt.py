@@ -57,6 +57,8 @@ class ViewTests(TestCase):
 		self.assertEqual([item.name for item in response.context['all_menu_items']], ['Soup'])
 
 
+
+
 class PostTests(TestCase):
 	def setUp(self):
 		# add a table
@@ -89,3 +91,18 @@ class PostTests(TestCase):
 		self.assertEqual(response.status_code, 302)
 		self.assertEqual(response['location'], 'http://testserver/kitchen/')
 		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')
+
+	def test_manager_login(self):
+		response = self.client.post('/waiter/login/', {'passkey': '1234'})
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], 'http://testserver/waiter/')
+		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')
+
+	def test_waiter_page_logged_in(self):
+		response = self.client.post('/waiter/login/', {'passkey': '101'})
+		self.assertEqual(response.status_code, 302)
+		self.assertEqual(response['location'], 'http://testserver/waiter/')
+		self.assertEqual(self.client.cookies['logged_in'].value, 'yes')
+		response = self.client.get('/waiter/')
+		self.assertTrue('tables' in response.context)
+		self.assertTrue('user' in response.context)
