@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load mathfilters %}
 {% block style %}
 <style>
 h7 {
@@ -115,7 +115,14 @@ function update_items() {
 }
 $(function() {
 {% for item in order.menu_items.all %}
-    items.push([{{item.id}}, "{{item.name}}", {{item.price}}, 1]);
+    items.push([{{item.id}},
+                "{{item.name}}",
+                {% if date|date:"G"|add:"0" >= 16 and date|date:"G"|add:"0" < 19 and item.category.name == 'Drinks' %}
+                {{item.price|div:2|floatformat:2 }},
+                {% else %}
+                {{item.price }},
+                {% endif %}
+                1]);
 {% endfor %}
 
     update_items()

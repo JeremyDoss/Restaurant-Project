@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.core import serializers
+import datetime
 import json
 import logging
 
@@ -45,7 +46,7 @@ def logout_redirect(request, redir):
 def index(request):
 	all_menu_items = MenuItem.objects.all()
 	categories = Category.objects.all()
-	context = {'all_menu_items': all_menu_items, 'categories': categories, 'counter': Counter()}
+	context = {'all_menu_items': all_menu_items, 'categories': categories, 'counter': Counter(), 'date': datetime.datetime.now()}
 	return render(request, 'index.html', context)
 
 
@@ -361,6 +362,6 @@ def checkout(request):
         orderID = request.COOKIES['order_id']
         order = Order.objects.get(pk=orderID)
         comped = order.invoice_set.get().comped
-        context = {'order': order, 'comped': comped}
+        context = {'order': order, 'comped': comped, 'date': datetime.datetime.now()}
         return render(request, 'checkout.html', context)
     return HttpResponse("No order on file.")
