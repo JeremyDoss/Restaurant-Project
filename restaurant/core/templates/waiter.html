@@ -22,7 +22,7 @@
     				var action = $(this).attr("name");
 
             if (action == "submit-ad") {
-              var ad_text = $("input[name='message']").attr("value");
+              var ad_text = $("input[name='message']").val();
               $.ajax({
                 url: "/waiter/submit_ad/",
                 type: "POST",

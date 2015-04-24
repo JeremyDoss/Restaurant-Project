@@ -46,7 +46,7 @@ def logout_redirect(request, redir):
 def index(request):
 	all_menu_items = MenuItem.objects.all()
 	categories = Category.objects.all()
-	context = {'all_menu_items': all_menu_items, 'categories': categories, 'counter': Counter(), 'date': datetime.datetime.now()}
+	context = {'all_menu_items': all_menu_items, 'categories': categories, 'counter': Counter(), 'date': datetime.datetime.now(), 'ad': Advertisement.objects.get(pk=1)}
 	return render(request, 'index.html', context)
 
 
@@ -127,7 +127,7 @@ def waiter_submit_ad(request):
         ad = Advertisement.objects.get(pk=1)
         ad.message = msg
         ad.save()
-        return HttpResponse(msg)
+        return HttpResponse('return: ' + msg)
     else:
         return HttpResponse("Error.")
 
