@@ -66,7 +66,7 @@
         }
   	  	event.preventDefault();
   	  })
-    elem.append("<div id='placeorder'><button name='placeorder'>Place Order</button></div>")
+    elem.append("<div id='placeorder'><button name='placeorder'>Place Order</button><input type='checkbox' id='TOGO' value='togo'>To Go</input></div>")
 
     $("#placeorder button").button().click(function(event) {
         item_ids = []
@@ -75,7 +75,10 @@
         })
         $.post("/place_order/", {items: item_ids}, function(data) {
             alert("Order placed successfully!")
-            location.href = "/standby";
+            if($("#TOGO").is(':checked')) {
+              location.href="/checkout/?togo=1";
+            }
+            else location.href = "/standby";
         });
     })
   }

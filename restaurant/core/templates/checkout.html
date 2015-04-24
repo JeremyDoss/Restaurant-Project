@@ -46,7 +46,18 @@ items = []
 tip = [0,0,0,0]
 comped = {% if comped %}true{% else %}false{% endif %};
 
-
+function getUrlVars()
+{
+    var vars = [], hash;
+    var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+    for(var i = 0; i < hashes.length; i++)
+    {
+        hash = hashes[i].split('=');
+        vars.push(hash[0]);
+        vars[hash[0]] = hash[1];
+    }
+    return vars;
+}
 
 function move_item_right(itemID) {
     id = -1;
@@ -114,6 +125,21 @@ function update_items() {
     })
 }
 $(function() {
+
+  if("togo" in getUrlVars()){
+    $("h2.title").text("Here's your To-Go order!");
+    $("#check2").hide();
+    $("#check3").hide();
+    $("#check4").hide();
+    $("#check1").css("width","97.8%");
+    $("#nameBox").show();
+
+  }
+  else{
+    $("h2.title").text("You may split the check  below by clicking on items.");
+  }
+
+
 {% for item in order.menu_items.all %}
     items.push([{{item.id}},
                 "{{item.name}}",
@@ -156,7 +182,12 @@ $(function() {
       $("#rTotal1").append(rtotal1.toFixed(2));
       $("#receipt1").css("display", "block");
       $("#1pay").append($("input[name=cashcredit1]:checked").val());
-
+      if("togo" in getUrlVars()){
+        var togoName = $('input[name="nameBoxValue"]').val();
+        $("#receiptName").text("Thank you for ordering " + togoName);
+        $("#receipt1").css({left:675});
+        return;
+      }
       var rtax2 = subtotal[1]*.0825;
       var rtip2 = tip[1]*subtotal[0];
       var rtotal2 = subtotal[1]*(1+.0825)*(1+tip[1]);
@@ -200,10 +231,6 @@ $(function() {
 <body>
 
 
-
-
-
-
   <!--OVERLAY DIV-->
   <div class="overlayBG">
   </div>
@@ -225,7 +252,7 @@ $(function() {
     </div>
     <div class="paymentText">
 
-      <h2 class="title">You may split the check  below by clicking on items.</h2>
+      <h2 class="title"></h2>
 
 
     </div>
@@ -233,7 +260,8 @@ $(function() {
     <div class="splitCheckEdge">
     </div>
     <div id="receipt1" style="border: solid black 3px; color:black; display:none;width: 300px; height:500px; position:fixed; top:200px; left:250px; z-index:1;background-color:white; ">
-      <h2 style="color:black";>Receipt</h2>
+      <h2 style="color:black">Receipt</h2>
+      <h3 style="color:black; font-size:20px;"id="receiptName"></h3>
       <p id="rMenu1" ></p>
       <p id="rTax1" >Tax: </p>
       <p id="rTip1" >Tip: </p>
@@ -268,7 +296,7 @@ $(function() {
       <p id="rTotal4" >Total: </p>
       <h1 id="4pay" style="color:green;"></h1>
     </div>
-    <div class="splitCheckPane">
+    <div id="check1" class="splitCheckPane">
           <br />
       <div class="topCheck">
         <h7> CHECK 1 </h7>
@@ -284,9 +312,10 @@ $(function() {
       <div id="total1"></div>
       <div class="tip_buttons1">Tip <button>5%</button><button>10%</button><button>15%</button><button>20%</button></div>
       <div style="color: black"><input type="radio" name="cashcredit1" value="CASH" checked="checked">Cash <input type="radio" name="cashcredit1" value="CREDIT">Credit</div>
+      <input placeholder="Enter your name" type="text" name="nameBoxValue" id="nameBox"></input>
     </div>
 
-    <div class="splitCheckPane">
+    <div id="check2" class="splitCheckPane">
                 <br />
       <div class="topCheck">
         <h7> CHECK 2 </h7>
@@ -303,7 +332,7 @@ $(function() {
       <div style="color: black"><input type="radio" name="cashcredit2" value="CASH" checked="checked">Cash <input type="radio" name="cashcredit2" value="CREDIT">Credit</div>
     </div>
 
-    <div class="splitCheckPane">
+    <div id="check3" class="splitCheckPane">
                 <br />
       <div class="topCheck">
         <h7> CHECK 3 </h7>
@@ -319,7 +348,7 @@ $(function() {
     <div style="color: black"><input type="radio" name="cashcredit3" value="CASH" checked="checked">Cash <input type="radio" name="cashcredit3" value="CREDIT">Credit</div>
     </div>
 
-    <div class="splitCheckPane">
+    <div id="check4" class="splitCheckPane">
                 <br />
       <div class="topCheck">
         <h7> CHECK 4 </h7>
