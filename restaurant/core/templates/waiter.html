@@ -20,6 +20,24 @@
 
     			$("input[type=submit], a, button").button().click(function( event ){
     				var action = $(this).attr("name");
+
+            if (action == "submit-ad") {
+              var ad_text = $("input[name='message']").attr("value");
+              $.ajax({
+                url: "/waiter/submit_ad/",
+                type: "POST",
+                data: {message: ad_text},
+                success: function(json) {
+                  console.log(json)
+                  location.reload()
+                }
+              })
+              event.preventDefault();
+              return;
+            }
+
+            console.log("Submit passed")
+
     				var tables = [];
     				$(".ui-selected").each(function() {
     					tables.push($(this).attr("name"));
@@ -107,6 +125,7 @@ button{
 
 <h2>Welcome, {{ user.name }} {% if user.is_manager %}(manager view){% endif %}</h2>
 {% if user.is_manager %}
+<div style="margin: 10px">Advertisement message:<br><input name="message" type="text" value="{{advertisement.message}}" size="50"/> <button name="submit-ad">Submit</button><br></div>
 <a href="/kitchen/" onclick="location.href='/kitchen/'"><button>Kitchen View</button></a>
 <a href="/kitchen/items/" onclick="location.href='/waiter/statistics/'"><button>Statistics</button></a>
 <a href="/kitchen/ingredients/" onclick="location.href='/waiter/order_list/'"><button>Orders List</button></a>
@@ -127,7 +146,11 @@ button{
 
 				{% if table.order_set.get %}{% if table.order_set.get.status != "CL" %}<span style="font-size: 80%">Order: #{{table.order_set.get.id}}</span>{% endif %}
 				<br/>
-				{% if table.order_set.get.status == "RD" %}<span style="font-size: 80%; color: red; font-weight: bold">ORDER READY</span>{% endif %}{% endif %}
+				{% if table.order_set.get.status == "RD" %}
+        {% if table.order_set.get.cook_set.get.employee.name %}<span style="font-size: 80%;">Chef: {{ table.order_set.get.cook_set.get.employee.name }}</span><br>{% endif %}
+          <span style="font-size: 80%; color: red; font-weight: bold">ORDER READY</span>
+        {% endif %}
+        {% endif %}
 				{% if table.order_set.get.invoice_set.get %}{% if table.order_set.get.invoice_set.get.comped %}
 				<span style="color: green; font-weight: bold">COMPED</span>
 				{% endif %}{% endif %}

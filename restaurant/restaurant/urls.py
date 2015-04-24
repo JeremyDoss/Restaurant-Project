@@ -12,6 +12,7 @@ urlpatterns = patterns('',
     url(r'^waiter/$', 'core.views.waiter_index', name="waiter_index"),
     url(r'^waiter/login/$', 'core.views.waiter_login', name="waiter_login"),
     url(r'^waiter/set_status/$', 'core.views.waiter_set_status', name="waiter_set_status"),
+    url(r'^waiter/submit_ad/$', 'core.views.waiter_submit_ad', name="waiter_submit_ad"),
 
     url(r'^kitchen/$', 'core.views.kitchen_index', name="kitchen_index"),
     url(r'^kitchen/items/$', 'core.views.kitchen_items', name="kitchen_items"),

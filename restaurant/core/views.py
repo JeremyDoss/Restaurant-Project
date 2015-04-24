@@ -118,8 +118,18 @@ def waiter_index(request):
 			return HttpResponse("Access denied.")
 		except AttributeError:
 			return HttpResponse("You have no tables.")
-	context = {'tables': tables, 'user': user}
+	context = {'tables': tables, 'user': user, 'advertisement': Advertisement.objects.get(pk=1)}
 	return render(request, 'waiter.html', context)
+
+def waiter_submit_ad(request):
+    if (request.method == 'POST'):
+        msg = request.POST['message']
+        ad = Advertisement.objects.get(pk=1)
+        ad.message = msg
+        ad.save()
+        return HttpResponse(msg)
+    else:
+        return HttpResponse("Error.")
 
 def waiter_login(request):
 	# if we're already logged in, there's no reason to be here
