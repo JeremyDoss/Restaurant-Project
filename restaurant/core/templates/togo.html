@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block style %}
+{% endblock %}
+
+{% block script %}
+  <link rel="stylesheet" href="https://dl.dropboxusercontent.com/u/162610/menuStyle.css">
+  <script>
+  $(function() {
+    $( document ).tooltip();
+  });
+
+  $(function() {
+  $( "input[type=submit], a, button" )
+    .button()
+    .click(function( event ) {
+      event.preventDefault();
+    });
+});
+
+
+  </script>
+
+  {% endblock %}
+
+</head>
+<body>
+
+    {% block main %}
+
+
+
+
+      <!--OVERLAY DIV-->
+      <div class="overlayBG">
+      </div>
+      <!--POPUP DIV-->
+      <div class="popup">
+        <h4>Item info</h4>
+        <button>Close</button>
+      </div>
+      <br />
+
+
+      <!-- CUSTOMER MENU CONTAINER  -->
+      <div id="container" class="dropWindow">
+        <!-- TOP WHITE TITLE BAR -->
+        <div class="titlebar">
+
+          <h1 class="title">To Go Order</h1>
+
+        </div>
+        <div class="paymentText">
+
+
+
+
+            <p><label for="age">Your Name:</label><input id="age" title="Please enter your name"></p>
+
+            <p><label for="age">Credit card number:</label><input id="age" title="Please enter your credit card number"></p>
+
+            <button>Submit</button>
+
+
+        </div>
+
+        <!--WHITE BASE BAR-->
+        <div class="basebar">
+          <br />
+          <br />
+        </div>
+      </div>
+
+
+
+
+
+</body>
+
+{% endblock %}
