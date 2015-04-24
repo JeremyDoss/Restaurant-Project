@@ -89,7 +89,27 @@ function update_items() {
     $('#total3').empty()
     $('#total4').empty()
     subtotal = [0,0,0,0]
+    var num_entrees = 0;
+    var kids_items = ["Kid's Cheese Pizza", "Kid's Freedom Fries", "Kid's California Style Pizza"]
+    $.each(items, function(key, value) {
+      var decoded = $('<div/>').html(value[1]).text();
+      if(value[4] == 'Entrees') {
+        if ($.inArray(decoded, kids_items) < 0) {
+          num_entrees += 1
+        }
+      }
+    })
+    $.each(items, function(key, value) {
+      var decoded = $('<div/>').html(value[1]).text();
+      if (num_entrees > 0) {
+        if ($.inArray(decoded, kids_items) >= 0) {
+          items[key][2] = 0.00
+          num_entrees -= 1
+        }
+      }
+    })
     $.each(items, function(key,value) {
+
         $("#itemList"+value[3]).append("<h7><a class='item' href='#' name='"+value[0]+"'>"+value[1]+"</a><span style='float: right;'>$"+value[2]+"</h7><br>")
         subtotal[value[3]-1] += value[2]
     })
@@ -148,7 +168,8 @@ $(function() {
                 {% else %}
                 {{item.price }},
                 {% endif %}
-                1]);
+                1,
+                '{{item.category.name}}']);
 {% endfor %}
 
     update_items()
