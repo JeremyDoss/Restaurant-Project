@@ -138,9 +138,11 @@ function update_items() {
 
     $("a.item").click(function(event) {
         console.log($(this).text())
-        move_item_right($(this).attr("name"))
-        //console.log(items)
-        update_items()
+        if (!("togo" in getUrlVars())) { 
+            move_item_right($(this).attr("name"))
+            //console.log(items)
+            update_items()
+        }
         event.preventDefault();
     })
 }
